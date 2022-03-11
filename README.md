@@ -1,15 +1,22 @@
 ## Description
 The MCGpy package contains classes and utilities providing tools and methods for analyzing magnetocardiography(MCG) data. It is designed for someone who wants to utilize it for instrumental or medical purposes without knowing detailed algorithms. For this purpose, several key features of the MCGpy are based on the basic concept and ideas of the [GWpy](https://github.com/gwpy/gwpy), developed by Duncan Macleod <duncan.macleod@ligo.org>.
 
-## Feature
-- 
+## Development status
+
 
 ## Installation
 - Manual installation
 ```sh
-$ git clone 
+$ git clone https://github.com/pjjung/mcgpy.git
+$ cd mcgpy
+$ python setup.py install
 
 ```
+- or, you can do:
+```
+# pip installation will be supported
+```
+
 
 ## References
 Lead field calculation methods were referred to in the following papers:
