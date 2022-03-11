@@ -15,4 +15,4 @@
 
 __author__ = 'Phil Jung <pjjung@amcg.kr>'
 
-from ._tconvert import (tconvert, to_timestamp, from_datetime)
+from ._tconvert import (tconvert, to_timestamp, to_datetime)
