@@ -25,7 +25,7 @@ $ python setup.py install
 
 ## References
 Lead field calculation methods were referred to in the following papers:
-- M.S Hamalainen, et al., *Interpreting magnetic fields of the brain: minimum orm estimates*,  Med. & Biol. Eng. & Compu., 32, 35-42 (1992)
+- M.S Hamalainen, et al., *Interpreting magnetic fields of the brain: minimum orm estimates*,  Med. & Biol. Eng. & Compu., 32, 35-42 (1994)
 - J.T. Nenonen, et al., *Minimum-norm estimation in a boundary-element torso model*, Med. & Biol. Eng. & Compu., 32, 42-48 (1994)
 
 ## License
