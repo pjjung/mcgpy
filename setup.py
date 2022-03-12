@@ -18,6 +18,7 @@ setup(
       author='Phil Jung',
       author_email='pjjung@amcg.kr',
       description='The MCGpy is the package for studying adta for magnetocardiography, for instrumetnal or medical purpose.',
+      url='https://github.com/pjjung/mcgpy'
       packages=find_packages(exclude=['test', 'examples']),
       install_requires=['setuptools', 'numpy', 'scipy', 'astropy', 'h5py', 'matplotlib'],
       python_requires='>=3.6',
