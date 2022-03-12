@@ -69,7 +69,7 @@ class LeadField(np.ndarray):
     Note
     ----
     See the following articles for understanding theoretical backgrounds.
-        M.S Hamalainen, et al., Interpreting magnetic fields of the brain: minimum orm estimates,  Med. & Biol. Eng. & Compu., 32, 35-42 (1992)
+        M.S Hamalainen, et al., Interpreting magnetic fields of the brain: minimum orm estimates,  Med. & Biol. Eng. & Compu., 32, 35-42 (1994)
         J.T. Nenonen, et al., Minimum-norm estimation in a boundary-element torso model, Med. & Biol. Eng. & Compu., 32, 42-48 (1994)
     '''
     
