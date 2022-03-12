@@ -5,8 +5,8 @@ The MCGpy package contains classes and utilities providing tools and methods for
 [![Build Status](https://img.shields.io/badge/build-test%20version-9cf)](https://img.shields.io/badge/build-test%20version-9cf)
 [![Build Status](https://img.shields.io/badge/version-0.1-blue)](https://img.shields.io/badge/version-0.1-blue)
 
-[![Build Status](https://img.shields.io/badge/license-%20GPLv3-green)](https://img.shields.io/badge/license-%20GPLv3-green)
-[![Build Status](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-brightgreen)](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-brightgreen)
+[![Build Status](https://img.shields.io/badge/license-%20GPLv3-green)](http://www.gnu.org/licenses/)
+[![Build Status](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-brightgreen)](https://minepy.readthedocs.io/en/latest/)
 
 
 ## Installation
