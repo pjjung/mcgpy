@@ -20,7 +20,7 @@ setup(
       description='The MCGpy is the package for studying adta for magnetocardiography, for instrumetnal or medical purpose.',
       packages=find_packages(exclude=['test', 'examples']),
       install_requires=['setuptools', 'numpy', 'scipy', 'astropy', 'h5py', 'matplotlib'],
-      python_requires='>=3.7',
+      python_requires='>=3.6',
       classifiers=['Programing Language :: Python :: 3.9',
                   'License :: OSI Approved :: MIT License',
                   'Operating System :: OS Independent']
