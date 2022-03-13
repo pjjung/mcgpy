@@ -24,7 +24,7 @@ setup(
       packages=find_packages(exclude=['test', 'examples']),
       install_requires=['setuptools', 'numpy', 'scipy', 'astropy', 'h5py', 'matplotlib'],
       python_requires='>=3.6',
-      classifiers=['Programing Language :: Python :: 3.9',
+      classifiers=['Programming Language :: Python :: 3.9',
                   'License :: OSI Approved :: MIT License',
                   'Operating System :: OS Independent']
       )
