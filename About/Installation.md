@@ -16,7 +16,7 @@ $ python setup.py install
 
 ### Pip
 
-or, you may also install MCGpy directly with pip. We recommend this way.
+or, You may also install MCGpy directly with pip. We recommend this way.
 
 ```sh
 $ pip install mcgpy
