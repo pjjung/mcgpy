@@ -20,7 +20,7 @@ setup(
       version='0.1.1',
       author='Phil Jung',
       author_email='pjjung@amcg.kr',
-      description='The MCGpy is the package for studying magnetocardiography, for instrumetnal or medical purpose.',
+      description='The MCGpy is the package for studying and analyzing magnetocardiography, for instrumetnal or medical purpose.',
       url='https://github.com/pjjung/mcgpy',
       long_description=long_description,
       long_description_content_type='text/markdown',
