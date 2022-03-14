@@ -35,3 +35,7 @@ Lead field calculation methods were referred to in the following papers:
 
 The MCGpy is following the GNU General Public License version 3. Under this term, you can redistribute and/or modify it.
 See [the GNU free software license](http://www.gnu.org/licenses/) for more details.
+
+## Contants
+
+{% include list.liquid all=true %}
