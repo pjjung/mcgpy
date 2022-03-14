@@ -2,13 +2,15 @@
 sort: 1
 ---
 
-# Avatar Test
+# MCGpy
 
 ```
-{% raw %}{% avatar saowang %}{% endraw %}
+{% raw %}
+code test
+{% endraw %}
 ```
 
-{% avatar saowang %}
+
 
 ```tip
 Set config `plugins: [jekyll-avatar]`
