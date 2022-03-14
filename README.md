@@ -1,100 +1,37 @@
-# jekyll-rtd-theme MCGpy
+## Description
+The MCGpy package contains classes and utilities providing tools and methods for analyzing magnetocardiography(MCG) data. It is designed for someone who wants to utilize it for instrumental or medical purposes without knowing detailed algorithms. For this purpose, several key features of the MCGpy are based on the basic concept and ideas of the [GWpy](https://github.com/gwpy/gwpy), developed by Duncan Macleod <duncan.macleod@ligo.org>.
 
-![CI](https://github.com/rundocs/jekyll-rtd-theme/workflows/CI/badge.svg?branch=develop)
-![jsDelivr](https://data.jsdelivr.com/v1/package/gh/rundocs/jekyll-rtd-theme/badge)
+[https://pjjung.github.io/mcgpy/](https://pjjung.github.io/mcgpy/)
 
-Just another documentation theme compatible with GitHub Pages
+## Status
+[![Build Status](https://img.shields.io/badge/build-test%20version-9cf)](https://img.shields.io/badge/build-test%20version-9cf)
+[![Build Status](https://img.shields.io/badge/version-0.1.1-blue)](https://img.shields.io/badge/version-0.1-blue)
+[![Build Status](https://img.shields.io/badge/pypi-0.1.1-blueviolet)](https://pypi.org/project/MCGpy/)
 
-## What it does?
+[![Build Status](https://img.shields.io/badge/license-%20GPLv3-green)](http://www.gnu.org/licenses/)
+[![Build Status](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-brightgreen)](https://minepy.readthedocs.io/en/latest/)
 
-This theme is inspired by [sphinx-rtd-theme](https://github.com/readthedocs/sphinx_rtd_theme) and refactored with:
 
-- [@primer/css](https://github.com/primer/css)
-- [github-pages](https://github.com/github/pages-gem) ([dependency versions](https://pages.github.com/versions/))
+## Installation
 
-## Quick start
+```sh
+$ git clone https://github.com/pjjung/mcgpy.git
+$ cd mcgpy
+$ python setup.py install
 
-```yml
-remote_theme: rundocs/jekyll-rtd-theme
+```
+or, you can do:
+```
+$ pip install mcgpy
 ```
 
-You can [generate](https://github.com/rundocs/starter-slim/generate) with the same files and folders from [rundocs/starter-slim](https://github.com/rundocs/starter-slim/)
 
-## Usage
+## References
+Lead field calculation methods were referred to in the following papers:
+- M.S Hamalainen, et al., *Interpreting magnetic fields of the brain: minimum orm estimates*,  Med. & Biol. Eng. & Compu., 32, 35-42 (1994)
+- J.T. Nenonen, et al., *Minimum-norm estimation in a boundary-element torso model*, Med. & Biol. Eng. & Compu., 32, 42-48 (1994)
 
-Documentation that can guide how to create with Github pages, please refer to [rundocs.io](https://rundocs.io) for details
+## License
 
-## Features
-
-- Shortcodes (Toasts card, mermaid)
-- Pages Plugins (emoji, gist, avatar, mentions)
-- Auto generate sidebar
-- [Attribute List Definitions](https://kramdown.gettalong.org/syntax.html#attribute-list-definitions) (Primer/css utilities, Font Awesome 4)
-- Service worker (caches)
-- SEO (404, robots.txt, sitemap.xml)
-- Canonical Link (Open Graph, Twitter Card, Schema data)
-
-## Options
-
-| name          | default value        | description       |
-| ------------- | -------------------- | ----------------- |
-| `title`       | repo name            |                   |
-| `description` | repo description     |                   |
-| `url`         | user domain or cname |                   |
-| `baseurl`     | repo name            |                   |
-| `lang`        | `en`                 |                   |
-| `direction`   | `auto`               | `ltr` or `rtl`    |
-| `highlighter` | `rouge`              | Cannot be changed |
-
-```yml
-# folders sort
-readme_index:
-  with_frontmatter: true
-
-meta:
-  key1: value1
-  key2: value2
-  .
-  .
-  .
-
-google:
-  gtag:
-  adsense:
-
-mathjax: # this will prased to json, default: {}
-
-mermaid:
-  custom:     # mermaid link
-  initialize: # this will prased to json, default: {}
-
-scss:   # also _includes/extra/styles.scss
-script: # also _includes/extra/script.js
-
-translate:
-  # shortcodes
-  danger:
-  note:
-  tip:
-  warning:
-  # 404
-  not_found:
-  # copyright
-  revision:
-  # search
-  searching:
-  search:
-  search_docs:
-  search_results:
-  search_results_found: # the "#" in this translate will replaced with results size!
-  search_results_not_found:
-
-plugins:
-  - jemoji
-  - jekyll-avatar
-  - jekyll-mentions
-```
-
-## The license
-
-The theme is available as open source under the terms of the MIT License
+The MCGpy is following the GNU General Public License version 3. Under this term, you can redistribute and/or modify it.
+See [the GNU free software license](http://www.gnu.org/licenses/) for more details.
