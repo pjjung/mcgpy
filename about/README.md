@@ -2,7 +2,7 @@
 sort: 1
 ---
 
-# What is MCGpy?
+# About
 
 ```
 {% raw %}{% include list.liquid all=true %}{% endraw %}
