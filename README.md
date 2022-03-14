@@ -1,6 +1,8 @@
 # MCGpy docs
 
-The MCGpy package contains classes and utilities providing tools and methods for analyzing magnetocardiography(MCG) data. It is designed for someone who wants to utilize it for instrumental or medical purposes without knowing detailed algorithms. For this purpose, several key features of the MCGpy are based on the basic concept and ideas of the [GWpy](https://github.com/gwpy/gwpy), developed by Duncan Macleod <duncan.macleod@ligo.org>.
+The MCGpy package contains classes and utilities providing tools and methods for studying and analyzing magnetocardiography(MCG) dataset. 
+
+It is designed for someone who wants to utilize it for instrumental or medical purposes without knowing detailed algorithms. For this purpose, several key features of the MCGpy are based on the basic concept and ideas of the [GWpy](https://github.com/gwpy/gwpy), developed by Duncan Macleod <duncan.macleod@ligo.org>.
 
 
 [![Build Status](https://img.shields.io/badge/build-test%20version-9cf)](https://img.shields.io/badge/build-test%20version-9cf)
