@@ -22,7 +22,7 @@ setup(
       author_email='pjjung@amcg.kr',
       description='The MCGpy is the package to study and analyze magnetocardiography, for instrumetnal or medical purpose.',
       url='https://pjjung.github.io/mcgpy',
-      project_urls='https://github.com/pjjung/mcgpy',
+      project_urls={'Documentation':'https://github.com/pjjung/mcgpy'},
       long_description=long_description,
       long_description_content_type='text/markdown',
       keywords=['mcgpy','magnetocardiography'],
