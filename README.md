@@ -9,11 +9,6 @@ The MCGpy package contains classes and utilities providing tools and methods for
 [![Build Status](https://img.shields.io/badge/license-%20GPLv3-green)](http://www.gnu.org/licenses/)
 [![Build Status](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-brightgreen)](https://minepy.readthedocs.io/en/latest/)
 
-## License
-
-The MCGpy is following the GNU General Public License version 3. Under this term, you can redistribute and/or modify it.
-See [the GNU free software license](http://www.gnu.org/licenses/) for more details.
-
 ## Contants
 
 {% include list.liquid all=true %}
