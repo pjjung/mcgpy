@@ -4,7 +4,7 @@ sort: 2
 
 # Installation
 
-### Manual
+## Manual
 
 You can install MCGpy manually.
 
@@ -14,7 +14,7 @@ $ cd mcgpy
 $ python setup.py install
 ```
 
-### Pip
+## Pip
 
 or, You may also install MCGpy directly with pip. We recommend this way.
 
@@ -22,7 +22,7 @@ or, You may also install MCGpy directly with pip. We recommend this way.
 $ pip install mcgpy
 ```
 
-### Requirements
+## Requirements
 
 MCGpy requires the following Python packages:
 
