@@ -2,7 +2,7 @@
 sort: 4
 ---
 
-# MCGpy
+# Arrow Map
 
 ```
 {% raw %}
