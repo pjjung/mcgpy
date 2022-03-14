@@ -2,13 +2,15 @@
 sort: 2
 ---
 
-# Avatar Test
+# Installation
 
-```
-{% raw %}{% avatar saowang %}{% endraw %}
+```sh
+$ git clone https://github.com/pjjung/mcgpy.git
+$ cd mcgpy
+$ python setup.py install
 ```
 
-{% avatar saowang %}
+
 
 ```tip
 Set config `plugins: [jekyll-avatar]`
