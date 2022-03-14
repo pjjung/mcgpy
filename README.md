@@ -1,6 +1,9 @@
 # MCGpy docs
 
+Magnetocardiography (MCG) is recordings of the magnetic fields with respect to cardiac electrical activity in noninvasive and contactless ways. To sense and localize current dipole sources on the surface of the heart, most MCG systems are composed of multi-array channels, using extremely sensitive devices. 
 
+
+MCGpy is a Python package to study and analyze the magnetocardiographic signals. It contains algorithms that can read MCG datasets and calculate cardiac magnetic fields without knowing detailed background information. This package is a free software, though. If you use MCGpy in your scientific or medical publications, please contact and ask for acknowledgment of this work.
 
 
 [![Build Status](https://img.shields.io/badge/build-test%20version-9cf)](https://img.shields.io/badge/build-test%20version-9cf)
