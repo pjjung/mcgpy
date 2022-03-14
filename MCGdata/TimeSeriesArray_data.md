@@ -2,7 +2,7 @@
 sort: 2
 ---
 
-# TimeSeriesArray Data
+# Time Series Array Data
 
 ```
 {% raw %}
