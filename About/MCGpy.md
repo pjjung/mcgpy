@@ -4,16 +4,7 @@ sort: 1
 
 # MCGpy
 
-```
-{% raw %}
-code test
-{% endraw %}
-```
+The MCGpy package contains classes and utilities providing tools and methods for studying and analyzing magnetocardiography(MCG) dataset. 
 
+It is designed for someone who wants to utilize it for instrumental or medical purposes without knowing detailed algorithms. For this purpose, several key features of the MCGpy are based on the basic concept and ideas of the [GWpy](https://github.com/gwpy/gwpy), developed by Duncan Macleod <duncan.macleod@ligo.org>.
 
-
-```tip
-Set config `plugins: [jekyll-avatar]`
-
-For documentation, see: [https://github.com/benbalter/jekyll-avatar](https://github.com/benbalter/jekyll-avatar)
-```
