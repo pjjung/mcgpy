@@ -19,7 +19,7 @@ $ python setup.py install
 ```
 - or, you can do:
 ```
-# pip installation will be supported
+$ pip install mcgpy
 ```
 
 
