@@ -12,6 +12,9 @@
 
 from setuptools import setup, find_packages
 
+with open('README.md', 'r', encoding='utf-8') as fh:
+    long_description = fh.read()
+
 setup(
       name='MCGpy',
       version='0.1.1',
@@ -19,7 +22,7 @@ setup(
       author_email='pjjung@amcg.kr',
       description='The MCGpy is the package for studying adta for magnetocardiography, for instrumetnal or medical purpose.',
       url='https://github.com/pjjung/mcgpy',
-      long_description='README.md',
+      long_description=long_description,
       long_description_content_type='text/markdown',
       keywords=['mcgpy','magnetocardiography'],
       packages=find_packages(exclude=['test', 'examples']),
