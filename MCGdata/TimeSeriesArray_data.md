@@ -80,7 +80,7 @@ Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only th
                    -1951.7660141 , -1929.75997925, -1776.56412125]] 1e-15 T>
 ```
 
-```important
+```note
 Since KDF format has a limited metadata container, an additional configuration `ini` file that comprises sensor information is required. 
 ```
 
