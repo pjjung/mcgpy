@@ -61,8 +61,30 @@ Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only th
 
 ```python
 >>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> kdf_path = '~/test/kdf/file.kdf'
+>>> config_path = '~/test/config/file.ini'
+>>> dataset = TimeSeriesArray(source=kdf_path, config=config_path)
+>>> print(dataset)
+<TimeSeriesArray [[  136.26813889,   156.58140182,   177.74105072, ...,
+                    -140.50006866,   -67.71087646,    33.00905228],
+                  [  455.35564423,   413.03634644,   386.79838181, ...,
+                      70.25003433,    60.09340286,   143.03922653],
+                  [  804.91304398,   845.53956985,   888.7052536 , ...,
+                     571.31052017,   643.25332642,   461.28034592],
+                  ...,
+                  [-1409.23261642, -1286.50665283, -1270.42531967, ...,
+                   -2376.65176392, -2374.958992  , -2407.96804428],
+                  [-1499.7959137 , -1494.71759796, -1477.78987885, ...,
+                   -1985.62145233, -1954.30517197, -1994.93169785],
+                  [-2495.14579773, -2518.84460449, -2456.21204376, ...,
+                   -1951.7660141 , -1929.75997925, -1776.56412125]] 1e-15 T>
 ```
-bla bla
+
+```important
+Since KDF format has a limited metadata container, an additional configuration `ini` file that comprises sensor information is required. 
+```
+
+
 
 
 ### HDF5 format
