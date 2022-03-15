@@ -109,71 +109,72 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     this class is designed to apply to numerical classes with a multi-channel time-series of MCG system, though.
     user defined data array can be applied, and use its properties and methods, too.
     '''
-    # case of KDF file
-    if (source is not None and source.split('.')[-1]=='kdf' and os.path.isfile(source)
-        and config is not None and config.split('.')[-1]=='ini' and os.path.isfile(config)):
-      if positions is not None:
-        warn('positions was given to {}, positions will be ignored'.format(cls.__name__))
-      if directions is not None:
-        warn('directions was given to {}, directions will be ignored'.format(cls.__name__))
-      if t0 is not None or sample_rate is not None or times is not None:
-        warn('if the path of KDF and config files was given, timeseries arguments (t0, sample_rate, and times) will be ignored'.format(cls.__name__))
-    
-      cls._active_channels = ChannelActive(source).get_table()
-        
-      for i, row in enumerate(cls._active_channels):
-        number = row['number']
-        if i == 0:
-          positions = ChannelConfig(config).get('positions')[number-1]['positions']
-          directions = ChannelConfig(config).get('directions')[number-1]['directions']
-          dataset = KDF(source).read(number=number)
-          t0 = dataset.t0
-          sample_rate = dataset.sample_rate
-          cls._biosemi = dataset.biosemi
-          cls._info = dataset.info
-        else:
-          positions = np.vstack((positions, ChannelConfig(config).get('positions')[number-1]['positions']))
-          directions = np.vstack((directions, ChannelConfig(config).get('directions')[number-1]['directions']))
-          dataset = np.vstack((dataset, KDF(source).read(number=number)))
- 
-      new = super().__new__(cls, dataset, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, **kwargs)
+   
+    try:
+      # case of KDF file
+      if (source is not None and source.split('.')[-1]=='kdf' and os.path.isfile(source)
+          and config is not None and config.split('.')[-1]=='ini' and os.path.isfile(config)):
+        if positions is not None:
+          warn('positions was given to {}, positions will be ignored'.format(cls.__name__))
+        if directions is not None:
+          warn('directions was given to {}, directions will be ignored'.format(cls.__name__))
+        if t0 is not None or sample_rate is not None or times is not None:
+          warn('if the path of KDF and config files was given, timeseries arguments (t0, sample_rate, and times) will be ignored'.format(cls.__name__))
 
-  
-    # case of HDF5 file
-    elif (source is not None and source.split('.')[-1]=='hdf5' and os.path.isfile(source)):
-      if config is not None:
-        warn('configuration path was given to {}, config will be ignored'.format(cls.__name__))
-      if positions is not None:
-        warn('positions was given to {}, positions will be ignored'.format(cls.__name__))
-      if directions is not None:
-        warn('directions was given to {}, directions will be ignored'.format(cls.__name__))
-      if t0 is not None or sample_rate is not None or times is not None:
-        warn('if the path of KDF and config files was given, timeseries arguments (t0, sample_rate, and times) will be ignored'.format(cls.__name__))
-    
-      cls._active_channels = ChannelActive(source).get_table()
-      
-      for j, row in enumerate(cls._active_channels):
-        number = row['number']
-        if j == 0:
-          dataset = HDF(source).read(number=number)
-          positions = np.asarray(dataset.position)
-          directions = np.asarray(dataset.direction)
-          t0 = dataset.t0
-          sample_rate = dataset.sample_rate
-          cls._biosemi = dataset.biosemi
-          cls._info = dataset.info
-        else:
-          data = HDF(source).read(number=number)
-          positions = np.vstack((positions, data.position))
-          directions = np.vstack((directions, data.direction))
-          dataset = np.vstack((dataset, data))
-          
-      new = super().__new__(cls, dataset, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, **kwargs) 
-    
-    # case of random 2-dimension array
-    elif (source is not None and positions is not None and direction is not None):
-      
-      new = super().__new__(cls, dataset, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, times=times, **kwargs)
+        cls._active_channels = ChannelActive(source).get_table()
+
+        for i, row in enumerate(cls._active_channels):
+          number = row['number']
+          if i == 0:
+            positions = ChannelConfig(config).get('positions')[number-1]['positions']
+            directions = ChannelConfig(config).get('directions')[number-1]['directions']
+            dataset = KDF(source).read(number=number)
+            t0 = dataset.t0
+            sample_rate = dataset.sample_rate
+            cls._biosemi = dataset.biosemi
+            cls._info = dataset.info
+          else:
+            positions = np.vstack((positions, ChannelConfig(config).get('positions')[number-1]['positions']))
+            directions = np.vstack((directions, ChannelConfig(config).get('directions')[number-1]['directions']))
+            dataset = np.vstack((dataset, KDF(source).read(number=number)))
+
+        new = super().__new__(cls, dataset, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, **kwargs)
+
+
+      # case of HDF5 file
+      elif (source is not None and source.split('.')[-1]=='hdf5' and os.path.isfile(source)):
+        if config is not None:
+          warn('configuration path was given to {}, config will be ignored'.format(cls.__name__))
+        if positions is not None:
+          warn('positions was given to {}, positions will be ignored'.format(cls.__name__))
+        if directions is not None:
+          warn('directions was given to {}, directions will be ignored'.format(cls.__name__))
+        if t0 is not None or sample_rate is not None or times is not None:
+          warn('if the path of KDF and config files was given, timeseries arguments (t0, sample_rate, and times) will be ignored'.format(cls.__name__))
+
+        cls._active_channels = ChannelActive(source).get_table()
+
+        for j, row in enumerate(cls._active_channels):
+          number = row['number']
+          if j == 0:
+            dataset = HDF(source).read(number=number)
+            positions = np.asarray(dataset.position)
+            directions = np.asarray(dataset.direction)
+            t0 = dataset.t0
+            sample_rate = dataset.sample_rate
+            cls._biosemi = dataset.biosemi
+            cls._info = dataset.info
+          else:
+            data = HDF(source).read(number=number)
+            positions = np.vstack((positions, data.position))
+            directions = np.vstack((directions, data.direction))
+            dataset = np.vstack((dataset, data))
+
+        new = super().__new__(cls, dataset, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, **kwargs) 
+
+    except AttributeError:
+      # case of random 2-dimension array
+      new = super().__new__(cls, source, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, times=times, **kwargs)
      
     # other case
     else:
