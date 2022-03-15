@@ -30,8 +30,14 @@ For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> import numpy as np
-
+>>> source = np.random.random(100)
+>>> data = TimeSeries(source)
+>>> print(data)
+<TimeSeries [0.15538315, 0.37469937, 0.25495241, ..., 0.25465358, 0.65668087] 1e-15 T>
 ```
+
+[TimeSeries]() contains several properties to show metadata:
+
 
 ### KDF format
 
