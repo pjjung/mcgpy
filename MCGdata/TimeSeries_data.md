@@ -40,12 +40,13 @@ For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a 
 
 | Properties  | Description                   |
 |-------------|-------------------------------|
-| unit        | The physical unit of the data |
-| t0          | |
-| dt          | |
-| sample_rate | |
-| times       | |
-
+| unit        | The physical unit of the data, default unit is $$1 fT$$ |
+| t0          | The first data point of time-axis, default value is $$0 s$$ |
+| dt          | The inderval bwteen time points of time-axis, default value is $$1 s$$ |
+| sample_rate | Data sample frequency, default value is $$1 Hz$$ |
+| times       | The time-axis coordinate |
+| number      | Number of a channel i.e., 1, 2, 3, ...|
+| label       | Label of a channel i.e., X1, Y1, Z1, ...|
 
 ### KDF format
 
