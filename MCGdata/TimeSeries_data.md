@@ -47,13 +47,13 @@ For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a 
 
 | Properties  | Description                   |
 |-------------|-------------------------------|
-| unit        | The physical unit of the data, default unit is $$1 fT$$ |
-| t0          | The first data point of time-axis, default value is $$0 s$$ |
-| dt          | The inderval bwteen time points of time-axis, default value is $$1 s$$ |
-| sample_rate | Data sample frequency, default value is $$1 Hz$$ |
-| times       | The time-axis coordinate |
-| number      | Number of a channel *i.e., 1, 2, 3, ...*|
-| label       | Label of a channel *i.e., X1, Y1, Z1, ...*|
+| `unit`        | The physical unit of the data, default unit is $$1 fT$$ |
+| `t0`          | The first data point of time-axis, default value is $$0 s$$ |
+| `dt`          | The inderval bwteen time points of time-axis, default value is $$1 s$$ |
+| `sample_rate` | Data sample frequency, default value is $$1 Hz$$ |
+| `times`       | The time-axis coordinate |
+| `number`      | Number of a channel *i.e., 1, 2, 3, ...*|
+| `label`       | Label of a channel *i.e., X1, Y1, Z1, ...*|
 
 ### KDF or HDF5 format
 
@@ -70,11 +70,11 @@ Alongside basic properties, this object provides additonal metadata:
 
 | Properties  | Description                   |
 |-------------|-------------------------------|
-| position    | The sensor coordinate on the sensor grid *i.e., [0., 0., 0.,]* |
-| direction   | The sensor direction for measuring a magnetic field *i.e., [1.,0.,0.]* |
-| datetime    | The data time at the point of data recording *i.e., '2020-02-02 02:02:02.00000'* |
-| biosemi     | Identification code *i.e., National Hospital, National Reaserch, ...*|
-| note        | It might be included with the patient information or medical options |
+| `position`    | The sensor coordinate on the sensor grid *i.e., [0., 0., 0.,]* |
+| `direction`   | The sensor direction for measuring a magnetic field *i.e., [1.,0.,0.]* |
+| `datetime`    | The data time at the point of data recording *i.e., '2020-02-02 02:02:02.00000'* |
+| `biosemi`     | Identification code *i.e., National Hospital, National Reaserch, ...*|
+| `note`        | It might be included with the patient information or medical options |
 
 Every metadata can be redefined as well:
 
