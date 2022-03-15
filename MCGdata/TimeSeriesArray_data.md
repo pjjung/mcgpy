@@ -41,7 +41,21 @@ For examples, to create a simple [TimeSeriesArray]() by a ramdom dataset, and to
                   [0.56051709, 0.9914608 , ..., 0.29988421]] 1e-15 T>
 ```
 
-bla bla
+Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only the source array also position and direction information of each sensor if you apply your own dataset to MCGpy. This is because these sensor data are essential to calculate `Field Map`, `MCG mapping`, `Locations of current sources`, and so on.
+
+[TimeSeriesArray]() contains several properties to show metadata:
+ 
+| Properties    | Description                   |
+|---------------|-------------------------------|
+| `unit`        | The physical unit of the data, default unit is $$1 fT$$ |
+| `t0`          | The first data point of time-axis, default value is $$0 s$$ |
+| `dt`          | The inderval bwteen time points of time-axis, default value is $$1 s$$ |
+| `sample_rate` | Data sample frequency, default value is $$1 Hz$$ |
+| `times`       | The time-axis coordinate |
+| `numbers`     | Number of channels *i.e., [1, 2, 3, ...]*|
+| `labels`      | Label of channels *i.e., [label1, label2, label3, ...]*|
+| `positions`   | Positions of each sensor *i.e., [[0.,0.,0.], [1.,0.,0.], ...]* |
+| `directions`  | Directions of each sensor *i.e., [[0,0,1], [0,0,1], ...]* |
 
 ### KDF format
 
