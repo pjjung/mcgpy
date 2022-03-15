@@ -83,7 +83,7 @@ Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only th
 ```note
 Since KDF format has a limited metadata container, an additional configuration `ini` file that comprises sensor information is required. 
 
-See detailed explanation about `ini` file in [Data Tables](https://pjjung.github.io/mcgpy/MCGdata/Data_tables.html).
+See detailed explanation about `ini` file in [Data Tables](https://pjjung.github.io/mcgpy/MCGdata/Data_tables.html) section.
 ```
 
 Alongside basic properties, this object also provides additional metadata:
@@ -135,4 +135,3 @@ Note that in addition to the TimeSeires associated classes listed below.
 | [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
 | [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
 | [ChannelActive]()   | Listing the channel status |
-| [tconvert]()        | Convert a date time string to a timestamp, or vice versa |
