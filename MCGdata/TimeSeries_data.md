@@ -66,6 +66,10 @@ Since KDF and HDF5 files have consisted of multi-channel datasets as mentioned a
 >>> print(data_ch1)
 <TimeSeries [ 136.26813889  156.58140182  ...  -67.71087646  33.00905228] 1e-15 T>
 ```
+```note
+By using the `Channel` class, the channel information, such as number, label, location, and direction, can be read from frame files.
+```
+
 Alongside basic properties, this object provides additonal metadata:
 
 | Properties  | Description                   |
