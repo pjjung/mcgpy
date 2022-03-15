@@ -110,7 +110,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     user defined data array can be applied, and use its properties and methods, too.
     '''
    
-    try:
+    if isinstance(source, str):
       # case of KDF file
       if (source is not None and source.split('.')[-1]=='kdf' and os.path.isfile(source)
           and config is not None and config.split('.')[-1]=='ini' and os.path.isfile(config)):
@@ -172,7 +172,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
         new = super().__new__(cls, dataset, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, **kwargs) 
 
-    except AttributeError:
+    elif isinstance(source, list) or isinstance(source, np.ndarray) or isinstance(source, Quantity) or isinstance(source, mcgpy.io.Array):
       # case of random 2-dimension array
       new = super().__new__(cls, source, positions, directions, unit=unit, t0=t0, sample_rate=sample_rate, times=times, **kwargs)
      
