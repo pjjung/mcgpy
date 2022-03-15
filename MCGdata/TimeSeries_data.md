@@ -95,4 +95,3 @@ Note that in addition to the TimeSeires associated classes listed below.
 | [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
 | [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
 | [ChannelActive]()   | Listing the channel status |
-| [tconvert]()        | Convert a date time string to a timestamp, or vice versa |
