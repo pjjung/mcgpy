@@ -45,32 +45,55 @@ For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a 
 | dt          | The inderval bwteen time points of time-axis, default value is $$1 s$$ |
 | sample_rate | Data sample frequency, default value is $$1 Hz$$ |
 | times       | The time-axis coordinate |
-| number      | Number of a channel i.e., 1, 2, 3, ...|
-| label       | Label of a channel i.e., X1, Y1, Z1, ...|
+| number      | Number of a channel *i.e., 1, 2, 3, ...*|
+| label       | Label of a channel *i.e., X1, Y1, Z1, ...*|
 
-### KDF format
+### KDF or HDF5 format
+
+Since KDF and HDF5 files have consisted of multi-channel datasets as mentioned above, the [read()]() method is required to read a single channel from the bundle dataset.
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
-
-
+>>> path = '~/test/data/file.kdf'
+>>> data_ch1 = TimeSeires(path).read(number=1)
+>>> print(data_ch1)
+<TimeSeries [ 136.26813889  156.58140182  ...  -67.71087646  33.00905228] 1e-15 T>
 ```
+Alongside basic properties, this object provides additonal metadata:
 
-### HDF5 format
+| Properties  | Description                   |
+|-------------|-------------------------------|
+| position    | The sensor coordinate on the sensor grid *i.e., [0., 0., 0.,]* |
+| direction   | The sensor direction for measuring a magnetic field *i.e., [1.,0.,0.]* |
+| datetime    | The data time at the point of data recording *i.e., '2020-02-02 02:02:02.00000'* |
+| biosemi     | Identification code *i.e., National Hospital, National Reaserch, ...*|
+| note        | It might be included with the patient information or medical options |
+
+Every metadata can be redefined:
 
 ```python
->>> from mcgpy.timeseries import TimeSeries
-
-
+>>> print(data_ch1.datetime)
+'2222-02-22 22:22:22.00000'
+>>> data_ch1.datetime = '2020-02-02 02:02:02.00000'
+>>> print(data_ch1.datetime)
+'2020-02-02 02:02:02.00000'
 ```
 
 ## Associated classes
 
 bla bla
 
-## Reference/API
+| Classes             | Description                   |
+|---------------------|-------------------------------|
+| [TimeSeires]()      |  |
+| [TimeSeriesArray]() |  | 
+| [ChannelActive]()   |  |
+| [Ctconvert]()       |  |
 
-bla bla
+## Reference
+
+- What is KDF?
+- 
 
 table
 
