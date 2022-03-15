@@ -8,26 +8,46 @@ Magnetocardiography (MCG) devices are measurement systems of time-varying magnet
 
 ## The TimeSeries
 
-bla bla
-
-```
-{% raw %}
-code test
-{% endraw %}
+```python
+from mcgpy.timeseries import TimeSeries
 ```
 
-The available source formats are:
+MCGpy provides the [TimeSeries]() class which creates the time series data with metadata and reads a single data from raw files. Since this object is based on [numpy.ndarray](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html) and [astropy.units.Quantity](https://docs.astropy.org/en/stable/units/quantity.html), [numpy](https://numpy.org/) and [astropy](https://www.astropy.org/) users might be easy to learn how to use it.
 
-bla bla
+There are the available source formats:
 
-table
+| Format  | Read     | Write     | Auto identify     | 
+| ------- | -------- | --------- | ----------------- | 
+| KDF     | Yes      | No        | Yes               |
+| HDF5    | Yes      | will be supported| Yes        |
+| CSV     | -        | -         |                   |
+| TXT     | -        | -         |                   |
+
+For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a channel data from a frame file:
 
 ### User defined dataset
 
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> import numpy as np
+
+```
+
 ### KDF format
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+
+
+```
 
 ### HDF5 format
 
+```python
+>>> from mcgpy.timeseries import TimeSeries
+
+
+```
 
 ## Associated classes
 
