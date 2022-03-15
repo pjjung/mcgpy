@@ -82,18 +82,49 @@ Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only th
 
 ```note
 Since KDF format has a limited metadata container, an additional configuration `ini` file that comprises sensor information is required. 
+
+See detailed explanation about `ini` file in [Data Tables](https://pjjung.github.io/mcgpy/MCGdata/Data_tables.html).
 ```
 
+Alongside basic properties, this object also provides additional metadata:
 
+| Properties  | Description                   |
+|-------------|-------------------------------|
+| `datetime`    | The data time at the point of data recording *i.e., '2020-02-02 02:02:02.00000'* |
+| `biosemi`     | Identification code *i.e., National Hospital, National Reaserch, ...*|
+| `note`        | It might be included with the patient information or medical options |
 
+Every metadata can be redefined as well:
+
+```python
+>>> dataset.note = 'Phil is healthy'
+>>> print(dataset.note)
+'Phil is healthy'
+```
 
 ### HDF5 format
 
 ```python
 >>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> hdf_path = '~/test/kdf/file.hdf5'
+>>> dataset = TimeSeriesArray(hdf_path)
+>>> print(dataset)
+<TimeSeriesArray [[  136.26813889,   156.58140182,   177.74105072, ...,
+                    -140.50006866,   -67.71087646,    33.00905228],
+                  [  455.35564423,   413.03634644,   386.79838181, ...,
+                      70.25003433,    60.09340286,   143.03922653],
+                  [  804.91304398,   845.53956985,   888.7052536 , ...,
+                     571.31052017,   643.25332642,   461.28034592],
+                  ...,
+                  [-1409.23261642, -1286.50665283, -1270.42531967, ...,
+                   -2376.65176392, -2374.958992  , -2407.96804428],
+                  [-1499.7959137 , -1494.71759796, -1477.78987885, ...,
+                   -1985.62145233, -1954.30517197, -1994.93169785],
+                  [-2495.14579773, -2518.84460449, -2456.21204376, ...,
+                   -1951.7660141 , -1929.75997925, -1776.56412125]] 1e-15 T>
 ```
-bla bla
 
+In the case of using an HDF5 file, you do not care about additional configuration files and metadata. Rest usages are the same as the above case.
 
 ## Associated classes
 
