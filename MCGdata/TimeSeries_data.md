@@ -23,6 +23,13 @@ There are the available source formats:
 | CSV     | -        | -         |                   |
 | TXT     | -        | -         |                   |
 
+> The KDF is a multi-channel data format for the magnetocardiography system. It is based on [the BioSemi Data Format](https://www.biosemi.com/faq/file_format.htm), for BDF format is mainly used in the reseaches of electrocardiogram(ECG) and electroencephalography(EEG).
+> 
+> [The HDF5 format](https://www.hdfgroup.org/solutions/hdf5/) is high-performance data management and storage suite. Thanks to its flexibility and capability, multi-array dataset like MCG datasets can easily be handled.
+>
+> Other formats, such as CSV and TXT, will be supported for reading a single time-series data of MCG.
+
+
 For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a channel data from a frame file:
 
 ### User defined dataset
@@ -69,7 +76,7 @@ Alongside basic properties, this object provides additonal metadata:
 | biosemi     | Identification code *i.e., National Hospital, National Reaserch, ...*|
 | note        | It might be included with the patient information or medical options |
 
-Every metadata can be redefined:
+Every metadata can be redefined as well:
 
 ```python
 >>> print(data_ch1.datetime)
@@ -81,24 +88,11 @@ Every metadata can be redefined:
 
 ## Associated classes
 
-bla bla
+Note that in addition to the TimeSeires associated classes listed below.
 
 | Classes             | Description                   |
 |---------------------|-------------------------------|
-| [TimeSeires]()      |  |
-| [TimeSeriesArray]() |  | 
-| [ChannelActive]()   |  |
-| [Ctconvert]()       |  |
-
-## Reference
-
-- What is KDF?
-- 
-
-table
-
-```tip
-Set config `plugins: [jekyll-avatar]`
-
-For documentation, see: [https://github.com/benbalter/jekyll-avatar](https://github.com/benbalter/jekyll-avatar)
-```
+| [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
+| [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
+| [ChannelActive]()   | Listing the channel status |
+| [tconvert]()        | Convert a date time string to a timestamp, or vice versa |
