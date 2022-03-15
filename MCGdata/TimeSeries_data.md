@@ -38,6 +38,14 @@ For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a 
 
 [TimeSeries]() contains several properties to show metadata:
 
+| Properties  | Description                   |
+|-------------|-------------------------------|
+| unit        | The physical unit of the data |
+| t0          | |
+| dt          | |
+| sample_rate | |
+| times       | |
+
 
 ### KDF format
 
