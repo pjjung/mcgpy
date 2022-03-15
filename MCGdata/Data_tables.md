@@ -38,4 +38,4 @@ Note that in addition to the TimeSeires associated classes listed below.
 |---------------------|-------------------------------|
 | [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
 | [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
-| [ChannelActive]()   | Listing the channel status |
+| [Channel]()   | Listing the channel information from a configuration file or a raw frame file |
