@@ -57,7 +57,7 @@ For examples, to create a simple [TimeSeries]() by a ramdom data, and to read a 
 
 ### KDF or HDF5 format
 
-Since KDF and HDF5 files have consisted of multi-channel datasets as mentioned above, the `[read()]()` method is required to read a single channel from the bundle dataset.
+Since KDF and HDF5 files have consisted of multi-channel datasets as mentioned above, the `read()` method is required to read a single channel from the bundle dataset.
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
