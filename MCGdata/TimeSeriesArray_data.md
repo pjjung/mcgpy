@@ -50,6 +50,7 @@ Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only th
 | `unit`        | The physical unit of the data, default unit is $$1 fT$$ |
 | `t0`          | The first data point of time-axis, default value is $$0 s$$ |
 | `dt`          | The inderval bwteen time points of time-axis, default value is $$1 s$$ |
+| `duration`    | Data recording duration |
 | `sample_rate` | Data sample frequency, default value is $$1 Hz$$ |
 | `times`       | The time-axis coordinate |
 | `numbers`     | Number of channels *i.e., [1, 2, 3, ...]*|
