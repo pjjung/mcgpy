@@ -2,7 +2,7 @@
 sort: 2
 ---
 
-# The TimeSeriesArray
+# TimeSeriesArray
 
 bla bla
 
