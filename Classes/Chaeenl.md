@@ -2,7 +2,7 @@
 sort: 3
 ---
 
-# The Channel
+# Channel
 
 bla bla
 
