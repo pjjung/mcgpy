@@ -2,7 +2,7 @@
 sort: 1
 ---
 
-# TimeSeries
+# The TimeSeries
 
 bla bla
 
