@@ -7,15 +7,18 @@ sort: 1
 bla bla
 
 * Properties
-  * [biosemo]()
-  * [datetime]()
-  * [direction]()
-  * [duration]()
-  * [label]()
-  * [note]()
-  * [number]()
-  * [position]()
-  * [sample_rate]()
+| <!-- -->       | <!-- -->    |
+|----------------|-------------|
+| [biosemo]()    | Bar         |
+| [datetime]()   | Bar         |
+| [direction]()  | Bar         |
+| [duration]()   | Bar         |
+| [label]()      | Bar         |
+| [note]()       | Bar         |
+| [number]()     | Bar         |
+| [position]()   | Bar         |
+| [sample_rate]()| Bar         |
+
 * Methods
   * [asd()]()
   * [at()]()
