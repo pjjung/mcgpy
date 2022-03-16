@@ -4,16 +4,11 @@ sort: 4
 
 # Arrow Map
 
+bla bla
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> from matplotlib import pyplot as plt
+>>> 
 ```
-{% raw %}
-code test
-{% endraw %}
-```
-
-
-
-```tip
-Set config `plugins: [jekyll-avatar]`
-
-For documentation, see: [https://github.com/benbalter/jekyll-avatar](https://github.com/benbalter/jekyll-avatar)
-```
+[plot]
