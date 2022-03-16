@@ -2,7 +2,7 @@
 sort: 1
 ---
 
-# TimeSeries
+# TimeSeries summary
 
 bla bla
 
@@ -28,11 +28,11 @@ bla bla
   * [psd]()
   * [rms]()
 
-## Properties
+## Properties summary
 
 ### biosemi
 
-### <span style="color: red;">text</span>
+### <mark style="background-color: gray">Highlighted text</mark> 
 
 ## Methods
 
