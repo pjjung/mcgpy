@@ -110,24 +110,24 @@ There are two examples of current arrows and the field pole arrow with `arrows()
 >>> fieldmap = FieldMap(epoch_dataset)
 >>>
 >>> fieldmap.arrows()     # get the arrow information
-    tails 	              heads	                 vectors	    distances
-    float64	              float64	             complex128	    float64
-    (-200.0,0.0,-200.0)	  (-200.13,0.0,-200.15)	(-0.13-0.15j) 	0.20
-    (-175.0,0.0,-200.0)	  (-175.18,0.0,-200.17)	(-0.18-0.17j)  	0.25
+    tails   heads   vectors distances
+    float64 float64 complex128  float64
+    (-200.0,0.0,-200.0) (-200.13,0.0,-200.15)   (-0.13-0.15j)   0.20
+    (-175.0,0.0,-200.0) (-175.18,0.0,-200.17)   (-0.18-0.17j)   0.25
     .
     .
     .
     
 >>>
 >>> fieldmap.pole()       # get the field pole information
-    type         	1126259462 s
-    str14        	object
-    min coordinate	(-75.0, -100.0)
-    max coordinate	(75.0, 100.0)
-    vector	        (150+0j)
-    distance	    150.0
-    angle	        -0.0 deg
-    ratio	        0.76948964274897
+    type    1126259462 s
+    str14   object
+    min coordinate  (-75.0, -100.0)
+    max coordinate  (75.0, 100.0)
+    vector  (150+0j)
+    distance    150.0
+    angle   -0.0 deg
+    ratio   0.76948964274897
 ```
 
 ## Accosicated classes
