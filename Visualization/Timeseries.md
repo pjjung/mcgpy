@@ -22,7 +22,7 @@ bla bla
 bla bla
 
 ```python
->>> from mcgpy.timeseries import TimeSeries
+>>> from mcgpy.timeseries import TimeSeriesArray
 >>> from matplotlib import pyplot as plt
 >>> 
 ```
