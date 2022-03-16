@@ -6,10 +6,6 @@ sort: 4
 
 bla bla
 
-## Properties
-
-list
-
 ## Methods
 
 list
