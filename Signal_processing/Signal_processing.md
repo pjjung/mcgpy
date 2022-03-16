@@ -2,7 +2,7 @@
 sort: 1
 ---
 
-# Signal Processing
+# Signal processing
 
 bla bla
 
