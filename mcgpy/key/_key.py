@@ -195,10 +195,12 @@ def decode(name, *args, **kwargs):
   for n, code in enumerate(birthdate_code):
     time_stamp += 16**n * int(code, 16)
     
-  labview_timestamp_rule = '1904-01-01 00:00:00'
-  labview_timestamp = time.mktime(datetime.datetime.strptime(labview_timestamp_rule, '%Y-%m-%d %H:%M:%S').timetuple())
-    
-  birth_date = datetime.datetime.fromtimestamp(time_stamp+labview_timestamp)
+  try:
+    labview_timestamp_rule = '1904-01-01 00:00:00'
+    labview_timestamp = time.mktime(datetime.datetime.strptime(labview_timestamp_rule, '%Y-%m-%d %H:%M:%S').timetuple())
+    birth_date = datetime.datetime.fromtimestamp(time_stamp+labview_timestamp)
+  except OverflowError:
+    birth_date = datetime.datetime.fromtimestamp(time_stamp-2082875272.0)
 
   #decode patient name
   third_decoded_name = first_decoded_name[decode_number+1:][::-1]
