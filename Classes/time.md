@@ -2,7 +2,7 @@
 sort: 4
 ---
 
-# The time
+# time
 
 bla bla
 
