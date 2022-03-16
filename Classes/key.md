@@ -2,7 +2,7 @@
 sort: 5
 ---
 
-# key
+# The key
 
 bla bla
 
