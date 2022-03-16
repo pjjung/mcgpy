@@ -4,7 +4,9 @@ sort: 3
 
 # Data Tables
 
-bla bla
+MCGpy provides `Data Tabels` to store sensor information and time-varying current dipole activities. Every table is built as an [astropy.table](https://docs.astropy.org/en/stable/table/index.html) object. Then, users can easily modify and deal with elements. 
+
+This page shows two common examples when users encounter the situations `Data Tables` are required.
 
 ## The Channel
 
@@ -12,20 +14,25 @@ bla bla
 from mcgpy.channel import (ChannelConfig, ChannelActive)
 ```
 
-bla bla
+`Channel` module consists of [ChannelConfig]() and [ChannelActive]() classes. Each one has a function to read sensor information from the `ini` configuration file and from frame files, respectively.
 
 ### The ChannelConfig
 
 ```python
-from mcgpy.channel import ChannelConfig
+>>> from mcgpy.channel import ChannelConfig
 ```
 
-bla bla
+Magnetocardiography (MCG) data analysis is performed by not only time-varying magnetic signals also field distributions.
+
+
+
+When users want to build MCG datset
+
 
 ### The ChannelActive
 
 ```python
-from mcgpy.channel import ChannelActive
+>>> from mcgpy.channel import ChannelActive
 ```
 
 bla bla
@@ -56,4 +63,6 @@ Note that in addition to the TimeSeires associated classes listed below.
 |---------------------|-------------------------------|
 | [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
 | [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
-| [Channel]()   | Listing the channel information from a configuration file or a raw frame file |
+| [Channel]()         | Listing the channel information from a configuration file or a raw frame file |
+| [FieldMap]()        | Calculate a lead field matrix and the current-dipole information |
+  
