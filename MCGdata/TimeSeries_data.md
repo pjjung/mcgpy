@@ -69,7 +69,7 @@ Since KDF and HDF5 files have consisted of multi-channel datasets as mentioned a
 ```note
 By using the `Channel` class, the channel information, such as number, label, location, and direction, can be read from frame files.
 
-See detailed explanation in [Channel]() section.
+See detailed explanation in [Data Tabels](https://pjjung.github.io/mcgpy/MCGdata/Data_tables.html) section.
 ```
 
 Alongside basic properties, this object provides additonal metadata:
