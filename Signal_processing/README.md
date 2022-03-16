@@ -2,6 +2,6 @@
 sort: 3
 ---
 
-# Signal Processing
+# Signal processing
 
 {% include list.liquid all=true %}
