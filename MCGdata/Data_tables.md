@@ -20,7 +20,7 @@ from mcgpy.channel import (ChannelConfig, ChannelActive)
 
 Magnetocardiography (MCG) data analysis is performed by not only time-varying magnetic signals also field distributions. In the case of reading a frame file that only included time-series datasets without sensor information, this configuration file is significant.
 
-The syntax is follows as below:
+The syntax of a sensor configuration `ini` file is follows as below:
 
 ```ini
 [Label]
