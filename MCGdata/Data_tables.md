@@ -30,6 +30,24 @@ from mcgpy.channel import ChannelActive
 
 bla bla
 
+## FieldMap
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> from mcgpy.numeric import FieldMap
+```
+
+### `arrows()`
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> from mcgpy.numeric import FieldMap
+```
+
+### `pole()`
+
+
+
 ## Accosicated classes
 
 Note that in addition to the TimeSeires associated classes listed below.
