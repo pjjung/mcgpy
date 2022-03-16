@@ -119,7 +119,7 @@ There are two examples of current arrows and the field pole arrow.
     .
     
 >>>
->>> fieldmap.ploe()       # get the field pole information
+>>> fieldmap.pole()       # get the field pole information
     type         	1126259462 s
     str14        	object
     min coordinate	(-75.0, -100.0)
