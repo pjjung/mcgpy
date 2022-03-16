@@ -117,9 +117,12 @@ def to_timestamp(timeinput, ttype='python', *args, **kwargs):
     return timeinput
   
   elif ttype == 'labview':
-    labview_timestamp_rule = _string2time('1904-01-01 00:00:00')
-    labview_timestamp = _datetime2timestamp(labview_timestamp_rule)
-    timeinput = time.mktime(timeinput.timetuple()) - labview_timestamp
+    try:
+      labview_timestamp_rule = _string2time('1904-01-01 00:00:00')
+      labview_timestamp = _datetime2timestamp(labview_timestamp_rule)
+      timeinput = time.mktime(timeinput.timetuple()) - labview_timestamp
+    except OverflowError:
+      timeinput = time.mktime(timeinput.timetuple()) + 2082875272.0
     return timeinput
   
 def to_datetime(timeinput, ttype='python', *args, **kwargs):
@@ -149,10 +152,12 @@ def to_datetime(timeinput, ttype='python', *args, **kwargs):
   if ttype == 'python':
     dateoutput = datetime.datetime.fromtimestamp(timeinput).strftime('%Y-%m-%d %H:%M:%S.%f')
   elif ttype == 'labview':
-    labview_timestamp_rule = _string2time('1904-01-01 00:00:00')
-    labview_timestamp = _datetime2timestamp(labview_timestamp_rule)
-    dateoutput = _datetime2string(timeinput+labview_timestamp)
-    
+    try:
+      labview_timestamp_rule = _string2time('1904-01-01 00:00:00')
+      labview_timestamp = _datetime2timestamp(labview_timestamp_rule)
+      dateoutput = _datetime2string(timeinput+labview_timestamp)
+    except OverflowError:
+      dateoutput = _datetime2string(timeinput-2082875272.0)
   return dateoutput
 
 
@@ -177,9 +182,12 @@ def _to_special_timestamp(date_string, ttype='python'):
     return time.mktime(output.timetuple())
   
   elif ttype == 'labview':
-    labview_timestamp_rule = _string2time('1904-01-01 00:00:00')
-    labview_timestamp = _datetime2timestamp(labview_timestamp_rule)
-    return time.mktime(output.timetuple()) - labview_timestamp
+    try:
+      labview_timestamp_rule = _string2time('1904-01-01 00:00:00')
+      labview_timestamp = _datetime2timestamp(labview_timestamp_rule)
+      return time.mktime(output.timetuple()) - labview_timestamp
+    except OverflowError:
+      return time.mktime(output.timetuple()) + 2082875272.0
 
 def _string2time(datestring):
   try:
