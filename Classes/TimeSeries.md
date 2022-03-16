@@ -23,16 +23,20 @@ bla bla
   * [crop()]()
   * [fft()]()
   * [highpass()]()
-  * [lowpass]()
-  * [notch]()
-  * [psd]()
-  * [rms]()
+  * [lowpass()]()
+  * [notch()]()
+  * [psd()]()
+  * [rms()]()
 
 ## Properties summary
 
 ### biosemi
 
-### <mark style="background-color: gray">Highlighted text</mark> 
+---
+### <mark style="background-color: lightgray">Highlighted text</mark> 
+
+---
+
 
 ## Methods
 
