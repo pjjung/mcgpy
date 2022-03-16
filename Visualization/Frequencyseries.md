@@ -4,16 +4,27 @@ sort: 2
 
 # Frequency Series
 
+
+bla bla
+
+## Single channe data plot
+
+bla bla
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> from matplotlib import pyplot as plt
+>>>
 ```
-{% raw %}
-code test
-{% endraw %}
+[plot]
+
+## Multi channel dataset plot
+
+bla bla
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> from matplotlib import pyplot as plt
+>>> 
 ```
-
-
-
-```tip
-Set config `plugins: [jekyll-avatar]`
-
-For documentation, see: [https://github.com/benbalter/jekyll-avatar](https://github.com/benbalter/jekyll-avatar)
-```
+[plot]
