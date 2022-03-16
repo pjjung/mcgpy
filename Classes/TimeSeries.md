@@ -30,8 +30,9 @@ bla bla
 
 ## Properties
 
-### {:.bg-blue.text-white} biosemi
+### biosemi
 
+### <span style="color: red;">text</span>
 
 ## Methods
 
