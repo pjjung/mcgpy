@@ -26,23 +26,17 @@ The syntax is follows as below:
 [Label]
 1 = label_1
 2 = label_2
-.
-.
-.
+3 = label_3
 
 [Positions]
 1 = 10.000, 10.000,   0.000
 2 = 10.000, 15.000,   0.000
-.
-.
-.
+# = 10.000, 20.000,   0.000
 
 [Directions]
-1 =     1.0000,  0.0000,  0.0000
-2 =     1.0000,  0.0000,  0.0000
-.
-.
-.
+1 = 1.0000,  0.0000,  0.0000
+2 = 1.0000,  0.0000,  0.0000
+3 = 1.0000,  0.0000,  0.0000
 ```
 
 There are examples of how to read sensor information from an `ini` file.
@@ -58,9 +52,6 @@ There are examples of how to read sensor information from an `ini` file.
     1	    label_1
     2	    label_2
     3	    label_3
-    .
-    .
-    .
     
 >>> config.get('positions')    # get the position list of sensors
     number	positions
@@ -68,9 +59,6 @@ There are examples of how to read sensor information from an `ini` file.
     1	    (10., 10., 0.)
     2	    (10., 15., 0.)
     3	    (10., 20., 0.)
-    .
-    .
-    .
 
 >>> config.get('directions')    # get the directions list of sensors
     number	positions
@@ -78,9 +66,6 @@ There are examples of how to read sensor information from an `ini` file.
     1	    (1.,  0.,  0.)
     2	    (1.,  0.,  0.)
     3	    (1.,  0.,  0.)
-    .
-    .
-    .
 ```
 
 ### The ChannelActive
