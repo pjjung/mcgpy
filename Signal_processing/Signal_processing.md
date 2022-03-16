@@ -4,16 +4,13 @@ sort: 1
 
 # Signal processing
 
-bla bla
+Though magnetocardiography (MCG) devices are designed to measure the magnetic signal related to the cardiac activitiy, many instrumental error signals and environmental noises are recorded at the same time. Signal processing techniques are used to emphasize or detect components we have an interest in measured datasets. MCGpy also provides common signal processing methods by [scipy.signal](https://docs.scipy.org/doc/scipy/reference/signal.html) and [numpy.fft](https://numpy.org/doc/stable/reference/routines.fft.html#module-numpy.fft) as `class methods` for convenience.
 
 Dependency modules are:
-
-| Methods                 | Description                   |
-|-------------------------|-------------------------------|
-| [scipy.signal.butter](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjvvojYmcr2AhW9KqYKHWnCB_UQFnoECAsQAQ&url=https%3A%2F%2Fdocs.scipy.org%2Fdoc%2Fscipy%2Freference%2Fgenerated%2Fscipy.signal.butter.html&usg=AOvVaw2yuHBe8qkN8fvIRWBRru2q) | Butterworth digital and analog filter design  | 
-| [scipy.signal.lfilter](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html) | Filter data along one-dimension with an IIR or FIR filter  | 
-| [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html) | Estimate power spectral density using Welch’s method | 
-| [numpy.fft.fft](https://numpy.org/doc/stable/reference/generated/numpy.fft.fft.html) | Compute the one-dimensional discrete Fourier Transform | 
+* [scipy.signal.butter](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.butter.html) - Butterworth digital and analog filter design 
+* [scipy.signal.lfilter](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.lfilter.html) - Filter data along one-dimension with an IIR or FIR filter 
+* [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html) - Estimate power spectral density using Welch’s method  
+* [numpy.fft.fft](https://numpy.org/doc/stable/reference/generated/numpy.fft.fft.html) - Compute the one-dimensional discrete Fourier Transform 
 
 ## Time-domain filters
 
@@ -21,8 +18,8 @@ bla bla
 
 It is based on `scipy`
 
-| Methods                 | Description                   |
-|-------------------------|-------------------------------|
+| Methods                   | Description                   |
+|---------------------------|-------------------------------|
 | `bandpass(lfreq, hfreq)`  |   | 
 | `lowpass(freq)`           |   |
 | `highpass(freq)`          |   |
