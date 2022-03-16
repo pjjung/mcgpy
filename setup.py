@@ -17,7 +17,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setup(
       name='MCGpy',
-      version='0.1.1',
+      version='0.1.2',
       author='Phil Jung',
       author_email='pjjung@amcg.kr',
       description='The MCGpy is the package to study and analyze magnetocardiography, for instrumetnal or medical purpose.',
