@@ -67,7 +67,7 @@ Since KDF and HDF5 files have consisted of multi-channel datasets as mentioned a
 <TimeSeries [ 136.26813889  156.58140182  ...  -67.71087646  33.00905228] 1e-15 T>
 ```
 ```note
-By using the `Channel` class, the channel information, such as number, label, location, and direction, can be read from frame files.
+By using the `Channel` class, the channel information, such as number and label, can be read from frame files.
 
 See detailed explanation in [Data Tabels](https://pjjung.github.io/mcgpy/MCGdata/Data_tables.html) section.
 ```
