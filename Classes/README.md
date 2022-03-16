@@ -2,6 +2,6 @@
 sort: 7
 ---
 
-# Classes
+# Classes/Methods
 
 {% include list.liquid all=true %}
