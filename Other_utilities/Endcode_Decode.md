@@ -14,5 +14,5 @@ To protect personal information, MCGpy provides basic encryption methods that en
 
 | Methods             | Description                   |
 |---------------------|-------------------------------|
-| [encode](https://pjjung.github.io/mcgpy/Classes/key.html#the-keyencode) | Encode personal nane, birthday, and gender | 
+| [encode](https://pjjung.github.io/mcgpy/Classes/key.html#the-keyencode) | Encode personal name, birthday, and gender | 
 | [decode](https://pjjung.github.io/mcgpy/Classes/key.html#the-keydecode) | Decode personal information from the encrypted string | 
