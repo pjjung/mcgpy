@@ -3,7 +3,7 @@ sort: 5
 ---
 
 # key
-*def* **mcgpy.time.encode**(patient_name, gender, birth_date, *args, **kwargs)
+*def* **mcgpy.key.encode**(patient_name, gender, birth_date, *args, **kwargs)
 
 bla bla
 
@@ -18,7 +18,7 @@ bla bla
 ```
 
 ---
-*def* **mcgpy.time.decode**(name, *args, **kwargs)
+*def* **mcgpy.key.decode**(name, *args, **kwargs)
 
 bla bla
 
