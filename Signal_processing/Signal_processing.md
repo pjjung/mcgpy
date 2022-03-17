@@ -14,9 +14,7 @@ Dependency modules are:
 
 ## Time-domain filters
 
-bla bla
-
-It is based on `scipy`
+`TimeSeries` and `TimeSeriesArray` classes support instance methods that remove some unwanted components or frequency bands from a signal. Available methods are:
 
 | Methods                   | Description                   |
 |---------------------------|-------------------------------|
@@ -24,22 +22,19 @@ It is based on `scipy`
 | `lowpass(freq)`           |   |
 | `highpass(freq)`          |   |
 | `notch(freq)`             |   |
-| `rms(stride)`             |   |
 
-Here is a simple example of applying time-domain filters for single-channel data.
+Each one can continuously apply to time-series datasets. Here is a simple example of applying time-domain filters for single-channel data.
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> hdf_path = '~/test/raw/file.hdf5'
 >>> data = TimeSeries(hdf_path).read(number=1)
->>> filtered_date = data.notch(60).notch(120).bandpass(1,400).lowpass(300).highpass(10).rms(1)
+>>> filtered_date = data.notch(60).notch(120).bandpass(1,400).lowpass(300).highpass(10)
 ```
 
 ## Frequency-domain filters
 
-bla bla
-
-It is based on `scipy` and `numpy`
+Additionally, `TimeSeries` and `TimeSeriesArray` classes include instance methods to obtain frequency-domain information via the following methods: 
 
 | Methods                 | Description                   |
 |-------------------------|-------------------------------|
