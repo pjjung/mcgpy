@@ -22,11 +22,11 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ### Parameters
 
-* timeinput :  `str`, `int`, `float`
+* **timeinput** :  `str`, `int`, `float`
  
   input value takes timestamp, datetime, or special string
 
-* ttype : {"python", "labview"}, optional
+* **ttype** : {"python", "labview"}, optional
 
   the standard of timestamp, default value is "python"
  
@@ -69,12 +69,12 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ### Parameters
 
-* timeinput : `str`
+* **timeinput** : `str`
 
   input value takes "%Y-%m-%d %H:%M:%S.%f" style datetime string,
 
 
-* ttype : {"python", "labview"}, optional
+* **ttype** : {"python", "labview"}, optional
 
   the standard of timestamp, default value is "python"
   
@@ -109,11 +109,11 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ### Parameters
 
-* timeinput : `int`, `float`
+* **timeinput** : `int`, `float`
 
   the value of timestamp
 
-* ttype :{"python", "labview"}, optional
+* **ttype** :{"python", "labview"}, optional
 
   the standard of timestamp, default value is "python"
   
