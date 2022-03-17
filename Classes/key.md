@@ -19,6 +19,8 @@ from mcgpy.key import (encode, decode)
 
 *def* **mcgpy.key.encode**(patient_name, gender, birth_date, *args, **kwargs)
 
+encode patient name, gender, birth date information
+
 ### Parameters
 
 * **patient_name** : `str`
@@ -63,6 +65,8 @@ from mcgpy.key import (encode, decode)
 ## The key.decode
 
 *def* **mcgpy.key.decode**(name, *args, **kwargs)
+
+decode an encoded string
 
 ### Parameters
 
