@@ -36,7 +36,7 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ### Raises
 
-* ValueError
+* **ValueError**
 
   input datetime format is no `%Y-%m-%d %H:%M:%S.%f`
     
@@ -84,7 +84,7 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ### Raises
 
-* ValueError
+* **ValueError**
 
   input datetime format is no `%Y-%m-%d %H:%M:%S.%f`
 
