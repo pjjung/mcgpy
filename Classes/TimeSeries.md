@@ -54,39 +54,39 @@ bla bla
 
 ## Properties Documentation
 
-#### <mark style="background-color: lightgray">biosemi</mark> 
+#### biosemi
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">datetime</mark> 
+#### datetime 
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">direction</mark> 
+#### direction
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">duration</mark> 
+#### duration 
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">label</mark> 
+#### label
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">note</mark> 
+#### note
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">number</mark> 
+#### number
 bla bla
 
 ---
-### <mark style="background-color: lightgray">position</mark> 
+### position
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">sample_rate</mark> 
+#### sample_rate
 bla bla
 
 ---
@@ -94,44 +94,44 @@ bla bla
 
 ## Methods Documentation
 
-#### <mark style="background-color: lightgray">asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
+#### asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">at(epoch)</mark> 
+#### at(epoch)
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">bandpass(lfre, hfreq, order=4)</mark> 
+#### bandpass(lfre, hfreq, order=4) 
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">crop(start, end)</mark> 
+#### crop(start, end)
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">fft()</mark> 
+#### fft()
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">highpass(hfreq, order=2)</mark> 
+#### highpass(hfreq, order=2)
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">lowpass(lfreq, order=2)</mark> 
+#### lowpass(lfreq, order=2)
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">notch(freq, Q=30)</mark> 
+#### notch(freq, Q=30)
 bla bla
 
 ---
-#### <mark style="background-color: lightgray">psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
+#### psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
 bla bla
 
 ---
 
-#### <mark style="background-color: lightgray">rms(stride=1)</mark> 
+#### rms(stride=1)
 bla bla
 
 ---
