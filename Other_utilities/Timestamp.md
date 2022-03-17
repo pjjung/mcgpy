@@ -4,7 +4,13 @@ sort: 1
 
 # Timestamp
 
-bla bla
+Timestamp is the stacking time as the absolute number of seconds from the epoch. This kind of counting method does not change no matter where you are located on the globe. Therefore, All time-information stored in `TimeSeires` and `TimeSeriesArray` objects are dealt with as the timestamp.
+
+MCGpy timestamp is a way to follow time since the start of the epoch at midnight on January 1st, 1970, which is the standard Unix timestamp. 
+
+for specific purpose,
+
+The start of timestamp epoch
 
 ## The time
 
