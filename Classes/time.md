@@ -52,13 +52,13 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 ### Examples
 
 ```python
-  >>> from mcgpy.time import tconvert
-  >>> tconvert(0)
-  "1970-01-01 09:00:00.000000"
-  >>> tconvert(0, ttype="labview")
-  "1904-01-01 00:00:00.000000"
-  >>> tconvert("1970-01-01 09:00:00.000000", ttype="labview")
-  2082875272.0
+>>> from mcgpy.time import tconvert
+>>> tconvert(0)
+"1970-01-01 09:00:00.000000"
+>>> tconvert(0, ttype="labview")
+"1904-01-01 00:00:00.000000"
+>>> tconvert("1970-01-01 09:00:00.000000", ttype="labview")
+2082875272.0
 ```
 
 ---
@@ -97,8 +97,8 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ```python
 >>> from mcgpy.time import to_timestamp
-  >>> to_timestamp("2000-01-01 00:00:00")
-  946652400.0
+>>> to_timestamp("2000-01-01 00:00:00")
+946652400.0
 ```
 
 ---
@@ -129,6 +129,6 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ```python
 >>> from mcgpy.time import to_datetime
-  >>> to_timestamp(0)
-  1970-01-01 09:00:00.000000
+>>> to_timestamp(0)
+1970-01-01 09:00:00.000000
 ```
