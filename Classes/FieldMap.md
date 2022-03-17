@@ -33,14 +33,14 @@ bla bla
 
 | Properties     | Discription |
 |----------------|-------------|
-| [X]()      | Bar         |
-| [Y]()      | Bar         |
-| [datetime]()      | Bar         |
-| [dt]()      | Bar         |
-| [duration]()      | Bar         |
-| [sample_rate]()      | Bar         |
-| [t0]()      | Bar         |
-| [times]()      | Bar         |
+| [X](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#x)      | Bar         |
+| [Y](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#y)      | Bar         |
+| [datetime](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#datetime)      | Bar         |
+| [dt](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#dt)      | Bar         |
+| [duration](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#duration)      | Bar         |
+| [sample_rate](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#sample_rate)      | Bar         |
+| [t0](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#t0)      | Bar         |
+| [times](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#times)      | Bar         |
 
 ```note
 bla bla
@@ -50,8 +50,8 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [arrows()]()      | Bar         |
-| [pole()]()      | Bar         |
+| [arrows()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#arrows)      | Bar         |
+| [pole()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#pole)      | Bar         |
 
 ## Properties Documentation
 
