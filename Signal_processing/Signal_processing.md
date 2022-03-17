@@ -18,10 +18,10 @@ Dependency modules are:
 
 | Methods                   | Description                   |
 |---------------------------|-------------------------------|
-| `bandpass(lfreq, hfreq)`  |   | 
-| `lowpass(freq)`           |   |
-| `highpass(freq)`          |   |
-| `notch(freq)`             |   |
+| `bandpass(lfreq, hfreq)`  | Only frequencies in a frequency band are passed. | 
+| `lowpass(freq)`           | Low frequencies are passed, high frequencies are attenuated. |
+| `highpass(freq)`          | High frequencies are passed, low frequencies are attenuated. |
+| `notch(freq)`             | Only frequencies in a frequency band are attenuated. |
 
 Each one can continuously apply to time-series datasets. Here is a simple example of applying time-domain filters for single-channel data.
 
@@ -38,9 +38,9 @@ Additionally, `TimeSeries` and `TimeSeriesArray` classes include instance method
 
 | Methods                 | Description                   |
 |-------------------------|-------------------------------|
-| `fft()`                   |   | 
-| `psd(seglength, overlap)` |   |
-| `asd(seglength, overlap)` |   |
+| `fft()`                   | Converting a signal from the time-domain signal to a discrete Fourier transform (DFT) of a sequence in the frequency domain. | 
+| `psd(seglength, overlap)` | Converting a signal from the time-domain signal to a power spectral density (PSD) in the frequency domain. |
+| `asd(seglength, overlap)` | Converting a signal from the time-domain signal to a acceleration spectral density (ASD) in the frequency domain.  |
 
 Here is a simple example of applying frequency-domain filters for single-channel data.
 
@@ -59,5 +59,5 @@ Note that in addition to the TimeSeires associated classes listed below.
 
 | Classes             | Description                   |
 |---------------------|-------------------------------|
-| [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
-| [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
+| [TimeSeires](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html)      | Dealing with a single time-series of a MCG dataset |
+| [TimeSeriesArray](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html) | Dealing with a multi-channel time-series array of a MCG dataset | 
