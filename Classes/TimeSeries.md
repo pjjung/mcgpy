@@ -4,7 +4,7 @@ sort: 1
 
 # TimeSeries
 
-<mark style="background-color: lightgray">*class* **mcgpy.timeseries.TimeSeries**( source, number=None, label=None, unit=None, t0=None, sample_rate=None, times=None, *args, **kwargs)</mark> 
+*class* **mcgpy.timeseries.TimeSeries**( source, number=None, label=None, unit=None, t0=None, sample_rate=None, times=None, *args, **kwargs)
 
 bla bla
 
@@ -40,16 +40,16 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [asd()]()      | Bar         |
-| [at()]()       | Bar         |
-| [bandpass()]() | Bar         |
-| [crop()]()     | Bar         |
-| [fft()]()      | Bar         |
-| [highpass()]() | Bar         |
-| [lowpass()]()  | Bar         |
-| [notch()]()    | Bar         |
-| [psd()]()      | Bar         |
-| [rms()]()      | Bar         |
+| [asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Bar         |
+| [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#atepoch)       | Bar         |
+| [bandpass(lfre, hfreq, order=4)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4) | Bar         |
+| [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end)     | Bar         |
+| [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Bar         |
+| [highpass(hfreq, order=2)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2) | Bar         |
+| [lowpass(lfreq, order=2)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2)  | Bar         |
+| [notch(freq, Q=30)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30)    | Bar         |
+| [psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Bar         |
+| [rms(rms(stride=1))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1)      | Bar         |
 
 
 ## Properties Documentation
