@@ -20,6 +20,8 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 <font size="15">*def* **mcgpy.time.tconvert**(timeinput, ttype='python')</font>
 
+time converter
+
 ### Parameters
 
 * **timeinput** :  `str`, `int`, `float`
@@ -67,6 +69,8 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 *def* **mcgpy.time.to_timestamp**(timeinput, ttype='python', *args, **kwargs)
 
+converto datetime to timestamp
+
 ### Parameters
 
 * **timeinput** : `str`
@@ -106,6 +110,8 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 ## The time.to_datetime
 
 *def* **mcgpy.time.to_datetime**(timeinput, ttype='python', *args, **kwargs)
+
+convert from timestamp to datetime
 
 ### Parameters
 
