@@ -20,7 +20,7 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [get(key)]()      | Bar         |
+| [get(key)](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#getkey)      | Bar         |
 
 
 ## Methods Documentation
@@ -46,9 +46,9 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [get_table()]()      | Bar         |
-| [get_number()]()      | Bar         |
-| [get_label()]()      | Bar         |
+| [get_table()](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#get_table)      | Bar         |
+| [get_number()](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#get_number)      | Bar         |
+| [get_label()](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#get_label)      | Bar         |
 
 ## Methods Documentation
 
