@@ -55,30 +55,39 @@ bla bla
 ## Properties Documentation
 
 #### <mark style="background-color: lightgray">biosemi</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">datetime</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">direction</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">duration</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">label</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">note</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">number</mark> 
+bla bla
 
 ---
 ### <mark style="background-color: lightgray">position</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">sample_rate</mark> 
+bla bla
 
 ---
 
@@ -86,33 +95,43 @@ bla bla
 ## Methods Documentation
 
 #### <mark style="background-color: lightgray">asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">at(epoch)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">bandpass(lfre, hfreq, order=4)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">crop(start, end)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">fft()</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">highpass(hfreq, order=2)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">lowpass(lfreq, order=2)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">notch(freq, Q=30)</mark> 
+bla bla
 
 ---
 #### <mark style="background-color: lightgray">psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
+bla bla
 
 ---
 
 #### <mark style="background-color: lightgray">rms(stride=1)</mark> 
+bla bla
 
 ---
