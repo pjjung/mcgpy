@@ -4,6 +4,8 @@ sort: 2
 
 # Encode and Decode Patient Informatnion
 
+## The key
+
 ```python
 from mcgpy.key import (encode, decode)
 ```
