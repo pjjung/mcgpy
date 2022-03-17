@@ -89,9 +89,9 @@ The error was reported in some environments if the `time` module tries to conver
 ### Return : `dict`
 
 ```python
-dict{"patient name" : decoded patient's name from an input string
-     "gender" : decoded patient's gender from an input string
-     "birth date" : decoded patient's birth date from an input string as "datetime.datetime" 
+dict{"patient name" : # decoded patient's name from an input string
+     "gender" : # decoded patient's gender from an input string
+     "birth date" : # decoded patient's birth date from an input string as "datetime.datetime" 
      }
 ```
 
