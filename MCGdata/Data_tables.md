@@ -139,5 +139,5 @@ Note that in addition to the TimeSeires associated classes listed below.
 | [TimeSeires](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html)      | Dealing with a single time-series of a MCG dataset |
 | [TimeSeriesArray](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html) | Dealing with a multi-channel time-series array of a MCG dataset | 
 | [Channel](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html)         | Listing the channel information from a configuration file or a raw frame file |
-| [FieldMap]()        | Calculate a lead field matrix and the current-dipole information |
+| [FieldMap](https://pjjung.github.io/mcgpy/Classes/FieldMap.html)        | Calculate a lead field matrix and the current-dipole information |
   
