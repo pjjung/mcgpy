@@ -4,7 +4,9 @@ sort: 5
 
 # time
 
-bla bla
+```python
+from mcgpy.time import (tconvert, to_timestamp, to_datetime)
+```
 
 ## Functions sumarry
 
