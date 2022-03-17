@@ -6,6 +6,13 @@ sort: 5
 
 bla bla
 
+## Functions sumarry
+
+| Functions | Description |
+|-----------|-------------|
+| [encode(patient_name, gender, birth_date)]() | |
+| [decode(name)]() | |
+
 ## key.encode
 
 *def* **mcgpy.key.encode**(patient_name, gender, birth_date, *args, **kwargs)
