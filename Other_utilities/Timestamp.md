@@ -25,7 +25,7 @@ The `time` module consists of three converting methods:
 
 | Functions        | Description         | 
 |------------------|---------------------|
-| [tconvert](https://pjjung.github.io/mcgpy/Classes/time.html#the-timetconvert) | Convert the timestamp (Unix or LabVIEW  type) to the datetime string, vice sersa | 
+| [tconvert](https://pjjung.github.io/mcgpy/Classes/time.html#the-timetconvert) | Convert the timestamp (Unix or LabVIEW  type) to the datetime string, vice versa | 
 | [to_timestamp](https://pjjung.github.io/mcgpy/Classes/time.html#the-timeto_timestamp) | Convert the datetime string to the timestamp (Unix or LabVIEW  type) | 
 | [to_datetime](https://pjjung.github.io/mcgpy/Classes/time.html#the-timeto_datetime) | Convert the the timestamp (Unix or LabVIEW  type) to the datetime string | 
  
