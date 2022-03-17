@@ -75,7 +75,7 @@ converto datetime to timestamp
 
 * **timeinput** : `str`
 
-  input value takes "%Y-%m-%d %H:%M:%S.%f" style datetime string,
+  input value takes `%Y-%m-%d %H:%M:%S.%f` style datetime string,
 
 
 * **ttype** : {"python", "labview"}, optional
