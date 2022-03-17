@@ -32,6 +32,7 @@ bla bla
 | [highpass()]() | Bar         |
 | [lowpass()]()  | Bar         |
 | [notch()]()    | Bar         |
+| [psd()]()      | Bar         |
 | [rms()]()      | Bar         |
 
 
@@ -68,30 +69,34 @@ bla bla
 
 ## Methods
 
-### <mark style="background-color: lightgray">asd()</mark> 
+### <mark style="background-color: lightgray">asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
 
 ---
-### <mark style="background-color: lightgray">at()</mark> 
+### <mark style="background-color: lightgray">at(epoch)</mark> 
 
 ---
-### <mark style="background-color: lightgray">bandpass()</mark> 
+### <mark style="background-color: lightgray">bandpass(lfre, hfreq, order=4)</mark> 
 
 ---
-### <mark style="background-color: lightgray">crop()</mark> 
+### <mark style="background-color: lightgray">crop(start, end)</mark> 
 
 ---
 ### <mark style="background-color: lightgray">fft()</mark> 
 
 ---
-### <mark style="background-color: lightgray">highpass()</mark> 
+### <mark style="background-color: lightgray">highpass(hfreq, order=2)</mark> 
 
 ---
-### <mark style="background-color: lightgray">lowpass()</mark> 
+### <mark style="background-color: lightgray">lowpass(lfreq, order=2)</mark> 
 
 ---
-### <mark style="background-color: lightgray">notch()</mark> 
+### <mark style="background-color: lightgray">notch(freq, Q=30)</mark> 
 
 ---
-### <mark style="background-color: lightgray">rms()</mark> 
+### <mark style="background-color: lightgray">psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
+
+---
+
+### <mark style="background-color: lightgray">rms(stride=1)</mark> 
 
 ---
