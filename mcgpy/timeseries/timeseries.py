@@ -187,7 +187,7 @@ class TimeSeries(TimeSeriesCore):
   ##---- Methods -------------------------------- 
 
   # at
-  def at(self, epoch):
+  def at(self, epoch, **kwargs):
     '''peak up the value at an input time
     
     Parameters
@@ -221,7 +221,7 @@ class TimeSeries(TimeSeriesCore):
     return new 
 
   # crop
-  def crop(self, start, end):
+  def crop(self, start, end, **kwargs):
     '''slice the time-series between start and end times
     
     Parameters
@@ -262,7 +262,7 @@ class TimeSeries(TimeSeriesCore):
     return new
   
   # rms
-  def rms(self, stride=1):
+  def rms(self, stride=1, **kwargs):
     '''get the rms series by a given stride
     
     Parameters
@@ -295,7 +295,7 @@ class TimeSeries(TimeSeriesCore):
     return new
     
   # bandpass filter
-  def bandpass(self, lfreq, hfreq, order=4):
+  def bandpass(self, lfreq, hfreq, order=4, **kwargs):
     '''apply the bandpass filter to the data
     
     Prameters
@@ -330,7 +330,7 @@ class TimeSeries(TimeSeriesCore):
     return self._filter(filter_type='bandpass', lfreq=lfreq, hfreq=hfreq, order=order)
 
   # lowpass filter
-  def lowpass(self, lfreq, order=2):
+  def lowpass(self, lfreq, order=2, **kwargs):
     '''apply the lowpass filter to the data
     
     Prameters
@@ -362,7 +362,7 @@ class TimeSeries(TimeSeriesCore):
     return self._filter(filter_type='lowpass', lfreq=lfreq, order=order)
   
   # highpass filter
-  def highpass(self, hfreq, order=2):
+  def highpass(self, hfreq, order=2, **kwargs):
     '''apply the highpass filter to the data
     
     Prameters
@@ -394,7 +394,7 @@ class TimeSeries(TimeSeriesCore):
     return self._filter(filter_type='highpass', hfreq=hfreq, order=order)
       
   # notch filter
-  def notch(self, freq, Q=30):
+  def notch(self, freq, Q=30, **kwargs):
     '''apply the notch/bandstop filter to the data
     
     Prameters
