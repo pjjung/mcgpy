@@ -233,7 +233,7 @@ Here is an example:
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
 >>> Bz.t0
-<Quantity 1.63878441e+09 s>
+<Quantity 1643734922.0 s>
 ```
 
 ---
