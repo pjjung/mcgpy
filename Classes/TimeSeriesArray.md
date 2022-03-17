@@ -46,24 +46,24 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [area(start, end)]()           |             |
-| [asd(fftlength, overlap, window, average)]()           |             |
-| [at(epoch)]()           |             |
-| [bandpass(lfreq, hfreq)]()           |             |
-| [crop(start, end)]()           |             |
-| [exclude(numbers, labels)]()           |             |
-| [fft()]()           |             |
-| [highpass(hfreq, order)]()           |             |
-| [integral(start, end)]()           |             |
-| [lowpass(lfreq, order)]()           |             |
-| [notch(freq, Q)]()           |             |
-| [offset_correction(interval)]()           |             |
-| [offset_correction_at(epoch)]()           |             |
-| [psd(fftlength, overlap, window, average)]()           |             |
-| [read(number, label)]()           |             |
-| [rms(stride)]()           |             |
-| [to_avg()]()           |             |
-| [to_rms()]()           |             |
+| [area(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#areastart-end-kwargs)           |             |
+| [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |             |
+| [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#atepoch-kwargs)           |             |
+| [bandpass(lfreq, hfreq)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#bandpasslfreq-hfreq-order4-kwargs)           |             |
+| [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#cropstart-end-kwargs)           |             |
+| [exclude(numbers, labels)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#excludenumbersnone-labelsnone-kwargs)           |             |
+| [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#fft)           |             |
+| [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#highpasshfreq-order2-kwargs)           |             |
+| [integral(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#integralstart-end-kwargs)           |             |
+| [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#lowpasslfreq-order2-kwargs)           |             |
+| [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#notchfreq-q30-kwargs)           |             |
+| [offset_correction(interval)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#offset_correctioninterval2-kwargs)           |             |
+| [offset_correction_at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#offset_correction_atepoch-kwargs)           |             |
+| [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |             |
+| [read(number, label)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#readnumbernone-labelnone-kwargs)           |             |
+| [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#rmsstride1-kwargs)           |             |
+| [to_avg()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_avg)           |             |
+| [to_rms()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_rms)           |             |
 
 
 ## Properties Documentation
