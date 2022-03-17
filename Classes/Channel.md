@@ -8,15 +8,23 @@ sort: 4
 
 *class* **mcgpy.channel.ChannelConfig**(path)
 
-bla bla
+Read the information of sensor posirion, direction, number and label from a channel configuration file.
 
 ### Parameters
 
-* path
+* **path** : `str`
 
-```note
-bla bla
-```
+  input path must be .ini format and include sensor information of MCG syste
+
+### Raises
+
+* **IOError**
+
+  if a "str" input is not a configuration file path
+
+* **TypeError**
+
+  if a configuration file did not match a specific format
 
 ### Methods Summary
 
