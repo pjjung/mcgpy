@@ -10,7 +10,7 @@ sort: 2
 from mcgpy.key import (encode, decode)
 ```
 
-To protect personal information, MCGpy provides basic encryption methods that encode and decode a patient's name, birthday, and gender, respectively. Each function is contained in the [`key`](https://pjjung.github.io/mcgpy/Classes/key.html) module, and their references are the fowling below.
+To protect personal information, MCGpy provides basic encryption methods that encode and decode a patient's name, birthday, and gender, respectively. Each function is contained in the [key](https://pjjung.github.io/mcgpy/Classes/key.html) module, and their references are the fowling below.
 
 | Methods             | Description                   |
 |---------------------|-------------------------------|
