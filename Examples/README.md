@@ -2,6 +2,6 @@
 sort: 7
 ---
 
-# Markdown Examples
+# Examples
 
 {% include list.liquid all=true %}
