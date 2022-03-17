@@ -10,9 +10,9 @@ bla bla
 
 | Functions | Description |
 |-----------|-------------|
-| [tconvert(timeinput, ttype)]() | |
-| [to_timestamp(timeinput, ttype)]() | |
-| [to_datetime(timeinput, ttype)]() | |
+| [tconvert(timeinput, ttype)](https://pjjung.github.io/mcgpy/Classes/time.html#the-timetconvert) | |
+| [to_timestamp(timeinput, ttype)](https://pjjung.github.io/mcgpy/Classes/time.html#the-timeto_timestamp) | |
+| [to_datetime(timeinput, ttype)](https://pjjung.github.io/mcgpy/Classes/time.html#the-timeto_datetime) | |
 
 ## The time.tconvert
 
