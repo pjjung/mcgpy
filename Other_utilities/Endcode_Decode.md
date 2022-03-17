@@ -4,40 +4,13 @@ sort: 2
 
 # Encode and Decode Patient Informatnion
 
-bla bla
-
-## The key
-
 ```python
 from mcgpy.key import (encode, decode)
 ```
-bla bla
 
-### encode()
-
-```python
->>> from mcgpy.time import tconvert
->>>
-```
-bla bla
-
-### decode()
-
-```python
->>> from mcgpy.time import to_datetime
->>>
-```
-bla bla
-
-```warning
-bla bla
-```
-
-## Accosicated methods
-
-Note that in addition to the TimeSeires associated classes listed below.
+To protect personal information, MCGpy provides basic encryption methods that encode and decode a patient's name, birthday, and gender, respectively. Each function is contained in the [`key`](https://pjjung.github.io/mcgpy/Classes/key.html) module, and their references are the fowling below.
 
 | Methods             | Description                   |
 |---------------------|-------------------------------|
-| [encode]()        |  | 
-| [decode]()     |  | 
+| [encode](https://pjjung.github.io/mcgpy/Classes/key.html#the-keyencode) | Encode personal nane, birthday, and gender | 
+| [decode](https://pjjung.github.io/mcgpy/Classes/key.html#the-keydecode) | Decode personal information from the encrypted string | 
