@@ -18,7 +18,7 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 ## The time.tconvert
 
-<font size="15">*def* **mcgpy.time.tconvert**(timeinput, ttype='python')</font>
+*def* **mcgpy.time.tconvert**(timeinput, ttype='python')
 
 time converter
 
