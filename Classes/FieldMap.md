@@ -135,7 +135,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
 >>> Bz = LeadField(dataset)
->>> Bz.X
+>>> print(Bz.X)
 <Quantity [[−200, −175, −150, …, 150, 175, 200], [−200, −175, −150, …, 150, 175, 200], [−200, −175, −150, …, 150, 175, 200], …, [−200, −175, −150, …, 150, 175, 200], [−200, −175, −150, …, 150, 175, 200], [−200, −175, −150, …, 150, 175, 200]]mm >
 ```
 
@@ -151,7 +151,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
 >>> Bz = LeadField(dataset)
->>> Bz.Y
+>>> print(Bz.Y)
 <Quantity [[−200, −200, −200, …, −200, −200, −200], [−175, −175, −175, …, −175, −175, −175], [−150, −150, −150, …, −150, −150, −150], …, [150, 150, 150, …, 150, 150, 150], [175, 175, 175, …, 175, 175, 175], [200, 200, 200, …, 200, 200, 200]]mm >
 ```
 
@@ -167,7 +167,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
->>> Bz.datetime
+>>> print(Bz.datetime)
 '2022-02-02 02:02:02'
 ```
 
@@ -183,7 +183,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
->>> Bz.dt
+>>> print(Bz.dt)
 <Quantity 0.0009765625 s >
 ```
 
@@ -199,7 +199,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
->>> Bz.duration
+>>> print(Bz.duration)
 <Quantity 8 s>
 
 ```
@@ -216,7 +216,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
->>> Bz.sample_rate
+>>> print(Bz.sample_rate)
 <Quantity 1024. Hz>
 ```
 
@@ -232,7 +232,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
->>> Bz.t0
+>>> print(Bz.t0)
 <Quantity 1.64373492e+09 s>
 ```
 
@@ -248,7 +248,7 @@ Here is an example:
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5").crop(1643734922, 1643734930)
 >>> Bz = LeadField(dataset)
->>> Bz.times
+>>> print(Bz.times)
 <Quantity [1.64373492e+09, 1.64373492e+09, 1.64373492e+09, ...,1.64373492e+09, 1.64373492e+09] s>
 ```
 
