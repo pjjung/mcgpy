@@ -37,14 +37,61 @@ bla bla
 
 ## Properties summary
 
-### biosemi
+### <mark style="background-color: lightgray">biosemi</mark> 
 
 ---
-### <mark style="background-color: lightgray">Highlighted text</mark> 
+### <mark style="background-color: lightgray">datetime</mark> 
+
+---
+### <mark style="background-color: lightgray">direction</mark> 
+
+---
+### <mark style="background-color: lightgray">duration</mark> 
+
+---
+### <mark style="background-color: lightgray">label</mark> 
+
+---
+### <mark style="background-color: lightgray">note</mark> 
+
+---
+### <mark style="background-color: lightgray">number</mark> 
+
+---
+### <mark style="background-color: lightgray">position</mark> 
+
+---
+### <mark style="background-color: lightgray">sample_rate</mark> 
 
 ---
 
 
 ## Methods
 
-list
+### <mark style="background-color: lightgray">asd()</mark> 
+
+---
+### <mark style="background-color: lightgray">at()</mark> 
+
+---
+### <mark style="background-color: lightgray">bandpass()</mark> 
+
+---
+### <mark style="background-color: lightgray">crop()</mark> 
+
+---
+### <mark style="background-color: lightgray">fft()</mark> 
+
+---
+### <mark style="background-color: lightgray">highpass()</mark> 
+
+---
+### <mark style="background-color: lightgray">lowpass()</mark> 
+
+---
+### <mark style="background-color: lightgray">notch()</mark> 
+
+---
+### <mark style="background-color: lightgray">rms()</mark> 
+
+---
