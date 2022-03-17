@@ -4,11 +4,13 @@ sort: 3
 
 # Channel
 
+## The channel.ChannelConfig
+
 *class* **mcgpy.channel.ChannelConfig**(path)
 
 bla bla
 
-## Parameters
+### Parameters
 
 * path
 
@@ -16,25 +18,27 @@ bla bla
 bla bla
 ```
 
-## Methods Summary
+### Methods Summary
 
 | Methods        | Discription |
 |----------------|-------------|
 | [get(key)](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#getkey)      | Bar         |
 
 
-## Methods Documentation
+### Methods Documentation
 
 #### get(key)
 bla bla
 
 ---
 
+## The channel.ChannelActive
+
 *class* **mcgpy.channel.ChannelActive**(path)
 
 bla bla
 
-## Parameters
+### Parameters
 
 * path
 
@@ -42,7 +46,7 @@ bla bla
 bla bla
 ```
 
-## Methods Summary
+### Methods Summary
 
 | Methods        | Discription |
 |----------------|-------------|
@@ -50,7 +54,7 @@ bla bla
 | [get_number()](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#get_number)      | Bar         |
 | [get_label()](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#get_label)      | Bar         |
 
-## Methods Documentation
+### Methods Documentation
 
 #### get_table()
 bla bla
