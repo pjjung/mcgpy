@@ -40,16 +40,16 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Bar         |
+| [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Bar         |
 | [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#atepoch)       | Bar         |
-| [bandpass(lfre, hfreq, order=4)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4) | Bar         |
+| [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4) | Bar         |
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end)     | Bar         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Bar         |
-| [highpass(hfreq, order=2)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2) | Bar         |
-| [lowpass(lfreq, order=2)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2)  | Bar         |
-| [notch(freq, Q=30)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30)    | Bar         |
-| [psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Bar         |
-| [rms(rms(stride=1))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1)      | Bar         |
+| [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2) | Bar         |
+| [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2)  | Bar         |
+| [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30)    | Bar         |
+| [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Bar         |
+| [rms(rms(stride))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1)      | Bar         |
 
 
 ## Properties Documentation
