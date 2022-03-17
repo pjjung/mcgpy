@@ -2,6 +2,6 @@
 sort: 8
 ---
 
-# Template
+# Markdown Syntax
 
 {% include list.liquid all=true %}
