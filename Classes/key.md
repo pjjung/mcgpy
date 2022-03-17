@@ -13,7 +13,7 @@ bla bla
 | [encode(patient_name, gender, birth_date)]() | |
 | [decode(name)]() | |
 
-## key.encode
+## The key.encode
 
 *def* **mcgpy.key.encode**(patient_name, gender, birth_date, *args, **kwargs)
 
@@ -31,7 +31,7 @@ bla bla
 
 ---
 
-## key.decode
+## The key.decode
 
 *def* **mcgpy.key.decode**(name, *args, **kwargs)
 
