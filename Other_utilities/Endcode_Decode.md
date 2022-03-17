@@ -4,8 +4,6 @@ sort: 2
 
 # Encode and Decode Patient Informatnion
 
-bla bla
-
 ## The key
 
 ```python
