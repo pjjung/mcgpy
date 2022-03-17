@@ -99,6 +99,6 @@ Note that in addition to the TimeSeires associated classes listed below.
 
 | Classes             | Description                   |
 |---------------------|-------------------------------|
-| [TimeSeires]()      | Dealing with a single time-series of a MCG dataset |
-| [TimeSeriesArray]() | Dealing with a multi-channel time-series array of a MCG dataset | 
-| [ChannelActive]()   | Listing the channel status |
+| [TimeSeires](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html)      | Dealing with a single time-series of a MCG dataset |
+| [TimeSeriesArray](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html) | Dealing with a multi-channel time-series array of a MCG dataset | 
+| [ChannelActive](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#the-channelchannelactive)   | Listing the channel status |
