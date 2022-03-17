@@ -20,7 +20,7 @@ from mcgpy.time import (tconvert, to_timestamp, to_datetime)
 
 *def* **mcgpy.time.tconvert**(timeinput, ttype='python')
 
-time converter
+The time converter
 
 ### Parameters
 
@@ -69,7 +69,7 @@ time converter
 
 *def* **mcgpy.time.to_timestamp**(timeinput, ttype='python', *args, **kwargs)
 
-converto datetime to timestamp
+Convert from datetime to timestamp
 
 ### Parameters
 
@@ -111,7 +111,7 @@ converto datetime to timestamp
 
 *def* **mcgpy.time.to_datetime**(timeinput, ttype='python', *args, **kwargs)
 
-convert from timestamp to datetime
+Convert from timestamp to datetime
 
 ### Parameters
 
