@@ -2,11 +2,27 @@
 sort: 1
 ---
 
-# TimeSeries summary
+# TimeSeries
+
+<mark style="background-color: lightgray">*class* **mcgpy.timeseries.TimeSeries**( source, number=None, label=None, unit=None, t0=None, sample_rate=None, times=None, *args, **kwargs)</mark> 
 
 bla bla
 
-* Properties
+## Parameters
+
+* source
+* number
+* label
+* unit
+* t0
+* sampel_rate
+* times
+
+```note
+bla bla
+```
+
+## Properties Summary
 
 | Properties     | Discription |
 |----------------|-------------|
@@ -20,7 +36,7 @@ bla bla
 | [position](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#position)    | Bar         |
 | [sample_rate](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#sample_rate)| Bar         |
 
-* Methods
+## Methods Summary
 
 | Methods        | Discription |
 |----------------|-------------|
@@ -36,7 +52,7 @@ bla bla
 | [rms()]()      | Bar         |
 
 
-## Properties summary
+## Properties Documentation
 
 #### <mark style="background-color: lightgray">biosemi</mark> 
 
@@ -67,7 +83,7 @@ bla bla
 ---
 
 
-## Methods
+## Methods Documentation
 
 #### <mark style="background-color: lightgray">asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)</mark> 
 
