@@ -7,7 +7,8 @@ sort: 1
 bla bla
 
 * Properties
-| <!-- -->       | <!-- -->    |
+
+| Properties     | Discription |
 |----------------|-------------|
 | [biosemo]()    | Bar         |
 | [datetime]()   | Bar         |
@@ -20,16 +21,19 @@ bla bla
 | [sample_rate]()| Bar         |
 
 * Methods
-  * [asd()]()
-  * [at()]()
-  * [bandpass()]()
-  * [crop()]()
-  * [fft()]()
-  * [highpass()]()
-  * [lowpass()]()
-  * [notch()]()
-  * [psd()]()
-  * [rms()]()
+
+| Methods        | Discription |
+|----------------|-------------|
+| [asd()]()      | Bar         |
+| [at()]()       | Bar         |
+| [bandpass()]() | Bar         |
+| [crop()]()     | Bar         |
+| [fft()]()      | Bar         |
+| [highpass()]() | Bar         |
+| [lowpass()]()  | Bar         |
+| [notch()]()    | Bar         |
+| [rms()]()      | Bar         |
+
 
 ## Properties summary
 
