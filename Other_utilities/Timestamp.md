@@ -10,7 +10,7 @@ MCGpy timestamp is a way to follow time since the start of the epoch at midnight
 
 For example,
 
-| type        | Datetime            | timestamp    |
+| Type        | Datetime            | Timestamp    |
 |-------------|---------------------|--------------|
 | Python(Unix)| 2022-02-22 02:02:02 | 1645462922.0 | 
 | Labview     | 2022-02-22 02:02:02 | 3728338194.0 |   
