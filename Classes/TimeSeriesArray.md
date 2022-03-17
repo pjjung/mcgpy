@@ -46,22 +46,22 @@ bla bla
 
 | Methods        | Discription |
 |----------------|-------------|
-| [area()]()           |             |
-| [asd()]()           |             |
-| [at()]()           |             |
-| [bandpass()]()           |             |
-| [crop()]()           |             |
-| [exclude()]()           |             |
+| [area(start, end)]()           |             |
+| [asd(fftlength, overlap, window, average)]()           |             |
+| [at(epoch)]()           |             |
+| [bandpass(lfreq, hfreq)]()           |             |
+| [crop(start, end)]()           |             |
+| [exclude(numbers, labels)]()           |             |
 | [fft()]()           |             |
-| [highpass()]()           |             |
-| [integral()]()           |             |
-| [lowpass()]()           |             |
-| [notch()]()           |             |
-| [offset_correction()]()           |             |
-| [offset_correction_at()]()           |             |
-| [psd()]()           |             |
-| [read()]()           |             |
-| [rms()]()           |             |
+| [highpass(hfreq, order)]()           |             |
+| [integral(start, end)]()           |             |
+| [lowpass(lfreq, order)]()           |             |
+| [notch(freq, Q)]()           |             |
+| [offset_correction(interval)]()           |             |
+| [offset_correction_at(epoch)]()           |             |
+| [psd(fftlength, overlap, window, average)]()           |             |
+| [read(number, label)]()           |             |
+| [rms(stride)]()           |             |
 | [to_avg()]()           |             |
 | [to_rms()]()           |             |
 
@@ -119,6 +119,7 @@ bla bla
 #### at(epoch, **kwargs)
 bla bla
 
+---
 #### bandpass(lfreq, hfreq, order=4, **kwargs)
 bla bla
 
@@ -130,6 +131,7 @@ bla bla
 #### exclude(numbers=None, labels=None, **kwargs)
 bla bla
 
+---
 #### fft()
 bla bla
 
@@ -141,6 +143,7 @@ bla bla
 #### integral(start, end, **kwargs)
 bla bla
 
+---
 #### lowpass(lfreq, order=2, **kwargs)
 bla bla
 
@@ -152,6 +155,7 @@ bla bla
 #### offset_correction(interval=2, **kwargs)
 bla bla
 
+---
 #### offset_correction_at(epoch, **kwargs)
 bla bla
 
