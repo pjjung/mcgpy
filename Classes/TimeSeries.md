@@ -4,7 +4,7 @@ sort: 1
 
 # TimeSeries
 
-*class* **mcgpy.timeseries.TimeSeries**( source, number=None, label=None, unit=None, t0=None, sample_rate=None, times=None, *args, **kwargs)
+*class* **mcgpy.timeseries.TimeSeries**(source, number=None, label=None, unit=None, t0=None, sample_rate=None, times=None, *args, **kwargs)
 
 bla bla
 
