@@ -1193,7 +1193,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       raise TypeError('to_avg method only supports a 2-dimensional dataset')
   
   # area
-  def area(self, start, end):
+  def area(self, start, end, **kwargs):
     '''calculate the area between start and end timestamps
     
     Parameters
@@ -1244,7 +1244,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       return new
   
   # integral
-  def integral(self, start, end):
+  def integral(self, start, end, **kwargs):
     '''calculate the integrated area between start and end timestamps
     
     Parameters
