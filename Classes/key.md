@@ -3,11 +3,16 @@ sort: 5
 ---
 
 # key
+
+bla bla
+
+## key.encode
+
 *def* **mcgpy.key.encode**(patient_name, gender, birth_date, *args, **kwargs)
 
 bla bla
 
-## Parameters
+### Parameters
 
 * patient_name
 * gender
@@ -18,11 +23,14 @@ bla bla
 ```
 
 ---
+
+## key.decode
+
 *def* **mcgpy.key.decode**(name, *args, **kwargs)
 
 bla bla
 
-## Parameters
+### Parameters
 
 * name
 
