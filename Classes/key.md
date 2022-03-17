@@ -10,8 +10,8 @@ bla bla
 
 | Functions | Description |
 |-----------|-------------|
-| [encode(patient_name, gender, birth_date)]() | |
-| [decode(name)]() | |
+| [encode(patient_name, gender, birth_date)](https://pjjung.github.io/mcgpy/Classes/key.html#the-keyencode) | |
+| [decode(name)](https://pjjung.github.io/mcgpy/Classes/key.html#the-keydecode) | |
 
 ## The key.encode
 
