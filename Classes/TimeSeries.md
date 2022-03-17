@@ -98,15 +98,15 @@ bla bla
 bla bla
 
 ---
-#### at(epoch)
+#### at(epoch, **kwargs)
 bla bla
 
 ---
-#### bandpass(lfre, hfreq, order=4) 
+#### bandpass(lfre, hfreq, order=4, **kwargs) 
 bla bla
 
 ---
-#### crop(start, end)
+#### crop(start, end, **kwargs)
 bla bla
 
 ---
@@ -114,15 +114,15 @@ bla bla
 bla bla
 
 ---
-#### highpass(hfreq, order=2)
+#### highpass(hfreq, order=2, **kwargs)
 bla bla
 
 ---
-#### lowpass(lfreq, order=2)
+#### lowpass(lfreq, order=2, **kwargs)
 bla bla
 
 ---
-#### notch(freq, Q=30)
+#### notch(freq, Q=30, **kwargs)
 bla bla
 
 ---
@@ -131,7 +131,7 @@ bla bla
 
 ---
 
-#### rms(stride=1)
+#### rms(stride=1, **kwargs)
 bla bla
 
 ---
