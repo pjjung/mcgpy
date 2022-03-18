@@ -332,7 +332,7 @@ class TimeSeries(TimeSeriesCore):
     
     Prameters
     ---------
-    freq : "int", "float", "astropy.units.Quantity"
+    lfreq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -361,7 +361,7 @@ class TimeSeries(TimeSeriesCore):
     
     Prameters
     ---------
-    freq : "int", "float", "astropy.units.Quantity"
+    hfreq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
