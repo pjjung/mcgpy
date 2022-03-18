@@ -643,9 +643,6 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
     lfreq : "int", "float", "astropy.units.Quantity"
         the low cutoff frequencies 
 
@@ -689,10 +686,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
-    freq : "int", "float", "astropy.units.Quantity"
+    lfreq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -732,10 +726,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
-    freq : "int", "float", "astropy.units.Quantity"
+    hfreq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -775,9 +766,6 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
     freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
@@ -910,7 +898,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    seglength : "int",  "float", optional
+    fftlength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
@@ -977,7 +965,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    seglength : "int",  "float", optional
+    fftlength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
