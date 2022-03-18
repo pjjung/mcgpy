@@ -7,7 +7,7 @@ sort: 3
 Based on multi-array magnetic information at the epoch, the field distribution can be generated. This page shows how to make a field map plot with randomly generated datasets by `numpy`.
 
 ```python
->>> from mcgpy.timeseries import TimeSeries, TimeSeriesArray
+>>> from mcgpy.timeseries import TimeSeriesArray
 >>> from mcgpy.numeric import FieldMap
 >>> import numpy as np
 >>> source = np.random.random((64,1024))
