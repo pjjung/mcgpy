@@ -101,4 +101,5 @@ Note that in addition to the TimeSeires associated classes listed below.
 |---------------------|-------------------------------|
 | [TimeSeires](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html)      | Dealing with a single time-series of a MCG dataset |
 | [TimeSeriesArray](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html) | Dealing with a multi-channel time-series array of a MCG dataset | 
+| [FrequencySeries](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html) |  Build time-frequency dataset |
 | [ChannelActive](https://pjjung.github.io/mcgpy/Classes/Chaeenl.html#the-channelchannelactive)   | Listing the channel status |
