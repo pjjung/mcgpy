@@ -300,9 +300,6 @@ class TimeSeries(TimeSeriesCore):
     
     Prameters
     ---------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
     lfreq : "int", "float", "astropy.units.Quantity"
         the low cutoff frequencies 
 
@@ -335,9 +332,6 @@ class TimeSeries(TimeSeriesCore):
     
     Prameters
     ---------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
     freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
@@ -367,9 +361,6 @@ class TimeSeries(TimeSeriesCore):
     
     Prameters
     ---------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
     freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
@@ -399,9 +390,6 @@ class TimeSeries(TimeSeriesCore):
     
     Prameters
     ---------
-    series : "list", "np.ndarray", "astropy.units.Quantity"
-        ditital signal
-
     freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
@@ -456,7 +444,7 @@ class TimeSeries(TimeSeriesCore):
     
     Parameters
     ----------
-    seglength : "int",  "float", optional
+    fftlength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
@@ -510,7 +498,7 @@ class TimeSeries(TimeSeriesCore):
     
     Parameters
     ----------
-    seglength : "int",  "float", optional
+    fftlength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
