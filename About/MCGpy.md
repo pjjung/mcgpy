@@ -30,12 +30,14 @@ and visualization:
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(1, figsize=(12, 4))
-ax.plot(datab.times, datab)
-ax.set_xlim(datab.t0, datab.times[-1])
+ax.plot(datab.times.value, datab)
+ax.set_xlim(datab.t0.value, datab.times[-1].value)
 ax.set_ylabel('Amplitude [{}]'.format(datab.unit))
 ax.set_xlabel('Time [seconds] from {}'.format(datab.datetime))
 ax.grid(True)
 plt.show() 
 ```
 
-[plot]
+[(plot)](https://raw.githubusercontent.com/pjjung/mcgpy/gh-pages/imgs/about-mcgpy-example.png)
+
+![about-macgpy-example](../imgs/about-mcgpy-example.png) 
