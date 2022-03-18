@@ -98,7 +98,7 @@ There are examples of how to obtain sensor's numbers and labels.
 
 ## FieldMap
 
-Although a contour map, like the magnetic field map at a certain time of the MCG dataset, is a scalar dataset. vector distribution map can be obtained by calculating the gradient on each point or cell. However, it is hard to organize them into a simple matrix, for vectors are represented by their magnitude and direction on the coordinate system. Therefore, current arrows are stored as the table.
+Although a contour map, like the magnetic field map at a certain time of the MCG dataset, is a scalar dataset, vector distribution map can be obtained by calculating the gradient on each point or cell. However, it is hard to organize them into a simple matrix, for vectors are represented by their magnitude and direction on the coordinate system. Therefore, current arrows are stored as the table.
 
 There are two examples of current arrows and the field pole arrow with `arrows()` and `pole()` methods, respectively.
 
