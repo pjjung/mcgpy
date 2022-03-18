@@ -16,7 +16,7 @@ With this idea, MCGpy allows users to read and analyze data more efficiently and
 
 ```python
 from mcgpy.timeseries import TimeSeries
-data = TimeSeries('~/sample/data/file.hdf5').read(number=1)
+data = TimeSeries('~/sample/data/file.hdf5', number=1)
 ```
 
 and signal processing:
