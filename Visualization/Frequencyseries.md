@@ -4,7 +4,7 @@ sort: 2
 
 # Frequency Series
 
-The `FrequencySeries` ojbect is designed to represent frequency domain datasets, such as fast Fourier transform (FFT) and power spectral density (PSD). Therefore, this page will be helpful to represent them by [matplotlib](https://matplotlib.org/).
+The `FrequencySeries` object is designed to represent frequency domain datasets, such as fast Fourier transform (FFT) and power spectral density (PSD). Therefore, this page will be helpful to represent them by [matplotlib](https://matplotlib.org/).
 
 ## Single channe data plot
 
