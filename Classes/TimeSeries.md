@@ -121,6 +121,8 @@ User defined data array can be applied, and use its properties and methods
 
 Identification code _i.e., National Hospital, National Reaserch, …_
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -132,6 +134,8 @@ Identification code _i.e., National Hospital, National Reaserch, …_
 #### datetime 
 
 The data time at the point of data recording _i.e., ‘2020-02-02 02:02:02.00000'_
+
+Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -145,6 +149,8 @@ The data time at the point of data recording _i.e., ‘2020-02-02 02:02:02.00000
 
 The sensor direction for measuring a magnetic field _i.e., [1.,0.,0.]_
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -157,6 +163,8 @@ array([1, 0, 0])
 
 The inderval bwteen time points of time-axis, default value is $$1 s$$ if the input data had no metadata.
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -166,6 +174,8 @@ The inderval bwteen time points of time-axis, default value is $$1 s$$ if the in
 
 ---
 #### duration 
+
+Here is an example:
 
 Data recording duration
 
@@ -181,6 +191,8 @@ Data recording duration
 
 Label of a channel _i.e., X1, Y1, Z1, …_
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -192,6 +204,8 @@ Label of a channel _i.e., X1, Y1, Z1, …_
 #### note
 
 It might be included with the patient information or medical options.
+
+Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -207,6 +221,8 @@ It might be included with the patient information or medical options.
 
 Number of a channel _i.e., 1, 2, 3, …_
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -218,6 +234,8 @@ Number of a channel _i.e., 1, 2, 3, …_
 ### position
 
 The sensor coordinate on the sensor grid _i.e., [0., 0., 0.,]_
+
+Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -231,6 +249,8 @@ array([0, 0, 0])
 
 Data sample frequency, default value is $$1 Hz$$ if the input data had no metadata.
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -242,6 +262,8 @@ Data sample frequency, default value is $$1 Hz$$ if the input data had no metada
 #### t0
 
 The first data point of time-axis, default value is $$0 s$$ if the input data had no metadata.
+
+Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -255,6 +277,8 @@ The first data point of time-axis, default value is $$0 s$$ if the input data ha
 
 The time-axis coordinate.
 
+Here is an example:
+
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
@@ -266,6 +290,8 @@ The time-axis coordinate.
 #### unit
 
 The physical unit of the data, default unit is $$1 fT$$ if the input data had no metadata.
+
+Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
