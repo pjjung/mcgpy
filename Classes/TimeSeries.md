@@ -104,15 +104,15 @@ User defined data array can be applied, and use its properties and methods
 | Methods        | Discription |
 |----------------|-------------|
 | [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      |   Calculate the acceleration spectral density, ASD     |
-| [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#atepoch)       | Peak up the value at an input time           |
-| [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4) | Apply the bandpass filter to the data         |
-| [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end)     | Slice the time-series between start and end times         |
+| [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#atepoch-kwargs)       | Peak up the value at an input time           |
+| [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
+| [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
-| [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2) | Apply the highpass filter to the data         |
-| [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2)  | Apply the lowpass filter to the data         |
-| [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30)    | Apply the notch/bandstop filter to the data         |
+| [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
+| [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
+| [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
-| [rms(rms(stride))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1)      | Get the rms series by a given stride       |
+| [rms(rms(stride))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
 
 
 ## Properties Documentation
