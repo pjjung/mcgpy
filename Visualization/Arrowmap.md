@@ -22,7 +22,7 @@ Since their information is stored as `astropy.table` table, several steps are re
 >>> Bz = FieldMap(epoch_dataset)
 ```
 
-## Get the information of arrows and the pole arrow
+## Get the information of current and the pole arrows
 
 ```python
 >>> arrows_info = Bz.arrows()
@@ -119,7 +119,7 @@ max coordinate          (-25.0, 0.0)
 >>> cbar = fig.colorbar(ctr)
 ```
 
-## Add arrows and the pole arrow on the field map plot
+## Add current and the pole arrows on the field map plot
 
 ```python
 >>> for arrow in arrows_info:
