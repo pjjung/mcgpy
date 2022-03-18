@@ -46,4 +46,3 @@ MCGpy deals with two types of time-series datasets: 1) a single-channel signal m
 
 * [`mcgpy.timeseries.TimeSeries`](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html)
 * [`mcgpy.timeseriesarray.TimeSeriesArray`](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html)
-* [`mcgpy.series.FrequencySeries`](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html)
