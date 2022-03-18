@@ -54,18 +54,18 @@ time-frequency array
 
 | Properties     | Discription |
 |----------------|-------------|
-| [df]()         | The inderval bwteen freqency points of freqency-axis         |
-| [f0]()         | The first data point of freqency-axis         |
-| [freqencies]() | The freqency-axis coordinate         |
+| [df](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#df)         | The inderval bwteen freqency points of freqency-axis         |
+| [f0](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#f0)         | The first data point of freqency-axis         |
+| [freqencies](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#freqencies) | The freqency-axis coordinate         |
 
 ## Methods Summary
 
 | Methods        | Discription |
 |----------------|-------------|
-| [argmax()]()    |   Get a frequency of a maximum value in a frequency series          |
-| [argmin()]()    |   Get a frequency of a minimum value in a frequency series          |
-| [at(freq)]()    |   Get a value at an input frequnecy          |
-| [crop(start, end)]()    |  Crop a series within an input range   |
+| [argmax()](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#argmax)    |   Get a frequency of a maximum value in a frequency series          |
+| [argmin()](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#argmin)    |   Get a frequency of a minimum value in a frequency series          |
+| [at(freq)](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#atfreq)    |   Get a value at an input frequnecy          |
+| [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/FrequencySeries.html#cropstart-end)    |  Crop a series within an input range   |
 
 ## Properties Documentation
 
