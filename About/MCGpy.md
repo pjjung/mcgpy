@@ -22,7 +22,7 @@ data = TimeSeries('~/sample/data/file.hdf5', number=1)
 and signal processing:
 
 ```python
-datab = data.notch(60).bandpass(0.1,300).notch(120).crop(10,20)
+datab = data.notch(60).bandpass(0.1,300).notch(120).crop(10,11)
 ```
 
 and visualization:
