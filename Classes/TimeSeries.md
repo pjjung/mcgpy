@@ -125,7 +125,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.biosemi)
 'MCGpy school'
 ```
@@ -139,7 +139,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.datetime)
 '2020-02-02 02:02:02'
 ```
@@ -153,7 +153,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.direiction)
 array([1, 0, 0])
 ```
@@ -167,7 +167,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.dt)
 <Quantity 1. s>
 ```
@@ -181,7 +181,7 @@ Data recording duration
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.duration)
 <Quantity 8. s>
 ```
@@ -195,7 +195,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.label)
 'label_1'
 ```
@@ -209,7 +209,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.note)
 {'encoded info': 'a7F76ae32B2566A8F165_22221223',
  'opinion': 'Healthy',
@@ -225,7 +225,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.number)
 1
 ```
@@ -239,7 +239,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.position)
 array([0, 0, 0])
 ```
@@ -253,7 +253,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.sample_rate)
 <Quantity 1 Hz>
 ```
@@ -267,7 +267,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.t0)
 <Quantity 0. s>
 ```
@@ -281,7 +281,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.times)
 <Quantity [0, 1, 2 ..., 8] s>
 ```
@@ -295,7 +295,7 @@ Here is an example:
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries('~/test/data/file.hdf5').read(number=1)
+>>> data = TimeSeries('~/test/data/file.hdf5', number=1)
 >>> print(data.unit)
 Unit("1e-15 T")
 ```
@@ -305,43 +305,340 @@ Unit("1e-15 T")
 ## Methods Documentation
 
 #### asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
+
+Calculate the acceleration spectral density, ASD
+
+#### Parameters
+
+* **seglength** : `int`,  `float`, optional
+
+  number of seconds for dividing the time window into equal bins,
+  if None type value is given, it will be the size of signal
+
+* **overlap** : `int`,  `float`, optional
+
+  number of seconds of overlap between FFTs,
+  default value is 0
+
+* **window** : `str`
+
+  Desired window to use. If window is a string or tuple, it is passed to get_window to generate the window values, 
+  which are DFT-even by default. See get_window for a list of windows and required parameters. 
+  If window is array_like it will be used directly as the window and its length must be nperseg. 
+  Defaults to a Hann window.
+  
+  See more detailed explanation in "scipy.signal.welch"
+
+* **average** : { "mean", "median" }, optional
+
+  Method to use when averaging periodograms. 
+  Defaults to ‘mean’.
+
+  See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
+
+#### Return : `mcgpy.series.FrequencySeries`
+
+asd frequency-series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.asd(2,1)
+[16.390747, 62.977136, 149.35229, …, 1.8138222, 1.4555211, 0.93069027]1×10−15THz1/2
+```
 
 ---
 #### at(epoch, **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.at(epoch, **kwargs)
+
+Peak up the value at an input time
+
+#### Parameters
+
+* **epoch** : `int`, `float`, `astropy.units.Quantity`
+
+  timestamp user wants to get the value
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+the valeu at an input timestamp
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.at(8)
+136.268141×10−15T
+```
 
 ---
 #### bandpass(lfre, hfreq, order=4, **kwargs) 
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.bandpass(lfreq, hfreq, order=4, **kwargs)
+
+Apply the bandpass filter to the data
+
+#### Parameters
+
+* **lfreq** : "int", "float", "astropy.units.Quantity"
+
+  the low cutoff frequencies 
+        
+* **hfreq** : "int", "float", "astropy.units.Quantity"
+
+  the high cutoff frequencies 
+  
+* **sample_rate** : "int", "float", "astropy.units.Quantity"
+
+  sample rate of ditital signal
+  
+* **order** : "int", optional
+
+  the order of the filter, default value is 4
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+filted series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.bandpass(0.1, 200)
+[5.8798634, 35.303578, …, 27.332395, 18.921922]1×10−15T
+```
 
 ---
 #### crop(start, end, **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.crop(start, end, **kwargs)
+
+Slice the time-series between start and end times.
+
+#### Parameters
+
+* **start** : `int`, `float`, `astropy.units.Quantity`
+
+  start timestamp
+    
+* **end** : `int`, `float`, `astropy.units.Quantity`
+
+  end timestamp
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+sliced time-series array
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.crop(10,12)
+[136.26814, 156.5814, …, −256.45494, −223.44589]1×10−15T
+```
 
 ---
 #### fft()
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.fft()
+
+Calculate the fast Fourier transform, FFT.
+
+#### Return : `mcgpy.series.FrequencySeries`
+
+fft frequency-series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.fft()
+[92.382265, 16.48454, …,  0.27365534, 0.2273498]1×10−15T
+```
 
 ---
 #### highpass(hfreq, order=2, **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.highpass(hfreq, order=2, **kwargs)
+
+apply the highpass filter to the data.
+
+#### Parameters
+
+* **hfreq** : `int`, `float`, `astropy.units.Quantity`
+
+  the cutoff frequencies 
+
+* **sample_rate** : `int`, `float`, `astropy.units.Quantity`
+
+  sample rate of ditital signal
+
+* **order** : `int`, optional
+
+  the order of the filter, default value is 2
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+filted series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.highpass(1)
+[135.67819, 154.72616, …, 8.7490505, 108.60693]1×10−15T
+```
 
 ---
 #### lowpass(lfreq, order=2, **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.lowpass(lfreq, order=2, **kwargs)
+
+Apply the lowpass filter to the data
+
+#### Parameters
+
+* **lfreq** : `int`, `float`, `astropy.units.Quantity`
+
+  the cutoff frequencies 
+
+* **sample_rate** : `int`, `float`, `astropy.units.Quantity`
+
+  sample rate of ditital signal
+
+* **order** : `int`, optional
+
+  the order of the filter, default value is 2
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+filted series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.lowpass(300)
+[51.327193, 145.35014,  …, −111.09751, −31.626277]1×10−15T
+```
 
 ---
 #### notch(freq, Q=30, **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.notch(freq, Q=30, **kwargs)
+
+Aply the notch/bandstop filter to the data.
+
+#### Parameters
+
+* **freq** : `int`, `float`, `astropy.units.Quantity`
+
+ the cutoff frequencies 
+
+* **sample_rate** : `int`, `float`, `astropy.units.Quantity`
+
+ sample rate of ditital signal
+
+* **Q** : `int`, optional
+
+ the Q-factor of the filter, default value is 30
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+filted series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.notch(60)
+[135.4371, 154.08522,  …, −57.510631, 44.525834]1×10−15T
+```
 
 ---
 #### psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.psd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
+
+Calculate the power spectral density, PSD.
+
+#### Parameters
+
+* **fftlength** : `int`,  `float`, optional
+
+  number of seconds for dividing the time window into equal bins,
+  if None type value is given, it will be the size of signal
+
+* **overlap** : `int`, `float`, optional
+        number of seconds of overlap between FFTs,
+        default value is 0
+
+* **window** : `str`
+
+  Desired window to use. If window is a string or tuple, it is passed to get_window to generate the window values, 
+  which are DFT-even by default. See get_window for a list of windows and required parameters. 
+  If window is array_like it will be used directly as the window and its length must be nperseg. 
+  Defaults to a Hann window.
+
+  See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
+
+* **average** : { "mean", "median" }, optional
+
+  Method to use when averaging periodograms. 
+  Defaults to ‘mean’.
+
+  See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
+        
+#### Return : `mcgpy.series.FrequencySeries`
+
+psd frequency-series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.psd(2,1)
+[268.6566, 3966.1196, 22306.108, …, 3.2899511, 2.1185417, 0.86618438]1×10−30T2Hz
+```
 
 ---
 
 #### rms(stride=1, **kwargs)
-bla bla
+
+_def_ **mcgpy.timeseries.TimeSeries**.rms(stride=1, **kwargs)
+
+Get the rms series by a given stride
+
+#### Parameters
+
+* **stride** : `int`, `float`, `astropy.units.Quantity`, optional
+
+  sliding step for rms calculation
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+rms series
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.rms()
+[397.35058, 475.13264, ..., 345.16582, 385.43835]1×10−15T
+```
 
 ---
