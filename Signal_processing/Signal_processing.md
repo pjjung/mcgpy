@@ -28,7 +28,7 @@ Each one can continuously apply to time-series datasets. Here is a simple exampl
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> hdf_path = '~/test/raw/file.hdf5'
->>> data = TimeSeries(hdf_path).read(number=1)
+>>> data = TimeSeries(hdf_path, number=1)
 >>> filtered_date = data.notch(60).notch(120).bandpass(1,400).lowpass(300).highpass(10)
 ```
 
@@ -47,7 +47,7 @@ Here is a simple example of applying frequency-domain filters for single-channel
 ```python
 >>> from mcgpy.timeseries import TimeSeries
 >>> hdf_path = '~/test/raw/file.hdf5'
->>> data = TimeSeries(hdf_path).read(number=1)
+>>> data = TimeSeries(hdf_path, number=1)
 >>> fft = data.fft()
 >>> asd = data.asd(2,1)
 >>> psd = data.psd(2,1)
