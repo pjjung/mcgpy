@@ -107,15 +107,15 @@ user defined data array can be applied, and use its properties and methods, too.
 | [channels](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#channels)      | Channel information table of numbers and labels        |
 | [datetime](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#datetime)    | The data time at the point of data recording         |
 | [direction](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#direction)  | The sensor direction for measuring a magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional        |
-| [directions](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#directions)  | The sensor directions for measuring a magnetic field  if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional       |
+| [directions](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#directions)  | The sensor directions for measuring magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional       |
 | [duration](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#duration)    | Data recording duration        |
-| [label](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#label)          | Label of a channel  magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional          |
-| [labels](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#labels)          | Labels of channels  magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional          |
+| [label](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#label)          | Label of a channel magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional          |
+| [labels](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#labels)          | Labels of channel magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional          |
 | [note](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#note)            | It might be included with the patient information or medical options          |
-| [number](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#number)        | Number of a channel  magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional         |
-| [numbers](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#numbers)        | Numbers of channels  magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional         |
+| [number](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#number)        | Number of a channel magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional         |
+| [numbers](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#numbers)        | Numbers of channel magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional         |
 | [position](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#position)    | The sensor direction for measuring a magnetic field  if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional          |
-| [positions](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#positions)    | The sensor directions for measuring a magnetic field  if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional          |
+| [positions](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#positions)    | The sensor directions for measuring magnetic fields  if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional          |
 | [sample_rate](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#sample_rate)| Data sample frequency         |
 | [t0](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#t0)| The first data point of time-axis        |
 | [times](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#times)| The time-axis coordinate         |
@@ -154,7 +154,10 @@ Identification code _i.e., National Hospital, National Reaserch, …_
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.biosemi)
+'MCGpy schoool'
 ```
 
 ---
@@ -165,7 +168,21 @@ Channel information table of numbers and labels
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.channels)
+<QTable length=8>
+number label
+int64   str3
+------ -----
+     1    label_1
+     2    label_2
+     3    label_3
+     4    label_4
+     5    label_5
+     6    label_6
+     7    label_7
+     8    label_8
 ```
 #### datetime 
 
@@ -174,97 +191,212 @@ The data time at the point of data recording_ i.e., ‘2020-02-02 02:02:02.00000
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.datetime)
+'2020-02-02 02:02:02'
 ```
 ---
 #### direction
-bla bla
+
+The sensor direction for measuring a magnetic field _i.e., [1.,0.,0.]_
+if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional.
 
 Here is an example:
 
 ```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> ch1 = dateset.read(number=1)
+>>> print(ch1.direction)
+array([1, 0, 0])
+```
+---
+#### directions
 
+The sensor direction for measuring a magnetic field _i.e., [[1.,0.,0.],[1.,0.,0.],...,[0.,1.,0.]]_
+if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional.
+
+Here is an example:
+
+```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.directions)
+array([[1., 0., 0.],
+       [1., 0., 0.],
+       [1., 0., 0.],
+       [1., 0., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.],
+       [0., 1., 0.]]
 ```
 ---
 #### duration 
-bla bla
+
+Data recording duration
 
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.duration)
+<Quantity 10. s>
 ```
 ---
 #### label
-bla bla
+
+Label of a channel magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional.
 
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> ch1 = dateset.read(number=1)
+>>> print(ch1.label)
+'label_1'
 ```
 ---
-#### note
-bla bla
+#### labels
+
+Labels of channel magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional.
 
 Here is an example:
 
 ```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.labels)
+array(['label_1', 'label_2', 'label_3', 'label_4', 'label_5', 'label_6', 'label_7', 'label_8'], dtype='<U3')
+```
+#### note
 
+It might be included with the patient information or medical options.
+
+Here is an example:
+
+```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.note)
+{'encoded info': 'a7F76ae32B2566A8F165_22221223',
+ 'opinion': 'Healthy',
+ 'patient number': '0000'}
 ```
 ---
 #### number
-bla bla
+
+Number of a channel magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional.
 
 Here is an example:
 
 ```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> ch1 = dateset.read(number=1)
+>>> print(ch1.number)
+1
 
+```
+#### numbers
+
+Numbers of channel magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional.
+
+Here is an example:
+
+```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.numbers)
+array([ 1,  2,  3,  4,  5,  6,  7,  8])
 ```
 ---
 ### position
-bla bla
+
+The sensor direction for measuring a magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional.
 
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> ch1 = dateset.read(number=1)
+>>> print(ch1.position)
+array([0, 0, 0])
 ```
 ---
-#### sample_rate
-bla bla
+### positions
+
+The sensor directions for measuring magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional.
 
 Here is an example:
 
 ```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.positions)
+array([[  10.  ,  0.,    0.   ],
+       [  -10. ,  0.,    0.   ],
+       [  0.   ,  10.,   0.   ],
+       [  0.   , -10.,   0.   ],
+       [  10.  ,  10 ,   0.   ],
+       [  -10. , -10.,   0.   ],
+       [  10.  , -10.,   0.   ],
+       [  -10. ,  10.,   0.   ]])
+```
+#### sample_rate
 
+Data sample frequency.
+
+Here is an example:
+
+```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.sampe_rate)
+<Quantity 1024 Hz>
 ```
 ---
 #### t0
-bla bla
+
+The first data point of time-axis.
 
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.t0)
+<Quantity 2082875272. s>
 ```
 ---
 #### times
-bla bla
+
+The time-axis coordinate.
 
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.times)
+<Quantity [1.08287527e+09, 1.08287527e+09, ...,1.08287528e+09] s>
 ```
 ---
 #### unit
-bla bla
+
+The physical unit of the data.
 
 Here is an example:
 
 ```python
-
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
+>>> print(dataset.unit)
+Unit("1e-15 T")
 ```
 ---
 
