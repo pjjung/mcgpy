@@ -11,7 +11,7 @@ Since their information is stored as `astropy.table` table, several steps are re
 ## Get Field Map
 
 ```python
->>> from mcgpy.timeseries import TimeSeries, TimeSeriesArray
+>>> from mcgpy.timeseries import TimeSeriesArray
 >>> from mcgpy.numeric import FieldMap
 >>> import numpy as np
 >>> source = np.random.random((64,1024))
