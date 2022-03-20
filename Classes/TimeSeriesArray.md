@@ -154,7 +154,7 @@ Identification code _i.e., National Hospital, National Reaserch, …_
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.biosemi)
 'MCGpy schoool'
@@ -168,7 +168,7 @@ Channel information table of numbers and labels
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.channels)
 <QTable length=8>
@@ -191,7 +191,7 @@ The data time at the point of data recording_ i.e., ‘2020-02-02 02:02:02.00000
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.datetime)
 '2020-02-02 02:02:02'
@@ -205,7 +205,7 @@ if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> ch1 = dateset.read(number=1)
 >>> print(ch1.direction)
@@ -220,7 +220,7 @@ if `mcgpy.timeseriesarray.TimeSeriesArray` is two-dimentaional.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.directions)
 array([[1., 0., 0.],
@@ -240,7 +240,7 @@ Data recording duration
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.duration)
 <Quantity 10. s>
@@ -253,7 +253,7 @@ Label of a channel magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is 
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> ch1 = dateset.read(number=1)
 >>> print(ch1.label)
@@ -267,7 +267,7 @@ Labels of channel magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is 
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.labels)
 array(['label_1', 'label_2', 'label_3', 'label_4', 'label_5', 'label_6', 'label_7', 'label_8'], dtype='<U3')
@@ -279,7 +279,7 @@ It might be included with the patient information or medical options.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.note)
 {'encoded info': 'a7F76ae32B2566A8F165_22221223',
@@ -294,7 +294,7 @@ Number of a channel magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> ch1 = dateset.read(number=1)
 >>> print(ch1.number)
@@ -308,7 +308,7 @@ Numbers of channel magnetic fields if `mcgpy.timeseriesarray.TimeSeriesArray` is
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.numbers)
 array([ 1,  2,  3,  4,  5,  6,  7,  8])
@@ -321,7 +321,7 @@ The sensor direction for measuring a magnetic field if `mcgpy.timeseriesarray.Ti
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> ch1 = dateset.read(number=1)
 >>> print(ch1.position)
@@ -335,7 +335,7 @@ The sensor directions for measuring magnetic fields if `mcgpy.timeseriesarray.Ti
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.positions)
 array([[  10.  ,  0.,    0.   ],
@@ -354,7 +354,7 @@ Data sample frequency.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.sampe_rate)
 <Quantity 1024 Hz>
@@ -367,7 +367,7 @@ The first data point of time-axis.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.t0)
 <Quantity 2082875272. s>
@@ -380,7 +380,7 @@ The time-axis coordinate.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.times)
 <Quantity [1.08287527e+09, 1.08287527e+09, ...,1.08287528e+09] s>
@@ -393,7 +393,7 @@ The physical unit of the data.
 Here is an example:
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeserie import TimeSeriesArray
 >>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
 >>> print(dataset.unit)
 Unit("1e-15 T")
