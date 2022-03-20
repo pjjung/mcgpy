@@ -8,7 +8,7 @@ sort: 2
 ## The TimeSeriesArray
 
 ```python
-from mcgpy.timeseriesarray import TimeSeriesArray
+from mcgpy.timeseries import TimeSeriesArray
 ```
 MCGpy also provide the [TimeSeriesArray]() class which create the time-series array with metadata and reads a multi-channel dataset from raw files. Since this object is based on [numpy.ndarray](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html) and [astropy.units.Quantity](https://docs.astropy.org/en/stable/units/quantity.html), [numpy](https://numpy.org/) and [astropy](https://www.astropy.org/) users might be easy to learn how to use it.
 
@@ -28,7 +28,7 @@ For examples, to create a simple [TimeSeriesArray]() by a ramdom dataset, and to
 ### User defined dataset
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeseries import TimeSeriesArray
 >>> import numpy as np
 >>> source = np.random.random((10,100))    # (channels, data points)
 >>> positions = np.random.random((10,3))   # (channels, coordinates) i.e., [[0.,0.,0.], [1.,0.,0.], ...]
@@ -61,7 +61,7 @@ Unlike the [TimeSeries]() class, [TimeSeriesArray]() class requires, not only th
 ### KDF format
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeseries import TimeSeriesArray
 >>> kdf_path = '~/test/kdf/file.kdf'
 >>> config_path = '~/test/config/file.ini'
 >>> dataset = TimeSeriesArray(source=kdf_path, config=config_path)
@@ -106,7 +106,7 @@ Every metadata can be redefined as well:
 ### HDF5 format
 
 ```python
->>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.timeseries import TimeSeriesArray
 >>> hdf_path = '~/test/kdf/file.hdf5'
 >>> dataset = TimeSeriesArray(hdf_path)
 >>> print(dataset)
