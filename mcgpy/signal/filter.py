@@ -10,17 +10,18 @@
 # MCGpy is following the GNU General Public License version 3. Under this term, you can redistribute and/or modify it.
 # See the GNU free software license for more details.
 
-'''filter : time-series filter methods: band-/low-/high-pass and notch filters
+'''filter : time-series filter methods: band-/low-/high-pass and notch filters / flattend filter
 '''
 
+import numpy as np
 from scipy import signal 
 
 __author__ = 'Phil Jung <pjjung@amcg.kr>'
-__all__ = ['bandpass', 'lowpass', 'highpass', 'notch']
+__all__ = ['bandpass', 'lowpass', 'highpass', 'notch', 'flattend']
 
 #---- main functions --------------------------------
 
-def bandpass(series, lfreq, hfreq, sample_rate, order=4, **kwargs):
+def bandpass(series, lfreq, hfreq, sample_rate, order=4, flattening=True, **kwargs):
   '''bandpass filter
   
   Prameters
@@ -40,6 +41,9 @@ def bandpass(series, lfreq, hfreq, sample_rate, order=4, **kwargs):
   order : "int", optional
       the order of the filter, default value is 4
   
+  flattening : Boonlean, potions
+      signal flattening option, defaule value is True
+  
   Return : "np.ndarray"
   ------
       filted series
@@ -47,9 +51,17 @@ def bandpass(series, lfreq, hfreq, sample_rate, order=4, **kwargs):
   
   sample_rate, nyq, lfrequency, hfrequency = _to_parameters(sample_rate, lfreq, hfreq)
   a, b = signal.butter(order, [lfrequency/nyq, hfrequency/nyq], btype='band')
-  return signal.lfilter(a,b,series)
+  if flattening == False:
+    return signal.lfilter(a,b,series)
+  elif flattening == True:
+    for n in range(2):
+      ref = series - series[0]
+      series = series - series[0]
+      series = signal.lfilter(a,b,series)
+      series = (series + ref[0])[::-1]
+    return series - np.median(series)
 
-def lowpass(series, freq, sample_rate, order=2, **kwargs):
+def lowpass(series, freq, sample_rate, order=2, flattening=True, **kwargs):
   '''lowpass filter
   
   Prameters
@@ -66,6 +78,9 @@ def lowpass(series, freq, sample_rate, order=2, **kwargs):
   order : "int", optional
       the order of the filter, default value is 2
       
+  flattening : Boonlean, potions
+      signal flattening option, defaule value is True
+      
   Return : "np.ndarray"
   ------
       filted series
@@ -73,9 +88,19 @@ def lowpass(series, freq, sample_rate, order=2, **kwargs):
   
   sample_rate, nyq, frequency = _to_parameters(sample_rate, freq)
   a, b = signal.butter(order, [frequency/nyq], btype='low')
-  return signal.lfilter(a,b,series)
+  
+  if flattening == False:
+    return signal.lfilter(a,b,series)
+  
+  elif flattening == True:
+    for n in range(2):
+      ref = series - series[0]
+      series = series - series[0]
+      series = signal.lfilter(a,b,series)
+      series = (series + ref[0])[::-1]
+    return series - np.median(series)
 
-def highpass(series, freq, sample_rate, order=2, **kwargs):
+def highpass(series, freq, sample_rate, order=2, flattening=True, **kwargs):
   '''highpass filter
   
   Prameters
@@ -92,6 +117,9 @@ def highpass(series, freq, sample_rate, order=2, **kwargs):
   order : "int", optional
       the order of the filter, default value is 2
   
+  flattening : Boonlean, potions
+      signal flattening option, defaule value is True
+  
   Return : "np.ndarray"
   ------
       filted series
@@ -99,9 +127,17 @@ def highpass(series, freq, sample_rate, order=2, **kwargs):
   
   sample_rate, nyq, frequency = _to_parameters(sample_rate, freq)
   a, b = signal.butter(order, [frequency/nyq], btype='high')
-  return signal.lfilter(a,b,series)
-              
-def notch(series, freq, sample_rate, Q=30, **kwargs):
+  if flattening == False:
+    return signal.lfilter(a,b,series)          
+  elif flattening == True:
+    for n in range(2):
+      ref = series - series[0]
+      series = series - series[0]
+      series = signal.lfilter(a,b,series)
+      series = (series + ref[0])[::-1]
+    return series - np.median(series)
+  
+def notch(series, freq, sample_rate, Q=30, flattening=True, **kwargs):
   '''notch or bandstop filter
 
   Prameters
@@ -118,6 +154,9 @@ def notch(series, freq, sample_rate, Q=30, **kwargs):
   Q : "int", optional
       the Q-factor of the filter, default value is 30
   
+  flattening : Boonlean, potions
+      signal flattening option, defaule value is True
+  
   Return : "np.ndarray"
   ------
       filted series
@@ -125,8 +164,43 @@ def notch(series, freq, sample_rate, Q=30, **kwargs):
   
   sample_rate, nyq, frequency = _to_parameters(sample_rate, freq)
   a, b = signal.iirnotch(frequency, Q, sample_rate)
-  return signal.lfilter(a,b,series)
+  if flattening == False:
+    return signal.lfilter(a,b,series)
+  elif flattening == True:
+    for n in range(2):
+      ref = series - series[0]
+      series = series - series[0]
+      series = signal.lfilter(a,b,series)
+      series = (series + ref[0])[::-1]
+    return series - np.median(series)
 
+def flattend(series, freq, sample_rate, order=2, **kwargs):
+  '''flatten a wave form by a lowpass filter
+
+  Parameters
+  ----------
+  series : "list", "np.ndarray", "astropy.units.Quantity"
+    ditital signal
+
+  freq : "int", "float", "astropy.units.Quantity"
+    the frequency for the lowpass filter
+
+  sample_rate : "int", "float", "astropy.units.Quantity"
+    sample rate of ditital signal
+
+  Return : "mcgpy.timeseries.TimeSeries"
+  ------
+      (original series) - (lowpass filtered series)
+  '''
+  
+  sample_rate, nyq, frequency = _to_parameters(sample_rate, freq)
+  a, b = signal.butter(order, [frequency/nyq], btype='low')
+  for n in range(2):
+    ref = signal.lfilter(a,b,series)
+    series = (series - ref)[::-1]
+  return series - np.median(series)
+  
+  
 #---- inherent functions --------------------------------
 
 def _to_value(value):
