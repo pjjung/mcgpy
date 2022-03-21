@@ -10,7 +10,7 @@
 # MCGpy is following the GNU General Public License version 3. Under this term, you can redistribute and/or modify it.
 # See the GNU free software license for more details.
 
-'''filter : time-series filter methods: band-/low-/high-pass and notch filters / flattend filter
+'''filter : time-series filter methods: band-/low-/high-pass and notch filters / flattened filter
 '''
 
 import numpy as np
@@ -174,7 +174,7 @@ def notch(series, freq, sample_rate, Q=30, flattening=True, **kwargs):
       series = (series + ref[0])[::-1]
     return series - np.median(series)
 
-def flattend(series, freq, sample_rate, order=2, **kwargs):
+def flattened(series, freq, sample_rate, order=2, **kwargs):
   '''flatten a wave form by a lowpass filter
 
   Parameters
