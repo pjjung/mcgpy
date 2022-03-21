@@ -189,7 +189,7 @@ class FieldMap(Quantity):
     gradient = np.empty((grid_cell_number, grid_cell_number))
     for n in range(data.shape[0]):
       gradient_T[n] = np.gradient(data.T[n])
-      gradient[n] = np.gradient(data[n])
+      gradient[n] = -1*np.gradient(data[n])
 
     arrows_x = gradient_T.T.reshape(grid_cell_number**2)
     arrows_y = gradient.reshape(grid_cell_number**2)
