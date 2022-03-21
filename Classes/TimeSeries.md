@@ -108,6 +108,7 @@ User defined data array can be applied, and use its properties and methods
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
+| [flattened(freq)](https://github.com/pjjung/mcgpy/edit/gh-pages/Classes/TimeSeries.md#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
@@ -470,6 +471,33 @@ fft frequency-series
 ```
 
 ---
+#### flattened(freq=1, **kwargs)
+
+_def_ **mcgpy.timeseries.TimeSeries**.flattened(freq=1, **kwargs)
+
+Flattened a wave form by a lowpass filter
+
+#### Parameters
+
+* **freq** : `int`, `float`, `astropy.units.Quantity`
+
+  the frequency for the lowpass filter
+
+#### Return : `mcgpy.timeseries.TimeSeries`
+
+(original signal) - (lowpass filtered signal)
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.flattened(1)
+ [−691.04563, −728.74299, −612.39823, …, −400.13071, −465.25414, −410.18831]1×10−15T
+```
+
+---
+
 #### highpass(hfreq, order=2, **kwargs)
 
 _def_ **mcgpy.timeseries.TimeSeries**.highpass(hfreq, order=2, flattening=True, **kwargs)
