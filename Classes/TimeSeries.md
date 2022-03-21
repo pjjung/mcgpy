@@ -380,7 +380,7 @@ the valeu at an input timestamp
 ---
 #### bandpass(lfre, hfreq, order=4, **kwargs) 
 
-_def_ **mcgpy.timeseries.TimeSeries**.bandpass(lfreq, hfreq, order=4, **kwargs)
+_def_ **mcgpy.timeseries.TimeSeries**.bandpass(lfreq, hfreq, order=4, flattening=True, **kwargs)
 
 Apply the bandpass filter to the data
 
@@ -401,6 +401,10 @@ Apply the bandpass filter to the data
 * **order** : "int", optional
 
   the order of the filter, default value is 4
+
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
 
 #### Return : `mcgpy.timeseries.TimeSeries`
 
@@ -468,7 +472,7 @@ fft frequency-series
 ---
 #### highpass(hfreq, order=2, **kwargs)
 
-_def_ **mcgpy.timeseries.TimeSeries**.highpass(hfreq, order=2, **kwargs)
+_def_ **mcgpy.timeseries.TimeSeries**.highpass(hfreq, order=2, flattening=True, **kwargs)
 
 apply the highpass filter to the data.
 
@@ -486,6 +490,10 @@ apply the highpass filter to the data.
 
   the order of the filter, default value is 2
 
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
+
 #### Return : `mcgpy.timeseries.TimeSeries`
 
 filted series
@@ -502,7 +510,7 @@ filted series
 ---
 #### lowpass(lfreq, order=2, **kwargs)
 
-_def_ **mcgpy.timeseries.TimeSeries**.lowpass(lfreq, order=2, **kwargs)
+_def_ **mcgpy.timeseries.TimeSeries**.lowpass(lfreq, order=2, flattening=True, **kwargs)
 
 Apply the lowpass filter to the data
 
@@ -520,6 +528,10 @@ Apply the lowpass filter to the data
 
   the order of the filter, default value is 2
 
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
+
 #### Return : `mcgpy.timeseries.TimeSeries`
 
 filted series
@@ -536,7 +548,7 @@ filted series
 ---
 #### notch(freq, Q=30, **kwargs)
 
-_def_ **mcgpy.timeseries.TimeSeries**.notch(freq, Q=30, **kwargs)
+_def_ **mcgpy.timeseries.TimeSeries**.notch(freq, Q=30, flattening=True, **kwargs)
 
 Aply the notch/bandstop filter to the data.
 
@@ -553,6 +565,10 @@ Aply the notch/bandstop filter to the data.
 * **Q** : `int`, optional
 
  the Q-factor of the filter, default value is 30
+
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
 
 #### Return : `mcgpy.timeseries.TimeSeries`
 
