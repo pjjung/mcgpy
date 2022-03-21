@@ -121,7 +121,7 @@ class TimeSeriesCore(Series):
     if isinstance(sample_rate, Quantity):
       sample_rate = sample_rate.value
     
-    return Quantity(len(self)*sample_rate, second)
+    return Quantity(len(self)/sample_rate, second)
   
   def _set_sample_rate(self, key, value):
     _key = '_{}'.format(key)
