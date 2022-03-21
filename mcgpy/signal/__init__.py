@@ -15,5 +15,5 @@
 
 __author__ = 'Phil Jung <pjjung@amcg.kr>'
 
-from .filter import (bandpass, lowpass, highpass, notch)
+from .filter import (bandpass, lowpass, highpass, notch, flattend)
 from .transform import (rms, fft, psd, asd)
