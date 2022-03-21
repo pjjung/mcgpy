@@ -41,7 +41,7 @@ def bandpass(series, lfreq, hfreq, sample_rate, order=4, flattening=True, **kwar
   order : "int", optional
       the order of the filter, default value is 4
   
-  flattening : Boonlean, potions
+  flattening : Boonlean, optional
       signal flattening option, defaule value is True
   
   Return : "np.ndarray"
@@ -78,7 +78,7 @@ def lowpass(series, freq, sample_rate, order=2, flattening=True, **kwargs):
   order : "int", optional
       the order of the filter, default value is 2
       
-  flattening : Boonlean, potions
+  flattening : Boonlean, optional
       signal flattening option, defaule value is True
       
   Return : "np.ndarray"
@@ -117,7 +117,7 @@ def highpass(series, freq, sample_rate, order=2, flattening=True, **kwargs):
   order : "int", optional
       the order of the filter, default value is 2
   
-  flattening : Boonlean, potions
+  flattening : Boonlean, optional
       signal flattening option, defaule value is True
   
   Return : "np.ndarray"
@@ -154,7 +154,7 @@ def notch(series, freq, sample_rate, Q=30, flattening=True, **kwargs):
   Q : "int", optional
       the Q-factor of the filter, default value is 30
   
-  flattening : Boonlean, potions
+  flattening : Boonlean, optional
       signal flattening option, defaule value is True
   
   Return : "np.ndarray"
