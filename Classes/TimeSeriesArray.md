@@ -132,6 +132,7 @@ user defined data array can be applied, and use its properties and methods, too.
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#cropstart-end-kwargs)           |  Slice the time-series between start and end times        |
 | [exclude(numbers, labels)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#excludenumbersnone-labelsnone-kwargs)           |    Except the channel data from the dataset         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#fft)           |    Calculate the fast Fourier transform, FFT         |
+| [flattened](https://github.com/pjjung/mcgpy/edit/gh-pages/Classes/TimeSeriesArray.md#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#highpasshfreq-order2-kwargs)           |   Apply the highpass filter to the dataset         |
 | [integral(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#integralstart-end-kwargs)           |  Calculate the integrated area between start and end timestamps           |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#lowpasslfreq-order2-kwargs)           |   Apply the lowpass filter to the dataset          |
@@ -669,6 +670,34 @@ Calculate the fast Fourier transform, FFT.
 ```
 
 ---
+#### flattened(freq=1, **kwargs)
+
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.flattened(freq=1, **kwargs)
+
+Flattened a wave form by a lowpass filter
+
+#### Parameters
+
+* freq : `int`, `float`, `astropy.units.Quantity`
+
+  the frequency for the lowpass filter
+
+#### Return : `mcgpy.series.TimeSeriesArray`
+
+(original signal) - (lowpass filtered signal)
+
+#### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> data = TimeSeriesArray("~/test/raw/file/path.hdf5")
+>>> data.flattened()
+[[−106.09462, −86.757371, …,−44.093128, −34.719921], [−101.92919, −147.60086, …,  −10.727882, −15.01086], 
+ …, 
+ [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
+ [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
+```
+
 #### highpass(hfreq, order=2, **kwargs)
 
 _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.highpass(hfreq, order=2, flattening=True, **kwargs)
