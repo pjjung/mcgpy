@@ -22,7 +22,7 @@ from warnings import warn
 
 from ..series import FrequencySeries
 from ..channel import (ChannelConfig, ChannelActive)
-from ..signal import (bandpass, lowpass, highpass, notch, rms, fft, asd, psd)
+from ..signal import (bandpass, lowpass, highpass, notch, flattend, rms, fft, asd, psd)
 from ..time import tconvert
 from ..io._array import Array
 from ..io import (KDF, HDF)
@@ -638,11 +638,14 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     return new
 
   # bandpass filter
-  def bandpass(self, lfreq, hfreq, order=4, **kwargs):
+  def bandpass(self, lfreq, hfreq, order=4, flattening=True, **kwargs):
     '''apply the bandpass filter to the dataset
     
     Parameters
     ----------
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
     lfreq : "int", "float", "astropy.units.Quantity"
         the low cutoff frequencies 
 
@@ -654,6 +657,9 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
     order : "int", optional
         the order of the filter, default value is 4
+    
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
     
     Return : "mcgpy.timeseries.TimeSeriesArray"
     ------
@@ -674,19 +680,22 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     lfreq, hfreq = self._get_value(min(lfreq, hfreq)), self._get_value(max(lfreq, hfreq))
     filtered_dataset = np.empty(self.shape)
     for i, ch in enumerate(self.value):
-      filtered_dataset[i] = bandpass(ch, lfreq=lfreq, hfreq=hfreq, sample_rate=self.sample_rate.value, order=order)
+      filtered_dataset[i] = bandpass(ch, lfreq=lfreq, hfreq=hfreq, sample_rate=self.sample_rate.value, order=order, flattening=flattening)
     new = filtered_dataset.view(type(self))
     self._finalize_attribute(new)
       
     return new
 
   # lowpass filter
-  def lowpass(self, lfreq, order=2, **kwargs):
+  def lowpass(self, lfreq, order=2, flattening=True, **kwargs):
     '''apply the lowpass filter to the dataset
     
     Parameters
     ----------
-    lfreq : "int", "float", "astropy.units.Quantity"
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
+    freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -694,6 +703,9 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
     order : "int", optional
         the order of the filter, default value is 2
+    
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
     
     Return : "mcgpy.timeseries.TimeSeriesArray"
     ------
@@ -714,19 +726,22 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     lfreq = self._get_value(lfreq)
     filtered_dataset = np.empty(self.shape)
     for i, ch in enumerate(self.value):
-      filtered_dataset[i] = lowpass(ch, freq=lfreq, sample_rate=self.sample_rate.value, order=order)
+      filtered_dataset[i] = lowpass(ch, freq=lfreq, sample_rate=self.sample_rate.value, order=order, flattening=flattening)
     new = filtered_dataset.view(type(self))
     self._finalize_attribute(new)
     
     return new
   
   # highpass filter
-  def highpass(self, hfreq, order=2, **kwargs):
+  def highpass(self, hfreq, order=2, flattening=True, **kwargs):
     '''apply the highpass filter to the dataset
     
     Parameters
     ----------
-    hfreq : "int", "float", "astropy.units.Quantity"
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
+    freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -734,6 +749,9 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
     order : "int", optional
         the order of the filter, default value is 2
+    
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
     
     Return : "mcgpy.timeseries.TimeSeriesArray"
     ------
@@ -754,18 +772,21 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     hfreq = self._get_value(hfreq)
     filtered_dataset = np.empty(self.shape)
     for i, ch in enumerate(self.value):
-      filtered_dataset[i] = highpass(ch, freq=hfreq, sample_rate=self.sample_rate.value, order=order)
+      filtered_dataset[i] = highpass(ch, freq=hfreq, sample_rate=self.sample_rate.value, order=order, flattening=flattening)
     new = filtered_dataset.view(type(self))
     self._finalize_attribute(new)
     
     return new
       
   # notch filter
-  def notch(self, freq, Q=30, **kwargs):
+  def notch(self, freq, Q=30, flattening=True, **kwargs):
     '''apply the notch/bandstop filter to the dataset
     
     Parameters
     ----------
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
     freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
@@ -774,6 +795,9 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
     Q : "int", optional
         the Q-factor of the filter, default value is 30
+    
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
     
     Return : "mcgpy.timeseries.TimeSeriesArray"
     ------
@@ -799,6 +823,40 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     self._finalize_attribute(new)
     
     return new
+  
+  # flattend
+  def flattend(self, freq=1, **kwargs):
+    '''flatten a wave form by a lowpass filter
+    
+    Parameters
+    ----------
+    freq : "int", "float", "astropy.units.Quantity"
+      the frequency for the lowpass filter
+      
+    Return : "mcgpy.timeseries.TimeSeries"
+    ------
+        (original signal) - (lowpass filtered signal)
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseries import TimeSeriesArray
+    >>> data = TimeSeriesArray("~/test/raw/file/path.hdf5")
+    >>> data.flattend()
+    [[−106.09462, −86.757371, …,−44.093128, −34.719921], [−101.92919, −147.60086, …,  −10.727882, −15.01086], 
+    …, 
+    [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
+    [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
+    '''
+
+    freq = self._get_value(freq)
+    filtered_dataset = np.empty(self.shape)
+    for i, ch in enumerate(self.value):
+      filtered_dataset[i] = flattend(ch, freq, self.sample_rate)
+    new = filtered_dataset.view(type(self))
+    self._finalize_attribute(new)
+    
+    return new
+
   
   # rms
   def rms(self, stride=1, **kwargs):
@@ -898,7 +956,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    fftlength : "int",  "float", optional
+    seglength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
@@ -965,7 +1023,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    fftlength : "int",  "float", optional
+    seglength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
@@ -1181,7 +1239,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       raise TypeError('to_avg method only supports a 2-dimensional dataset')
   
   # area
-  def area(self, start, end, **kwargs):
+  def area(self, start, end):
     '''calculate the area between start and end timestamps
     
     Parameters
@@ -1232,7 +1290,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       return new
   
   # integral
-  def integral(self, start, end, **kwargs):
+  def integral(self, start, end):
     '''calculate the integrated area between start and end timestamps
     
     Parameters
