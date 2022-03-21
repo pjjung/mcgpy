@@ -18,7 +18,7 @@ import numpy as np
 from astropy.units import (Quantity, second)
 from astropy import units as u
 
-from ..signal import (bandpass, lowpass, highpass, notch, flattend, rms, fft, asd, psd)
+from ..signal import (bandpass, lowpass, highpass, notch, flattened, rms, fft, asd, psd)
 from ..series import FrequencySeries
 from ..io import (KDF, HDF)
 from ..time import tconvert
@@ -436,8 +436,8 @@ class TimeSeries(TimeSeriesCore):
     '''
     return self._filter(filter_type='notch', notchfreq=freq, Q=Q, flattening=flattening)
 
-  # flattend
-  def flattend(self, freq=1, **kwargs):
+  # flattened
+  def flattened(self, freq=1, **kwargs):
     '''flatten a wave form by a lowpass filter
     
     Parameters
@@ -457,7 +457,7 @@ class TimeSeries(TimeSeriesCore):
     [−691.04563, −728.74299, −612.39823, …, −400.13071, −465.25414, −410.18831]1×10−15T
     '''
 
-    new = flattend(self.value, freq, self.sample_rate).view(type(self))
+    new = flattened(self.value, freq, self.sample_rate).view(type(self))
     self._finalize_attribute(new)
     new._unit = self.unit
     return new
