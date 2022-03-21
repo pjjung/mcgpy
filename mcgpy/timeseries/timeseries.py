@@ -453,7 +453,7 @@ class TimeSeries(TimeSeriesCore):
     --------
     >>> from mcgpy.timeseries import TimeSeries
     >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
-    >>> data.flattend(1)
+    >>> data.flattened(1)
     [−691.04563, −728.74299, −612.39823, …, −400.13071, −465.25414, −410.18831]1×10−15T
     '''
 
