@@ -315,7 +315,7 @@ class TimeSeries(TimeSeriesCore):
     order : "int", optional
         the order of the filter, default value is 4
 
-    flattening : Boonlean, potions
+    flattening : Boonlean, optional
         signal flattening option, defaule value is True
 
     Retrun : "mcgpy.timeseries.TimeSeries"
@@ -350,7 +350,7 @@ class TimeSeries(TimeSeriesCore):
     order : "int", optional
         the order of the filter, default value is 2
 
-    flattening : Boonlean, potions
+    flattening : Boonlean, optional
         signal flattening option, defaule value is True
 
     Retrun : "mcgpy.timeseries.TimeSeries"
@@ -385,7 +385,7 @@ class TimeSeries(TimeSeriesCore):
     order : "int", optional
         the order of the filter, default value is 2
 
-    flattening : Boonlean, potions
+    flattening : Boonlean, optional
         signal flattening option, defaule value is True
 
     Retrun : "mcgpy.timeseries.TimeSeries"
@@ -420,7 +420,7 @@ class TimeSeries(TimeSeriesCore):
     Q : "int", optional
         the Q-factor of the filter, default value is 30
 
-    flattening : Boonlean, potions
+    flattening : Boonlean, optional
         signal flattening option, defaule value is True
 
     Retrun : "mcgpy.timeseries.TimeSeries"
@@ -442,8 +442,8 @@ class TimeSeries(TimeSeriesCore):
     
     Parameters
     ----------
-    freq : "int", "float", "astropy.units.Quantity"
-      the frequency for the lowpass filter
+    freq : "int", "float", "astropy.units.Quantity", optional
+      the frequency for the lowpass filter, default value is 1 Hz
       
     Return : "mcgpy.timeseries.TimeSeries"
     ------
