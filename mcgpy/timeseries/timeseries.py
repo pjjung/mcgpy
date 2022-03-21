@@ -18,7 +18,7 @@ import numpy as np
 from astropy.units import (Quantity, second)
 from astropy import units as u
 
-from ..signal import (bandpass, lowpass, highpass, notch, rms, fft, asd, psd)
+from ..signal import (bandpass, lowpass, highpass, notch, flattend, rms, fft, asd, psd)
 from ..series import FrequencySeries
 from ..io import (KDF, HDF)
 from ..time import tconvert
@@ -152,28 +152,28 @@ class TimeSeries(TimeSeriesCore):
         key = _key
       self._update_attribute(new, key, value)
 
-  def _filter(self, filter_type, lfreq=None, hfreq=None, notchfreq=None, **kwargs):
+  def _filter(self, filter_type, lfreq=None, hfreq=None, notchfreq=None, flattening=True, **kwargs):
     if (filter_type == 'bandpass' 
         and lfreq is not None 
         and hfreq is not None):
       _lfreq, _hfreq = self._get_value(min(lfreq, hfreq)), self._get_value(max(lfreq, hfreq))
 
-      filtered_data = bandpass(self, _lfreq, _hfreq, self._sample_rate.value, kwargs['order'])
+      filtered_data = bandpass(self.value, _lfreq, _hfreq, self._sample_rate.value, kwargs['order'], flattening)
  
     elif (filter_type == 'lowpass' and lfreq is not None):
       _lfreq = self._get_value(lfreq)
       
-      filtered_data = lowpass(self, _lfreq, self._sample_rate.value, kwargs['order'])
+      filtered_data = lowpass(self.value, _lfreq, self._sample_rate.value, kwargs['order'], flattening)
     
     elif (filter_type == 'highpass' and hfreq is not None):
       _hfreq = self._get_value(hfreq)
       
-      filtered_data = highpass(self, _hfreq, self._sample_rate.value, kwargs['order'])
+      filtered_data = highpass(self.value, _hfreq, self._sample_rate.value, kwargs['order'], flattening)
     
     elif (filter_type == 'notch' and notchfreq is not None):
       _notchfreq = self._get_value(notchfreq)
       
-      filtered_data = notch(self, _notchfreq, self.sample_rate.value, kwargs['Q'])
+      filtered_data = notch(self.value, _notchfreq, self.sample_rate.value, kwargs['Q'], flattening)
       
     else:
       raise ValueError('invalid arguments were inputted')
@@ -187,7 +187,7 @@ class TimeSeries(TimeSeriesCore):
   ##---- Methods -------------------------------- 
 
   # at
-  def at(self, epoch, **kwargs):
+  def at(self, epoch):
     '''peak up the value at an input time
     
     Parameters
@@ -221,7 +221,7 @@ class TimeSeries(TimeSeriesCore):
     return new 
 
   # crop
-  def crop(self, start, end, **kwargs):
+  def crop(self, start, end):
     '''slice the time-series between start and end times
     
     Parameters
@@ -262,7 +262,7 @@ class TimeSeries(TimeSeriesCore):
     return new
   
   # rms
-  def rms(self, stride=1, **kwargs):
+  def rms(self, stride=1):
     '''get the rms series by a given stride
     
     Parameters
@@ -295,11 +295,14 @@ class TimeSeries(TimeSeriesCore):
     return new
     
   # bandpass filter
-  def bandpass(self, lfreq, hfreq, order=4, **kwargs):
+  def bandpass(self, lfreq, hfreq, order=4, flattening=True):
     '''apply the bandpass filter to the data
     
     Prameters
     ---------
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
     lfreq : "int", "float", "astropy.units.Quantity"
         the low cutoff frequencies 
 
@@ -311,7 +314,10 @@ class TimeSeries(TimeSeriesCore):
 
     order : "int", optional
         the order of the filter, default value is 4
-    
+
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
+
     Retrun : "mcgpy.timeseries.TimeSeries"
     ------
         filted series
@@ -324,15 +330,18 @@ class TimeSeries(TimeSeriesCore):
     [5.8798634, 35.303578, …, 27.332395, 18.921922]1×10−15T
     '''
     
-    return self._filter(filter_type='bandpass', lfreq=lfreq, hfreq=hfreq, order=order)
+    return self._filter(filter_type='bandpass', lfreq=lfreq, hfreq=hfreq, order=order, flattening=flattening)
 
   # lowpass filter
-  def lowpass(self, lfreq, order=2, **kwargs):
+  def lowpass(self, lfreq, order=2, flattening=True):
     '''apply the lowpass filter to the data
     
     Prameters
     ---------
-    lfreq : "int", "float", "astropy.units.Quantity"
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
+    freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -340,6 +349,9 @@ class TimeSeries(TimeSeriesCore):
 
     order : "int", optional
         the order of the filter, default value is 2
+
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
 
     Retrun : "mcgpy.timeseries.TimeSeries"
     ------
@@ -353,15 +365,18 @@ class TimeSeries(TimeSeriesCore):
     [51.327193, 145.35014,  …, −111.09751, −31.626277]1×10−15T
     '''
     
-    return self._filter(filter_type='lowpass', lfreq=lfreq, order=order)
+    return self._filter(filter_type='lowpass', lfreq=lfreq, order=order, flattening=flattening)
   
   # highpass filter
-  def highpass(self, hfreq, order=2, **kwargs):
+  def highpass(self, hfreq, order=2, flattening=True):
     '''apply the highpass filter to the data
     
     Prameters
     ---------
-    hfreq : "int", "float", "astropy.units.Quantity"
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
+    freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
     sample_rate : "int", "float", "astropy.units.Quantity"
@@ -369,6 +384,9 @@ class TimeSeries(TimeSeriesCore):
 
     order : "int", optional
         the order of the filter, default value is 2
+
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
 
     Retrun : "mcgpy.timeseries.TimeSeries"
     ------
@@ -382,14 +400,17 @@ class TimeSeries(TimeSeriesCore):
     [135.67819, 154.72616, …, 8.7490505, 108.60693]1×10−15T
     '''
     
-    return self._filter(filter_type='highpass', hfreq=hfreq, order=order)
+    return self._filter(filter_type='highpass', hfreq=hfreq, order=order, flattening=flattening)
       
   # notch filter
-  def notch(self, freq, Q=30, **kwargs):
+  def notch(self, freq, Q=30, flattening=True):
     '''apply the notch/bandstop filter to the data
     
     Prameters
     ---------
+    series : "list", "np.ndarray", "astropy.units.Quantity"
+        ditital signal
+
     freq : "int", "float", "astropy.units.Quantity"
         the cutoff frequencies 
 
@@ -398,7 +419,10 @@ class TimeSeries(TimeSeriesCore):
 
     Q : "int", optional
         the Q-factor of the filter, default value is 30
-    
+
+    flattening : Boonlean, potions
+        signal flattening option, defaule value is True
+
     Retrun : "mcgpy.timeseries.TimeSeries"
     ------
         filted series
@@ -410,7 +434,33 @@ class TimeSeries(TimeSeriesCore):
     >>> data.notch(60)
     [135.4371, 154.08522,  …, −57.510631, 44.525834]1×10−15T
     '''
-    return self._filter(filter_type='notch', notchfreq=freq, Q=Q)
+    return self._filter(filter_type='notch', notchfreq=freq, Q=Q, flattening=flattening)
+
+  # flattend
+  def flattend(self, freq=1, **kwargs):
+    '''flatten a wave form by a lowpass filter
+    
+    Parameters
+    ----------
+    freq : "int", "float", "astropy.units.Quantity"
+      the frequency for the lowpass filter
+      
+    Return : "mcgpy.timeseries.TimeSeries"
+    ------
+        (original signal) - (lowpass filtered signal)
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.flattend(1)
+    [−691.04563, −728.74299, −612.39823, …, −400.13071, −465.25414, −410.18831]1×10−15T
+    '''
+
+    new = flattend(self.value, freq, self.sample_rate).view(type(self))
+    self._finalize_attribute(new)
+    new._unit = self.unit
+    return new
 
   # fft
   def fft(self):
@@ -444,7 +494,7 @@ class TimeSeries(TimeSeriesCore):
     
     Parameters
     ----------
-    fftlength : "int",  "float", optional
+    seglength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
@@ -498,7 +548,7 @@ class TimeSeries(TimeSeriesCore):
     
     Parameters
     ----------
-    fftlength : "int",  "float", optional
+    seglength : "int",  "float", optional
         number of seconds for dividing the time window into equal bins,
         if None type value is given, it will be the size of signal
 
