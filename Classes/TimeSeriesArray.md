@@ -525,7 +525,7 @@ Peak up the value/values at an input time.
 ---
 #### bandpass(lfreq, hfreq, order=4, **kwargs)
 
-_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.bandpass(lfreq, hfreq, order=4, **kwargs)
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.bandpass(lfreq, hfreq, order=4, flattening=True, **kwargs)
 
 Apply the bandpass filter to the dataset.
 
@@ -546,6 +546,10 @@ Apply the bandpass filter to the dataset.
 * **order** : `int`, optional
 
   the order of the filter, default value is 4
+    
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
     
 #### Return : `mcgpy.timeseries.TimeSeriesArray`
 
@@ -667,7 +671,7 @@ Calculate the fast Fourier transform, FFT.
 ---
 #### highpass(hfreq, order=2, **kwargs)
 
-_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.highpass(hfreq, order=2, **kwargs)
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.highpass(hfreq, order=2, flattening=True, **kwargs)
 
 Apply the highpass filter to the dataset.
 
@@ -684,6 +688,10 @@ Apply the highpass filter to the dataset.
 * **order** : `int`, optional
 
   the order of the filter, default value is 2
+
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
 
 #### Return : `mcgpy.timeseries.TimeSeriesArray`
 
@@ -739,7 +747,7 @@ Calculate the integrated area between start and end timestamps.
 ---
 #### lowpass(lfreq, order=2, **kwargs)
 
-_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.lowpass(lfreq, order=2, **kwargs)
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.lowpass(lfreq, order=2, flattening=True, **kwargs)
 
 Apply the lowpass filter to the dataset.
 
@@ -756,6 +764,10 @@ Apply the lowpass filter to the dataset.
 * **order** : `int`, optional
 
   the order of the filter, default value is 2
+
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
 
 #### Return : `mcgpy.timeseries.TimeSeriesArray`
 
@@ -777,7 +789,7 @@ filted dataset
 ---
 #### notch(freq, Q=30, **kwargs)
 
-_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.notch(freq, Q=30, **kwargs)
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.notch(freq, Q=30, flattening=True, **kwargs)
 
 Apply the notch/bandstop filter to the dataset.
 
@@ -794,6 +806,10 @@ Apply the notch/bandstop filter to the dataset.
 * **Q** : `int`, optional
 
   the Q-factor of the filter, default value is 30
+
+* **flattening** : `Boonlean`, optional
+
+  signal flattening option, defaule value is True
 
 #### Return : `mcgpy.timeseries.TimeSeriesArray`
 
