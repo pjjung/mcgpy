@@ -22,7 +22,7 @@ from warnings import warn
 
 from ..series import FrequencySeries
 from ..channel import (ChannelConfig, ChannelActive)
-from ..signal import (bandpass, lowpass, highpass, notch, flattend, rms, fft, asd, psd)
+from ..signal import (bandpass, lowpass, highpass, notch, flattened, rms, fft, asd, psd)
 from ..time import tconvert
 from ..io._array import Array
 from ..io import (KDF, HDF)
@@ -825,8 +825,8 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     return new
   
   # flattend
-  def flattend(self, freq=1, **kwargs):
-    '''flatten a wave form by a lowpass filter
+  def flattened(self, freq=1, **kwargs):
+    '''flattened a wave form by a lowpass filter
     
     Parameters
     ----------
@@ -841,7 +841,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     --------
     >>> from mcgpy.timeseries import TimeSeriesArray
     >>> data = TimeSeriesArray("~/test/raw/file/path.hdf5")
-    >>> data.flattend()
+    >>> data.flattened()
     [[−106.09462, −86.757371, …,−44.093128, −34.719921], [−101.92919, −147.60086, …,  −10.727882, −15.01086], 
     …, 
     [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
@@ -851,7 +851,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     freq = self._get_value(freq)
     filtered_dataset = np.empty(self.shape)
     for i, ch in enumerate(self.value):
-      filtered_dataset[i] = flattend(ch, freq, self.sample_rate)
+      filtered_dataset[i] = flattened(ch, freq, self.sample_rate)
     new = filtered_dataset.view(type(self))
     self._finalize_attribute(new)
     
