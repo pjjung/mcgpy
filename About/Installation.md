@@ -4,19 +4,9 @@ sort: 2
 
 # Installation
 
-## Manual
-
-You can install MCGpy manually.
-
-```sh
-$ git clone https://github.com/pjjung/mcgpy.git
-$ cd mcgpy
-$ python setup.py install
-```
-
 ## Pip
 
-or, You may also install MCGpy directly with pip. We recommend this way.
+You may install MCGpy directly with pip. We recommend this way.
 
 ```sh
 $ pip install mcgpy
