@@ -14,13 +14,7 @@ The MCGpy package contains classes and utilities providing tools and methods for
 
 ## Installation
 
-```sh
-$ git clone https://github.com/pjjung/mcgpy.git
-$ cd mcgpy
-$ python setup.py install
-
-```
-or, you can do:
+You can do:
 ```
 $ pip install mcgpy
 ```
