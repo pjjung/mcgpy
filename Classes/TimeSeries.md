@@ -103,8 +103,8 @@ User defined data array can be applied, and use its properties and methods
 
 | Methods        | Discription |
 |----------------|-------------|
-| [argmax()]() | Find the epoch of the maximum value |
-| [argmin()]() | Find the epoch of the minimum value |
+| [argmax()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#argmax) | Find the epoch of the maximum value |
+| [argmin()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#argmin) | Find the epoch of the minimum value |
 | [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      |   Calculate the acceleration spectral density, ASD     |
 | [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#atepoch-kwargs)       | Peak up the value at an input time           |
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
@@ -113,8 +113,8 @@ User defined data array can be applied, and use its properties and methods
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
-| [max()]() | Find the maximum value |
-| [min()]() | Find the minimum value |
+| [max()](https://docs.python.org/3/library/functions.html#max) | Find the maximum value |
+| [min()](https://docs.python.org/3/library/functions.html#min) | Find the minimum value |
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
 | [rms(rms(stride))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
