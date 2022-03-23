@@ -103,6 +103,8 @@ User defined data array can be applied, and use its properties and methods
 
 | Methods        | Discription |
 |----------------|-------------|
+| [argmax()]() | Find the epoch of the maximum value |
+| [argmin()]() | Find the epoch of the minimum value |
 | [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      |   Calculate the acceleration spectral density, ASD     |
 | [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#atepoch-kwargs)       | Peak up the value at an input time           |
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
@@ -111,10 +113,11 @@ User defined data array can be applied, and use its properties and methods
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
+| [max()]() | Find the maximum value |
+| [min()]() | Find the minimum value |
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
 | [rms(rms(stride))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
-
 
 ## Properties Documentation
 
@@ -305,13 +308,55 @@ Unit("1e-15 T")
 
 ## Methods Documentation
 
+#### argmax()
+
+_def_ **mcgpy.timeseries.TimeSeries**.argmax()
+
+Find the epoch of the maximum value 
+
+##### Return : `astropy.table.Quantity`
+
+a timestamp of the maximum value
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.max()
+4480.30971×10−15T
+>>> data.argmax()
+11.3447265625 s
+```
+---
+#### argmin()
+
+_def_ **mcgpy.timeseries.TimeSeries**.argmin()
+
+Find the epoch of the minimum value 
+
+##### Return : `astropy.table.Quantity`
+
+a timestamp of the minimum value
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.min()
+53.7786021×10−15T
+>>> data.argmin()
+10 s
+```
+---
 #### asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
 
 _def_ **mcgpy.timeseries.TimeSeries**.asd(fftlength=None, overlap=0, window='hann', average='median', **kwargs)
 
 Calculate the acceleration spectral density, ASD
 
-#### Parameters
+##### Parameters
 
 * **seglength** : `int`,  `float`, optional
 
@@ -339,11 +384,11 @@ Calculate the acceleration spectral density, ASD
 
   See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
 
-#### Return : `mcgpy.series.FrequencySeries`
+##### Return : `mcgpy.series.FrequencySeries`
 
 asd frequency-series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -359,7 +404,7 @@ _def_ **mcgpy.timeseries.TimeSeries**.at(epoch, **kwargs)
 
 Peak up the value at an input time
 
-#### Parameters
+##### Parameters
 
 * **epoch** : `int`, `float`, `astropy.units.Quantity`
 
@@ -369,7 +414,7 @@ Peak up the value at an input time
 
 the valeu at an input timestamp
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -385,7 +430,7 @@ _def_ **mcgpy.timeseries.TimeSeries**.bandpass(lfreq, hfreq, order=4, flattening
 
 Apply the bandpass filter to the data
 
-#### Parameters
+##### Parameters
 
 * **lfreq** : "int", "float", "astropy.units.Quantity"
 
@@ -407,11 +452,11 @@ Apply the bandpass filter to the data
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 filted series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -427,7 +472,7 @@ _def_ **mcgpy.timeseries.TimeSeries**.crop(start, end, **kwargs)
 
 Slice the time-series between start and end times.
 
-#### Parameters
+##### Parameters
 
 * **start** : `int`, `float`, `astropy.units.Quantity`
 
@@ -437,11 +482,11 @@ Slice the time-series between start and end times.
 
   end timestamp
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 sliced time-series array
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -457,11 +502,11 @@ _def_ **mcgpy.timeseries.TimeSeries**.fft()
 
 Calculate the fast Fourier transform, FFT.
 
-#### Return : `mcgpy.series.FrequencySeries`
+##### Return : `mcgpy.series.FrequencySeries`
 
 fft frequency-series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -477,17 +522,17 @@ _def_ **mcgpy.timeseries.TimeSeries**.flattened(freq=1, **kwargs)
 
 Flattened a wave form by a lowpass filter
 
-#### Parameters
+##### Parameters
 
 * **freq** : `int`, `float`, `astropy.units.Quantity`
 
   the frequency for the lowpass filter
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 (original signal) - (lowpass filtered signal)
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -504,7 +549,7 @@ _def_ **mcgpy.timeseries.TimeSeries**.highpass(hfreq, order=2, flattening=True, 
 
 apply the highpass filter to the data.
 
-#### Parameters
+##### Parameters
 
 * **hfreq** : `int`, `float`, `astropy.units.Quantity`
 
@@ -522,11 +567,11 @@ apply the highpass filter to the data.
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 filted series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -542,7 +587,7 @@ _def_ **mcgpy.timeseries.TimeSeries**.lowpass(lfreq, order=2, flattening=True, *
 
 Apply the lowpass filter to the data
 
-#### Parameters
+##### Parameters
 
 * **lfreq** : `int`, `float`, `astropy.units.Quantity`
 
@@ -560,11 +605,11 @@ Apply the lowpass filter to the data
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 filted series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -574,13 +619,21 @@ filted series
 ```
 
 ---
+### max()
+
+Find the maximum value
+
+### min()
+
+Find the maximum value
+
 #### notch(freq, Q=30, **kwargs)
 
 _def_ **mcgpy.timeseries.TimeSeries**.notch(freq, Q=30, flattening=True, **kwargs)
 
 Aply the notch/bandstop filter to the data.
 
-#### Parameters
+##### Parameters
 
 * **freq** : `int`, `float`, `astropy.units.Quantity`
 
@@ -598,11 +651,11 @@ Aply the notch/bandstop filter to the data.
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 filted series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -618,7 +671,7 @@ _def_ **mcgpy.timeseries.TimeSeries**.psd(fftlength=None, overlap=0, window='han
 
 Calculate the power spectral density, PSD.
 
-#### Parameters
+##### Parameters
 
 * **fftlength** : `int`,  `float`, optional
 
@@ -645,11 +698,11 @@ Calculate the power spectral density, PSD.
 
   See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
         
-#### Return : `mcgpy.series.FrequencySeries`
+##### Return : `mcgpy.series.FrequencySeries`
 
 psd frequency-series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -666,17 +719,17 @@ _def_ **mcgpy.timeseries.TimeSeries**.rms(stride=1, **kwargs)
 
 Get the rms series by a given stride
 
-#### Parameters
+##### Parameters
 
 * **stride** : `int`, `float`, `astropy.units.Quantity`, optional
 
   sliding step for rms calculation
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 rms series
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
