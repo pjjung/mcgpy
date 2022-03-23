@@ -125,6 +125,8 @@ user defined data array can be applied, and use its properties and methods, too.
 
 | Methods        | Discription |
 |----------------|-------------|
+| [argmax()]() | Find the epoch of the maximum value |
+| [argmin]() | Find the epoch of the minimum value |
 | [area(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#areastart-end-kwargs)           |    Calculate the area between start and end timestamps         |
 | [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |   Calculate the acceleration spectral density, ASD          |
 | [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#atepoch-kwargs)           |  Peak up the value/values at an input time           |
@@ -404,13 +406,59 @@ Unit("1e-15 T")
 
 ## Methods Documentation
 
+#### argmax()
+
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.argmax()
+
+Find the epoch of the maximum value
+
+##### Return
+
+* if the dataset is one-dimensional, return will be a timestamp of the maximum value : `astropy.table.Quantity`
+    
+* if the dataset is two-dimensional, return will be timestamps of the maximum values for each channel : `astropy.table.Quantity` in `list`
+    
+
+##### Examples
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
+>>> data.max()
+4480.30971×10−15T
+>>> data.argmax()
+11.3447265625 s
+```
+---
+#### argmin()
+
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.argmin()
+
+Find the epoch of the minimum value
+
+##### Return
+
+* if the dataset is one-dimensional, return will be a timestamp of the minimum value : `astropy.table.Quantity`
+    
+* if the dataset is two-dimensional, return will be timestamps of the minimum values for each channel : `astropy.table.Quantity` in `list`
+    
+##### Examples
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
+>>> data.min()
+53.7786021×10−15T
+>>> data.argmin()
+10 s
+```
+
+---
 #### area(start, end, **kwargs)
 
 _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.area(start, end, **kwargs)
 
 Calculate the area between start and end timestamps.
 
-#### Parameters
+##### Parameters
 
 * start : `int`, `float`, `astropy.units.Quantity`
 
@@ -420,7 +468,7 @@ Calculate the area between start and end timestamps.
 
   end timestamp
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 * if the dataset is one-dimensional,
   return the area of signal between start and end timestamps
@@ -428,7 +476,7 @@ Calculate the area between start and end timestamps.
 * if the dateset is two-dimensional,
   return the area of signal between start and end timestamps for each channel
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -444,7 +492,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.asd(fftlength=None, overlap=0, w
 
 Calculate the acceleration spectral density, ASD
 
-#### Parameters
+##### Parameters
 
 * **fftlength** : `int`,  `float`, optional
 
@@ -472,7 +520,7 @@ Calculate the acceleration spectral density, ASD
   
   See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
 
-#### Return : `mcgpy.series.FrequencySeries`
+##### Return : `mcgpy.series.FrequencySeries`
 
 * if the dataset is one-dimensional,
   return asd frequency-series
@@ -480,7 +528,7 @@ Calculate the acceleration spectral density, ASD
 * if the dateset is two-dimensional,
   return asd frequency-series for each channel
     
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -500,13 +548,13 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.at(epoch, **kwargs)
 
 Peak up the value/values at an input time.
 
-#### Parameters
+##### Parameters
 
 * **epoch** : `int`, `float`, `astropy.units.Quantity`
 
   timestamp user wants to get the value
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 * if the dataset is one-dimensional,
   return the value at the given time
@@ -514,7 +562,7 @@ Peak up the value/values at an input time.
 * if the dateset is two-dimensional,
   return the values for each channel at the given time
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -530,7 +578,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.bandpass(lfreq, hfreq, order=4, 
 
 Apply the bandpass filter to the dataset.
 
-#### Parameters
+##### Parameters
 
 * **lfreq** : `int`, `float`, `astropy.units.Quantity`
 
@@ -552,11 +600,11 @@ Apply the bandpass filter to the dataset.
 
   signal flattening option, defaule value is True
     
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 filted dataset
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -576,7 +624,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.crop(start, end, **kwargs)
 
 Slice the time-series between start and end times.
 
-#### Parameters
+##### Parameters
 
 * **start** : `int`, `float`, `astropy.units.Quantity`
 
@@ -586,7 +634,7 @@ Slice the time-series between start and end times.
 
  end timestamp
     
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 * if the dataset is one-dimensional,
   return sliced time-series array
@@ -594,7 +642,7 @@ Slice the time-series between start and end times.
 * if the dateset is two-dimensional,
   return sliced time-series for each channel array
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -614,7 +662,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.exclude(numbers=None, labels=Non
 
 Except the channel data from the dataset.
 
-#### Parameters
+##### Parameters
 
 * **numbers** : `list`, `tuple`, `np.ndarray`, conditional
 
@@ -624,11 +672,11 @@ Except the channel data from the dataset.
 
   the label list of what user wants to remove channels from the dataset
     
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 the dataset except for the given channel list
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -648,7 +696,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.fft()
 
 Calculate the fast Fourier transform, FFT.
 
-#### Return : `mcgpy.series.FrequencySeries`
+##### Return : `mcgpy.series.FrequencySeries`
 
 * if the dataset is one-dimensional,
   return fft frequency-series
@@ -656,7 +704,7 @@ Calculate the fast Fourier transform, FFT.
 * if the dateset is two-dimensional,
   return fft frequency-series for each channel
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -676,17 +724,17 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.flattened(freq=1, **kwargs)
 
 Flattened a wave form by a lowpass filter
 
-#### Parameters
+##### Parameters
 
 * freq : `int`, `float`, `astropy.units.Quantity`
 
   the frequency for the lowpass filter
 
-#### Return : `mcgpy.series.TimeSeriesArray`
+##### Return : `mcgpy.series.TimeSeriesArray`
 
 (original signal) - (lowpass filtered signal)
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -704,7 +752,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.highpass(hfreq, order=2, flatten
 
 Apply the highpass filter to the dataset.
 
-#### Parameters
+##### Parameters
 
 * **hfreq** : `int`, `float`, `astropy.units.Quantity`
 
@@ -722,11 +770,11 @@ Apply the highpass filter to the dataset.
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 filted dataset
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -746,7 +794,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.integral(start, end, **kwargs)
 
 Calculate the integrated area between start and end timestamps.
 
-#### Parameters
+##### Parameters
 
 * start : `int`, `float`, `astropy.units.Quantity`
 
@@ -756,7 +804,7 @@ Calculate the integrated area between start and end timestamps.
 
   end timestamp
 
-#### Return :`mcgpy.timeseries.TimeSeriesArray`
+##### Return :`mcgpy.timeseries.TimeSeriesArray`
 
 * if the dataset is one-dimensional,
   return the integrated area between start and end timestamps
@@ -764,7 +812,7 @@ Calculate the integrated area between start and end timestamps.
 * if the dateset is two-dimensional,
   return the integrated area between start and end timestamps for each channel
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -780,7 +828,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.lowpass(lfreq, order=2, flatteni
 
 Apply the lowpass filter to the dataset.
 
-#### Parameters
+##### Parameters
 ****
 * lfreq : `int`, `float`, `astropy.units.Quantity`
 
@@ -798,11 +846,11 @@ Apply the lowpass filter to the dataset.
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 filted dataset
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -822,7 +870,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.notch(freq, Q=30, flattening=Tru
 
 Apply the notch/bandstop filter to the dataset.
 
-#### Parameters
+##### Parameters
 
 * **freq** : `int`, `float`, `astropy.units.Quantity`
 
@@ -840,11 +888,11 @@ Apply the notch/bandstop filter to the dataset.
 
   signal flattening option, defaule value is True
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 filted dataset
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -864,17 +912,17 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.offset_correction(interval=2, **
 
 Offset correction by signal mode value.
 
-#### Parameters
+##### Parameters
 
 * **interval** : `int`
 
   number of seconds for dividing the time-series
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 offset corrected dataset for each channel based on the signal mode value
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -898,17 +946,17 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.offset_correction_at(epoch, **kw
 
 Offset correction by the value at the given timestamp, each signal offset will be subtracted from the value at the given timestamp.
     
-#### Parameters
+##### Parameters
 
 * **epoch** : `int`, `float`, `astropy.units.Quantity`
 
   timestamp user wants to get the value
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 offset corrected dataset for each channel based on the value of the input timestamp
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -928,7 +976,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.psd(fftlength=None, overlap=0, w
 
 Calculate the power spectral density, PSD.
 
-#### Parameters
+##### Parameters
 
 * **fftlength** : `int`,  `float`, optional
 
@@ -956,7 +1004,7 @@ Calculate the power spectral density, PSD.
 
   See more detailed explanation in [scipy.signal.welch](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.welch.html)
 
-#### Return : `mcgpy.series.FrequencySeries`
+##### Return : `mcgpy.series.FrequencySeries`
 
 * if the dataset is one-dimensional,
   return psd frequency-series
@@ -964,7 +1012,7 @@ Calculate the power spectral density, PSD.
 * if the dateset is two-dimensional,
   return psd frequency-series for each channel
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -984,7 +1032,7 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.read(number=None, label=None, **
 
 Read one channel data from the dataset.
 
-#### Parameters
+##### Parameters
 
 * **number** : `int`, conditional
 
@@ -994,11 +1042,11 @@ Read one channel data from the dataset.
 
   label of a channel, while number parameter is None
 
-#### Return : `mcgpy.timeseries.TimeSeries`
+##### Return : `mcgpy.timeseries.TimeSeries`
 
 a single channel time-series data
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -1014,13 +1062,13 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.rms(stride=1, **kwargs)
 
 Get the rms dataset by a given stride.
 
-#### Parameters
+##### Parameters
 
 * **stride** : `int`, `float`, `astropy.units.Quantity`, optional
 
   sliding step for rms calculation
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 * if the dataset is one-dimensional,
   return rms series
@@ -1028,7 +1076,7 @@ Get the rms dataset by a given stride.
 * if the dateset is two-dimensional,
   return rsm series for each channel
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -1048,17 +1096,17 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.to_abg()
 
 Calculate an average of channel signals.
 
-#### Raises
+##### Raises
 
 * **TypeError**
 
   if the dataset was one-dimensional
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 an average of channel signals, 1D-array
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
@@ -1074,17 +1122,17 @@ _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.to_rms()
 
 Calculate the rms for all channels.
 
-#### Raises
+##### Raises
 
 * **TypeError**
 
   if the dataset was one-dimensional
 
-#### Return : `mcgpy.timeseries.TimeSeriesArray`
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
 
 rms time-series, 1D-array
 
-#### Examples
+##### Examples
 
 ```python
 >>> from mcgpy.timeseries import TimeSeriesArray
