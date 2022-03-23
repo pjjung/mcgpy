@@ -1453,8 +1453,8 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Examples
     --------
-    >>> from mcgpy.timeseries import TimeSeries
-    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> from mcgpy.timeseries import TimeSeriesArray
+    >>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
     >>> data.max()
     4480.30971×10−15T
     >>> data.argmax()
@@ -1481,8 +1481,8 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Examples
     --------
-    >>> from mcgpy.timeseries import TimeSeries
-    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> from mcgpy.timeseries import TimeSeriesArray
+    >>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
     >>> data.min()
     53.7786021×10−15T
     >>> data.argmin()
