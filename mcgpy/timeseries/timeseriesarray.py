@@ -847,7 +847,9 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
     [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
     '''
-
+    if not np.ndim(self) == 2:
+      raise TypeError('flattened method only supports a 2-dimensional dataset')
+    
     freq = self._get_value(freq)
     filtered_dataset = np.empty(self.shape)
     for i, ch in enumerate(self.value):
@@ -1439,9 +1441,58 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
     return new
   
-  # plot
-  def plot(self):
-    '''this method will be supported
-    '''
+  # argmax
+  def argmax(self):
+    '''find the epoch of the maximum value
     
-    None
+    Return : 
+    ------
+      if the dataset is one-dimensional, return will be a timestamp of the maximum value : "astropy.table.Quantity"
+    
+      if the dataset is two-dimensional, return will be timestamps of the maximum values for each channel : "astropy.table.Quantity" in "list"
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.max()
+    4480.30971×10−15T
+    >>> data.argmax()
+    11.3447265625 s
+    '''
+    if np.ndim(self) == 1:
+      return self.times[np.argmax(self.value)]
+    
+    elif np.ndim(self) == 2:
+      out = list()
+      for ch in self.value:
+        out.append(self.times[np.argmax(ch)])
+      return out
+  
+  # argmin
+  def argmin(self):
+    '''find the epoch of the minimum value
+    
+    Return :
+    ------
+      if the dataset is one-dimensional, return will be a timestamp of the minimum value : "astropy.table.Quantity"
+    
+      if the dataset is two-dimensional, return will be timestamps of the minimum values for each channel : "astropy.table.Quantity" in "list"
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.min()
+    53.7786021×10−15T
+    >>> data.argmin()
+    10 s
+    '''
+    if np.ndim(self) == 1:
+      return self.times[np.argmin(self.value)]
+    
+    elif np.ndim(self) == 2:
+      out = list()
+      for ch in self.value:
+        out.append(self.times[np.argmin(ch)])
+      return out
