@@ -125,8 +125,8 @@ user defined data array can be applied, and use its properties and methods, too.
 
 | Methods        | Discription |
 |----------------|-------------|
-| [argmax()]() | Find the epoch of the maximum value |
-| [argmin]() | Find the epoch of the minimum value |
+| [argmax()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#argmax) | Find the epoch of the maximum value |
+| [argmin()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#argmin) | Find the epoch of the minimum value |
 | [area(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#areastart-end-kwargs)           |    Calculate the area between start and end timestamps         |
 | [asd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#asdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |   Calculate the acceleration spectral density, ASD          |
 | [at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#atepoch-kwargs)           |  Peak up the value/values at an input time           |
