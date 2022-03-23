@@ -595,3 +595,41 @@ class TimeSeries(TimeSeriesCore):
     new.label = self.label
   
     return new
+
+  # argmax
+  def argmax(self):
+    '''find the epoch of the maximum value
+    
+    Return : "astropy.table.Quantity"
+    ------
+      a timestamp of the maximum value
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.max()
+    4480.30971×10−15T
+    >>> data.argmax()
+    11.3447265625 s
+    '''
+    return self.times[np.argmax(self.value)]
+  
+  # argmin
+  def argmin(self):
+    '''find the epoch of the minimum value
+    
+    Return : "astropy.table.Quantity"
+    ------
+      a timestamp of the minimum value
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.min()
+    53.7786021×10−15T
+    >>> data.argmin()
+    10 s
+    '''
+    return self.times[np.argmin(self.value)]
