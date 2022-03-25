@@ -46,17 +46,17 @@ Calculate magnetic field maps on the sersor plane.
 
   length of baseline (Z-axis length of sensor), defualt value is 50 [mm], but it depends on device properties
 
-* **axis** : `str`, optional
+* **axis** : `{x, y, z}`, optional
 
-  axis of magnetic vectors on sensor grid
+  axis of magnetic vectors on sensor grid, default value is z
 
-* **conduct_model** : `str`, optional
+* **conduct_model** : `{spherical, horizontal, free}`, optional
 
-  conduct model about sources
+  conduct model about sources, default value is horizontal
 
 * **eigenvalues** : `int`, optional
 
-  the number of eigenvalues to get quasi-inverser lead field matrix
+  the number of eigenvalues to get quasi-inverser lead field matrix, default value is 10
 
 ```warning
 Grid related parameters and sensor's baseline depend on device properties. If they did not match the instrument obtained MCG signals, it is possible to get inaccuracy results.
