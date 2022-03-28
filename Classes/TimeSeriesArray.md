@@ -103,7 +103,7 @@ user defined data array can be applied, and use its properties and methods, too.
 
 | Properties     | Discription |
 |----------------|-------------|
-| [biosemo](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#biosemi)      | Identification code         |
+| [biosemi](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#biosemi)      | Identification code         |
 | [channels](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#channels)      | Channel information table of numbers and labels        |
 | [datetime](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#datetime)    | The data time at the point of data recording         |
 | [direction](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#direction)  | The sensor direction for measuring a magnetic field if `mcgpy.timeseriesarray.TimeSeriesArray` is one-dimentaional        |
