@@ -84,7 +84,7 @@ User defined data array can be applied, and use its properties and methods
 
 | Properties     | Discription |
 |----------------|-------------|
-| [biosemo](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#biosemi)      | Identification code         |
+| [biosemi](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#biosemi)      | Identification code         |
 | [datetime](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#datetime)    | The data time at the point of data recording          |
 | [direction](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#direction)  | The sensor direction for measuring a magnetic field          |
 | [dt](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#dt)  |    The inderval bwteen time points of time-axis      | 
