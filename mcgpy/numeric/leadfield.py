@@ -190,15 +190,9 @@ class LeadField(np.ndarray):
   @classmethod
   def _get_Bxyz(cls, position, cell, dipole, conduct_model, **kwargs):
     if conduct_model == 'spherical':
-      x0 = cell[0]
-      y0 = cell[1]
-      z0 = cell[2]
-      x = position[0]
-      y = position[1]
-      z = position[2]
-      Qx = dipole[0]
-      Qy = dipole[1]
-      Qz = dipole[2]
+      x0, y0, z0 = cell
+      x, y, z = position
+      Qx, Qy, Qz = dipole
 
       r = np.sqrt(x**2 + y**2 + z**2)
       a = np.sqrt((x-x0)**2+(y-y0)**2+(z-z0)**2)
@@ -215,15 +209,9 @@ class LeadField(np.ndarray):
       Bxyz = np.multiply(100000.0, [Bx, By, Bz])
 
     elif conduct_model == 'horizontal':
-      x0 = cell[0]
-      y0 = cell[1]
-      z0 = cell[2]
-      x = position[0]
-      y = position[1]
-      z = position[2]
-      Qx = dipole[0]
-      Qy = dipole[1]
-      Qz = dipole[2]
+      x0, y0, z0 = cell
+      x, y, z = position
+      Qx, Qy, Qz = dipole
 
       a=np.sqrt((x-x0)**2+(y-y0)**2+(z-z0)**2)
       K=a*(a+z-z0)
@@ -237,15 +225,9 @@ class LeadField(np.ndarray):
       Bxyz = np.multiply(100000.0, [Bx, By, Bz])
 
     elif conduct_model == 'free':
-      x0 = cell[0]
-      y0 = cell[1]
-      z0 = cell[2]
-      x = position[0]
-      y = position[1]
-      z = position[2]
-      Qx = dipole[0]
-      Qy = dipole[1]
-      Qz = dipole[2]
+      x0, y0, z0 = cell
+      x, y, z = position
+      Qx, Qy, Qz = dipole
 
       r=np.sqrt((x-x0)**2+(y-y0)**2+(z-z0)**2)
       Bx=(Qy*(z-z0)-Qz*(y-y0))/r**3
