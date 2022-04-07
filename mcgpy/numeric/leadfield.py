@@ -114,7 +114,7 @@ class LeadField(np.ndarray):
     if cls._axis == 'z':
       component_number = 2
       dipole_unit = np.delete(np.identity(3), 2, axis=0)
-    elif cls._axis == 'x' or axis == 'y':
+    elif cls._axis == 'x' or cls._axis == 'y':
       component_number = 3
       dipole_unit = np.identity(3)
     else:
