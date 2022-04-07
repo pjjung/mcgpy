@@ -168,13 +168,10 @@ class LeadField(np.ndarray):
     height = cls._get_value(height)
     interval = cls._get_value(interval)
     
-    sourcegrid = np.empty(((width//interval+1)**2 , 3))
-    for i in range(width//interval+1):
-      for j in range(width//interval+1):
-        index = (width//interval+1)*i + j
-        sourcegrid[index] = [interval*j-0.5*width, interval*i-0.5*width, height]
-
-    return sourcegrid
+    coordinate = np.arange(-0.5*width, 0.5*width+interval, interval)
+    X, Y = np.meshgrid(coordinate, coordinate)
+  
+    return np.array([X.flatten(),  Y.flatten(), np.full(len(coordinate)**2, height)]).T
 
   @classmethod
   def _get_magnetic_vector(cls, position, direction, cell, dipole_unit, baseline, conduct_model, **kwargs):
