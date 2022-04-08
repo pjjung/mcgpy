@@ -76,7 +76,7 @@ class KDF:
   ##---- Inherent properties -------------------------------- 
   def _io_checker(self, path):
     extension = path.split('.')[-1]
-    if os.path.isfile(path) and extension != 'kdf':
+    if os.path.isfile(path) and extension.lower() != 'kdf':
       raise IOError('illegal file format was inserted')
       
   def _parameter_checker(self, number, label):
