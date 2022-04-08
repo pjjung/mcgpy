@@ -73,7 +73,7 @@ class HDF:
   ##---- Inherent functions -------------------------------- 
   def _io_checker(self, path):
     extension = path.split('.')[-1]
-    if os.path.isfile(path) and extension != 'hdf5':
+    if os.path.isfile(path) and extension.lower() != 'hdf5':
       raise IOError('illegal file format was inserted')
       
   def _get_data(self, number=None, label=None):
