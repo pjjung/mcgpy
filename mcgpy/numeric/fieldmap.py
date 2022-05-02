@@ -174,73 +174,54 @@ class FieldMap(Quantity):
       
       
   ##---- Inherent functions -------------------------------- 
-  def _make_sensorgrid(self):
-    coordinate = self._X[0].value
-    for i, Y in enumerate(coordinate):
-      for j, X in enumerate(coordinate):
-        if i == 0 and j == 0:
-          sensorgrid = np.array([X,Y])
-        else:
-          sensorgrid = np.vstack((sensorgrid, np.array([X,Y])))
-    return sensorgrid
-  
-  def _get_arrows_table(self, data, sensorgrid, grid_cell_number, meta):
-    gradient_T = np.empty((grid_cell_number, grid_cell_number))
-    gradient = np.empty((grid_cell_number, grid_cell_number))
-    for n in range(data.shape[0]):
-      gradient_T[n] = np.gradient(data.T[n])
-      gradient[n] = -1*np.gradient(data[n])
-
-    arrows_x = gradient_T.T.reshape(grid_cell_number**2)
-    arrows_y = gradient.reshape(grid_cell_number**2)
-
-    tails, arrows, heads, distances = list(), list(), list(), list()
-
-    for n, moment in enumerate(zip(arrows_x, arrows_y)):
-      tail_x = sensorgrid[n][0]
-      tail_y = sensorgrid[n][1]
-      arrow_x = moment[0]
-      arrow_y = moment[1]
-      head_x = tail_x + arrow_x
-      head_y = tail_y + arrow_y
-      Euclidean_distance = np.sqrt(arrow_x**2+arrow_y**2)
-
-      tails.append((tail_x, tail_y))
-      arrows.append(arrow_x + arrow_y*1J)
+  def _get_arrows_table(self, data, meta):
+    # calculate arrow vector
+    arrow_vectors = np.gradient(data, axis=0) - 1j*np.gradient(data, axis=1)
+    # organize X and Y coordinates
+    xs, ys = self.X.flatten().value, self.Y.flatten().value
+    
+    # set empty lists for making table
+    tails, arrows, heads, distances, angle = list(), list(), list(), list(), list()
+    
+    # organize table contents
+    for x, y, vector in zip(xs, ys, arrow_vectors.flatten().value): 
+      head_x, head_y = x+np.real(vector), y+np.imag(vector)
+      Euclidean_distance = abs(vector)*Unit('amp meter')*10**-9
+      current_angle = -180*(np.angle(vector)/np.pi)*Unit('degree')
+      
+      tails.append((x, y))
+      arrows.append(vector)
       heads.append((head_x, head_y))
       distances.append(Euclidean_distance)
-
-    return QTable([tails, heads, arrows, distances],
-                  names=('tails', 'heads', 'vectors', 'distances'),
+      angle.append(current_angle)
+    
+    return QTable([tails, heads, arrows, distances, angle],
+                  names=('tail', 'head', 'vector', 'distance', 'angle'),
                   meta=meta)
 
-  
   def _get_pole_information(self, data):
-    # find max and min index of magnetic field on sensor grid
-    max_indexes, max_values = np.empty(0, dtype=np.int32), np.empty(0, dtype=np.float32)
-    min_indexes, min_values = np.empty(0, dtype=np.int32), np.empty(0, dtype=np.float32)
-    for i, row in enumerate(data.value):
-      max_indexes = np.append(max_indexes, np.argmax(row))
-      max_values = np.append(max_values, np.max(row))
-      min_indexes = np.append(min_indexes, np.argmin(row))
-      min_values = np.append(min_values, np.min(row))
-    max_index_y = np.argmax(max_values)
-    max_index_x = max_indexes[max_index_y]
-    min_index_y = np.argmin(min_values)
-    min_index_x = min_indexes[min_index_y]
-
+    # data flattening
+    flattend_data = data.flatten()
+    # organize X and Y coordinates
+    xs, ys = self.X.flatten().value, self.Y.flatten().value
+    
+    # find maximum and minimum values
+    max_value = flattend_data.max()
+    min_value = flattend_data.min()
+    max_index = np.argmax(flattend_data)
+    min_index = np.argmin(flattend_data)
+    
     # calculate Max/Min ratio
-    ratio = abs(np.max(max_values)/np.min(min_values))
-
+    ratio = abs(max_value/min_value)
+    
     # calculate pole distance and angle
-    grid_coordinate = self.X[0].value
-    vector = (grid_coordinate[max_index_x]-grid_coordinate[min_index_x]) + (grid_coordinate[max_index_y]+grid_coordinate[min_index_y])*1J
-
-    distance = abs(vector)
+    vector = (xs[max_index] - xs[min_index]) + 1J*(ys[max_index] - ys[min_index])
+    distance = abs(vector)*Unit('mm')
     angle = -180*(np.angle(vector)/np.pi)*Unit('degree')
-
-    return [(grid_coordinate[min_index_x], grid_coordinate[min_index_y]), (grid_coordinate[max_index_x], grid_coordinate[max_index_y]), vector, distance, angle, ratio]
-
+    
+    # make table contents and return it
+    return [(xs[min_index], ys[min_index]), (xs[max_index], ys[max_index]), vector, distance, angle, ratio]
+  
     
   ##---- Properties --------------------------------
   # X
@@ -308,13 +289,59 @@ class FieldMap(Quantity):
       pass
   
   ##---- Methods --------------------------------
+  def currents(self):
+    '''get tangential field map
+    
+    Return
+    ------
+    if the dimension of input dataset is one : "mcgpy.numerical.FieldMap"
+        2D-array, amplitude of current magnitudes on sensor plane
+        
+    if the dimension of input dataset is two : "mcgpy.numerical.FieldMap"
+        3D-array, amplitude of current magnitudes on sensor plane 
+    
+    Examples
+    --------
+    >>> from mcgpy.timeseriesarray import TimeSeriesArray
+    >>> from mcgpy.numeric import LeadField
+    >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
+    >>> epoch_dataset = dataset.at(1126259462)
+    >>> LeadField(epoch_dataset).currents()
+    [[5.80895955e-08 6.82033252e-08 8.38246186e-08 ...
+      1.15054266e-07 1.04146993e-07 9.39165794e-08]
+     [7.09999483e-08 8.75171891e-08 1.14528064e-07 ...
+      1.44635222e-07 1.21560702e-07 1.04386546e-07]
+     [1.00648263e-07 1.33912668e-07 1.90724137e-07 ...
+      1.92781156e-07 1.53434507e-07 1.24748848e-07]
+     ...
+     [1.03979718e-07 1.27879891e-07 1.61285186e-07 ...
+      1.89137749e-07 1.54725988e-07 1.27253331e-07]
+     [8.71076169e-08 9.96315932e-08 1.19166692e-07 ...
+      1.35433846e-07 1.16556350e-07 9.96535657e-08]
+     [7.68162949e-08 8.32770941e-08 9.37287466e-08 ...
+      1.11205662e-07 9.82416776e-08 8.55364650e-08]] A m
+    '''
+    
+    if self._ndim == 1:
+      return np.sqrt(np.gradient(self.value, axis=0)**2 + np.gradient(self.value, axis=1)**2)*Unit('amp meter')*10**-9
+    
+    elif self._ndim == 2:
+      for i, epoch_date in enumerate(self.value):
+        if i == 0:
+          tangentials = np.sqrt(np.gradient(epoch_date, axis=0)**2 + np.gradient(epoch_date, axis=1)**2)*Unit('amp meter')*10**-9
+        else:
+          tangentials = np.vstack((tangentials, 
+                                  np.sqrt(np.gradient(epoch_date, axis=0)**2 + np.gradient(epoch_date, axis=1)**2)*Unit('amp meter')*10**-9))
+          
+        return tangentials
+  
   def arrows(self):
     '''calculate current vectors on the sensor plane and make table
     
     Return
     ------
     if the dimension of input dataset is one : "astropy.table.QTable"
-        tabel contains current arrows on sensor plane: tail coordinate, head coordinate, vector, and distance
+        table contains current arrows on sensor plane: tail coordinate, head coordinate, vector, and distance
         
     if the dimension of input dataset is two : "dict", "astropy.table.QTable"
         dictionanty consists of a table at each time
@@ -326,7 +353,7 @@ class FieldMap(Quantity):
     >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
     >>> epoch_dataset = dataset.at(1126259462)
     >>> LeadField(epoch_dataset).arrows()
-    tails 	              heads	                 vectors	    distances
+    tail 	              head	                 vector	    distance
     float64	              float64	             complex128	    float64
     (-200.0,0.0,-200.0)	  (-200.13,0.0,-200.15)	(-0.13-0.15j) 	0.20
     (-175.0,0.0,-200.0)	  (-175.18,0.0,-200.17)	(-0.18-0.17j)  	0.25
@@ -336,7 +363,7 @@ class FieldMap(Quantity):
     >>> duration_dataset =  dataset.crop(1126259462, 1126259470)
     >>> LeadField(epoch_dataset)
     {1126259462:
-    tails 	              heads	                 vectors	    distances
+    tail 	              head	                 vector	    distance
     float64	              float64	             complex128	    float64
     (-200.0,0.0,-200.0)	  (-200.13,0.0,-200.15)	(-0.13-0.15j) 	0.20
     (-175.0,0.0,-200.0)	  (-175.18,0.0,-200.17)	(-0.18-0.17j)  	0.25
@@ -345,14 +372,11 @@ class FieldMap(Quantity):
     .
     ,...}
     '''
-    # get every arrow on sensor grid
-    sensorgrid = self._make_sensorgrid()
-    grid_cell_number = len(self._X[0])
     
     # get tables of arrow information
     if self._ndim == 1:
       meta = {'unit':Unit('mm'), 't0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-      return self._get_arrows_table(self, sensorgrid, grid_cell_number, meta)
+      return self._get_arrows_table(self, meta)
 
     elif self._ndim == 2:
       _t0 = self.t0
@@ -361,7 +385,7 @@ class FieldMap(Quantity):
         epoch = _t0 + (n*self.sample_rate.value)*second
         epoch_datetime = tconvert(epoch.value)
         meta = {'unit':Unit('mm'), 't0':epoch, 'datetime':epoch_datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-        tables[epoch] = self._get_arrows_table(epoch_data, sensorgrid, grid_cell_number, meta)
+        tables[epoch] = self._get_arrows_table(epoch_data, meta)
       
       return tables     
   
@@ -431,3 +455,4 @@ class FieldMap(Quantity):
     '''it will be supported
     '''
     pass
+
