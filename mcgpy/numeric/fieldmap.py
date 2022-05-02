@@ -356,7 +356,7 @@ class FieldMap(Quantity):
           
       new = tangentials.reshape(i+1, tangentials_shape[0], tangentials_shape[1])*unit
  
-    for key in ['sample_rate', 't0', 'datetime', 'times', 'dt', 'duration']:
+    for key in ['X', 'Y', 'sample_rate', 't0', 'datetime', 'times', 'dt', 'duration']:
       try:
         value = getattr(self, key)
         setattr(new, key, value)
