@@ -340,7 +340,7 @@ class FieldMap(Quantity):
       1.11205662e-07 9.82416776e-08 8.55364650e-08]] A m
     '''
     
-    unit = Unit('amp meter')*10**-9
+    unit = Unit('amp meter')*10**-9 #nano amplare meter [nAm]
     
     if self._ndim == 1:
       new = np.sqrt(np.gradient(self.value, axis=0)**2 + np.gradient(self.value, axis=1)**2)*unit
@@ -357,10 +357,9 @@ class FieldMap(Quantity):
       new = tangentials.reshape(i+1, tangentials_shape[0], tangentials_shape[1])*unit
  
     for key in ['sample_rate', 't0', 'datetime', 'times', 'dt', 'duration']:
-      _key = '_{}'.format(key)
       try:
         value = getattr(self, key)
-        setattr(new, _key, value)
+        setattr(new, key, value)
       except AttributeError:
         pass
 
