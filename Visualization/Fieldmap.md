@@ -26,7 +26,7 @@ This page shows how to make a field map plot with randomly generated datasets by
 >>> cbar = fig.colorbar(ctr)
 >>> plt.show()
 ```
-[(plot)]()
+[(plot)](https://github.com/pjjung/mcgpy/blob/gh-pages/imgs/visualization-fieldmap-example.png)
 
 ![visualization-fieldmap-example](../imgs/visualization-fieldmap-example.png)
 
@@ -53,7 +53,7 @@ The area of the actual sensor arrangement is bigger than the virtual sensor grid
 >>> cbar = fig.colorbar(ctr)
 >>> plt.show()
 ```
-[(plot)]()
+[(plot)](https://github.com/pjjung/mcgpy/blob/gh-pages/imgs/visualization-fieldmap-example2.png)
 
 ![visualization-fieldmap-example2](../imgs/visualization-fieldmap-example2.png)
 
