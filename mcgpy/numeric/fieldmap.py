@@ -174,7 +174,7 @@ class FieldMap(Quantity):
       
       
   ##---- Inherent functions -------------------------------- 
-  def _get_arrows_table(self, data, meta):
+  def _get_arrows_table(self, data, meta, normalize):
     # calculate arrow vector
     arrow_vectors = np.gradient(data, axis=0) - 1j*np.gradient(data, axis=1)
     # organize X and Y coordinates
@@ -183,12 +183,17 @@ class FieldMap(Quantity):
     # set empty lists for making table
     tails, arrows, heads, distances, angle = list(), list(), list(), list(), list()
     
-    # organize table contents
+    # organize table contents  
     for x, y, vector in zip(xs, ys, arrow_vectors.flatten().value): 
-      head_x, head_y = x+np.real(vector), y+np.imag(vector)
+      if normalize == False:
+        head_x, head_y = x+np.real(vector), y+np.imag(vector)     
+      elif normalize == True:
+        normalization_factor = np.sqrt(abs(arrow_vectors).max().value)
+        head_x, head_y = x+np.real(vector)/normalization_factor, y+np.imag(vector)/normalization_factor
+   
       Euclidean_distance = abs(vector)*Unit('amp meter')*10**-9
       current_angle = -180*(np.angle(vector)/np.pi)*Unit('degree')
-      
+
       tails.append((x, y))
       arrows.append(vector)
       heads.append((head_x, head_y))
@@ -422,8 +427,13 @@ class FieldMap(Quantity):
       return QTable([times, positions, vectors, distances, angles],
                     names=('time', 'position', 'vector', 'distance', 'angle'), meta=meta)  
 
-  def arrows(self):
+  def arrows(self, normalize=False):
     '''calculate current vectors on the sensor plane and make table
+    
+    Parameters
+    ----------
+    normalize : "Boolean"
+        an option for normalized distences of vectors
     
     Return
     ------
@@ -463,7 +473,7 @@ class FieldMap(Quantity):
     # get tables of arrow information
     if self._ndim == 1:
       meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-      return self._get_arrows_table(self, meta)
+      return self._get_arrows_table(self, meta, normalize)
 
     elif self._ndim == 2:
       tables = dict()
@@ -471,7 +481,7 @@ class FieldMap(Quantity):
         epoch = self.times[n]
         epoch_datetime = tconvert(epoch.value)
         meta = {'t0':epoch, 'datetime':epoch_datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-        tables[epoch] = self._get_arrows_table(epoch_data, meta)
+        tables[epoch] = self._get_arrows_table(epoch_data, meta, normalize)
       
       return tables     
   
