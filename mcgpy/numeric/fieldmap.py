@@ -542,8 +542,6 @@ class FieldMap(Quantity):
     elif self._ndim == 2:
       meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
       
-      
-      
       for n, epoch_data in enumerate(self):
         epoch = self.times[n]
         min_coordinate, max_coordinate, vector, distance, angle, ratio = self._get_pole_information(epoch_data.value)
