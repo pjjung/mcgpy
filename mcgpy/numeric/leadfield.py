@@ -270,10 +270,8 @@ class LeadField(np.ndarray):
       elif i > 0 and np.sum(row) != 0:
         _leadfield = np.vstack((_leadfield, row))
     
-    ## make diagonal norm matrix 
-    diagonal_norm_matrix = np.zeros((_leadfield.shape[1], _leadfield.shape[1]))
-    for i, row in enumerate(_leadfield.T):
-      diagonal_norm_matrix[i,i] = np.sqrt(1/np.linalg.norm(row))
+    ## make diagonal norm matrix    
+    diagonal_norm_matrix = np.diag(np.sqrt(1/np.linalg.norm(_leadfield, axis=0)))
 
     ## calculate SVD
     special_matrix = np.dot(_leadfield, diagonal_norm_matrix)
@@ -352,4 +350,3 @@ class LeadField(np.ndarray):
     X, Y = np.meshgrid(coordinate, coordinate)
     
     return X, Y, Z
-    
