@@ -110,7 +110,8 @@ class LeadField(np.ndarray):
   def _get_leadfield(cls, grid_width, grid_height, grid_interval, baseline, **kwargs):
     ## get source grid
     sourcegrid = cls._get_sourcegrid(width=grid_width, height=grid_height, interval=grid_interval)
-
+    cell_coordinates = sourcegrid.T
+    
     ## make dipole unit by the given axis
     if cls._axis == 'z':
       component_number = 2
@@ -126,15 +127,7 @@ class LeadField(np.ndarray):
     leadfield = np.zeros((length, length))
     
     for i, (position, direction) in enumerate(zip(cls._positions, cls._directions)):
-      cell_coordinates = sourcegrid.T
-
-      if len(dipole_unit) == 2:
-        BB = cls._get_magnetic_vector(position, direction, cell_coordinates, dipole_unit, baseline, cls._conduct_model)
-        leadfield[i] = np.array(list(chain(*zip(BB[0], repeat(0))))) + np.array(list(chain(*zip(repeat(0), BB[1]))))
-
-      elif len(dipole_unit) == 3:
-        BB = cls._get_magnetic_vector(position, direction, cell_coordinates, dipole_unit, baseline, cls._conduct_model)
-        leadfield[i] = np.array(list(chain(*zip(BB[0], repeat(0), repeat(0))))) + np.array(list(chain(*zip(repeat(0), BB[1], repeat(0))))) + np.array(list(chain(*zip(repeat(0), repeat(0), BB[2]))))
+      leadfield[i] = cls._get_magnetic_vector(position, direction, cell_coordinates, dipole_unit, baseline, cls._conduct_model)
 
     cls._update_attribute('component_number', component_number)
     cls._update_attribute('dipole_unit', dipole_unit)
@@ -146,7 +139,8 @@ class LeadField(np.ndarray):
   def _get_virtural_leadfield(cls, grid_width, grid_height, grid_interval, direction='z', **kwargs):
     ## get virtual sensor grid as sensor positions
     positions = cls._get_sourcegrid(width=grid_width, height=grid_height, interval=grid_interval)
-    
+    cell_coordinates = cls._sourcegrid.T
+
     ## make virtual sensor dirations
     directions = np.zeros((positions.shape))
     if direction == 'z':
@@ -155,21 +149,12 @@ class LeadField(np.ndarray):
       directions[:,1] = 1
     elif direction == 'x':
       directions[:,0] = 1
-    
     ## make leadfield matrix  
     length = cls._sourcegrid.shape[0]*cls._component_number
     leadfield = np.zeros((length, length))
     
     for i, (position, direction) in enumerate(zip(positions, directions)):
-      cell_coordinates = cls._sourcegrid.T
-
-      if len(cls._dipole_unit) == 2:
-        BB = cls._get_magnetic_vector(position, direction, cell_coordinates, cls._dipole_unit, 0, cls._conduct_model)
-        leadfield[i] = np.array(list(chain(*zip(BB[0], repeat(0))))) + np.array(list(chain(*zip(repeat(0), BB[1]))))
-
-      elif len(cls._dipole_unit) == 3:
-        BB = cls._get_magnetic_vector(position, direction, cell_coordinates, cls._dipole_unit, 0, cls._conduct_model)
-        leadfield[i] = np.array(list(chain(*zip(BB[0], repeat(0), repeat(0))))) + np.array(list(chain(*zip(repeat(0), BB[1], repeat(0))))) + np.array(list(chain(*zip(repeat(0), repeat(0), BB[2]))))
+      leadfield[i] = cls._get_magnetic_vector(position, direction, cell_coordinates, cls._dipole_unit, 0, cls._conduct_model)
 
     return leadfield
   
@@ -186,18 +171,27 @@ class LeadField(np.ndarray):
 
   @classmethod
   def _get_magnetic_vector(cls, position, direction, cell_coordinates, dipole_unit, baseline, conduct_model, **kwargs):
-    BB = list()
     for i, dipole in enumerate(dipole_unit):
-      if baseline is None or baseline == 0:
-        Bxyz = cls._get_Bxyz(position, cell_coordinates, dipole, conduct_model)
-        BB.append(np.dot(np.abs(direction), Bxyz))
+      if i == 0:
+        if baseline is None or baseline == 0:
+          Bxyz = cls._get_Bxyz(position, cell_coordinates, dipole, conduct_model)
+          BB = np.dot(np.abs(direction), Bxyz)
 
+        else:
+          Bxyz_top = cls._get_Bxyz(position+[0,0,baseline], cell_coordinates, dipole, conduct_model)
+          Bxyz_bottom = cls._get_Bxyz(position, cell_coordinates, dipole, conduct_model)
+          BB = np.dot(np.abs(direction), Bxyz_bottom - Bxyz_top)
       else:
-        Bxyz_top = cls._get_Bxyz(position+[0,0,baseline], cell_coordinates, dipole, conduct_model)
-        Bxyz_bottom = cls._get_Bxyz(position, cell_coordinates, dipole, conduct_model)
-        BB.append(np.dot(np.abs(direction), Bxyz_bottom - Bxyz_top))
+        if baseline is None or baseline == 0:
+          Bxyz = cls._get_Bxyz(position, cell_coordinates, dipole, conduct_model)
+          BB = np.vstack((BB, np.dot(np.abs(direction), Bxyz)))
 
-    return BB
+        else:
+          Bxyz_top = cls._get_Bxyz(position+[0,0,baseline], cell_coordinates, dipole, conduct_model)
+          Bxyz_bottom = cls._get_Bxyz(position, cell_coordinates, dipole, conduct_model)
+          BB = np.vstack((BB, np.dot(np.abs(direction), Bxyz_bottom - Bxyz_top)))
+
+    return BB.T.flatten()
 
   @classmethod
   def _get_Bxyz(cls, position, cell, dipole, conduct_model, **kwargs):
