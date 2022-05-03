@@ -264,11 +264,7 @@ class LeadField(np.ndarray):
     '''
     
     ## reduce lead field matrix by active channels
-    for i, row in enumerate(self):
-      if i == 0:
-        _leadfield = row
-      elif i > 0 and np.sum(row) != 0:
-        _leadfield = np.vstack((_leadfield, row))
+    _leadfield = self[:len(self._positions)]
     
     ## make diagonal norm matrix    
     diagonal_norm_matrix = np.diag(np.sqrt(1/np.linalg.norm(_leadfield, axis=0)))
