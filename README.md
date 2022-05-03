@@ -5,7 +5,7 @@ The MCGpy package contains classes and utilities providing tools and methods for
 
 ## Status
 [![Build Status](https://img.shields.io/badge/build-test%20version-9cf)](https://img.shields.io/badge/build-test%20version-9cf)
-[![Build Status](https://img.shields.io/badge/version-0.1.6-blue)](https://github.com/pjjung/mcgpy)
+[![Build Status](https://img.shields.io/badge/version-0.1.7-blue)](https://github.com/pjjung/mcgpy)
 [![Build Status](https://img.shields.io/badge/pypi-0.1.6-blueviolet)](https://pypi.org/project/MCGpy/)
 
 [![Build Status](https://img.shields.io/badge/license-%20GPLv3-green)](http://www.gnu.org/licenses/)
