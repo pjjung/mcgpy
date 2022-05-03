@@ -521,23 +521,28 @@ class FieldMap(Quantity):
     .
     .
     '''
-    # set column
-    column = ['min coordinate', 'max coordinate', 'vector', 'distance', 'angle', 'ratio']
+    times, min_coordinates, max_coordinates, vectors, distances, angles, ratios = list(), list(), list(), list(), list(), list(), list()
     
     # get field arrow
     if self._ndim == 1:
       meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
       
-      info = [self.t0]
-      info.extend(self._get_pole_information(self))
-      
-      return QTable(info,
+      min_coordinate, max_coordinate, vector, distance, angle, ratio = self._get_pole_information(self.value)
+      times.append(self.t0)
+      min_coordinates.append(min_coordinate)
+      max_coordinates.append(max_coordinate)
+      vectors.append(vector)
+      distances.append(distance)
+      angles.append(angle)
+      ratios.append(ratio)
+        
+      return QTable([times, min_coordinates, max_coordinates, vectors, distances, angles, ratios],
                     names=('time', 'min coordinate', 'max coordinate', 'vector', 'distance', 'angle', 'ratio'), meta=meta)
     
     elif self._ndim == 2:
       meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
       
-      times, min_coordinates, max_coordinates, vectors, distances, angles, ratios = list(), list(), list(), list(), list(), list(), list()
+      
       
       for n, epoch_data in enumerate(self):
         epoch = self.times[n]
