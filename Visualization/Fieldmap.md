@@ -4,7 +4,7 @@ sort: 3
 
 # Field Map
 
-Based on multi-array magnetic information at the epoch, the field distribution can be generated. Field Map had two representation forms: Normal Field Map and Tangential Field Map. The former shows z-axis magnetic fields, in which dominant features on the plot are N and S poles. Then, it is commonly called Magnetic Field Map. The latter provides information on current density, which is obtained by the gradient of the magnetic field map. The high magnitudes, i.e. red spots on a plot, mean electrically activated regions.
+Based on multi-array magnetic information at the epoch, the field distribution can be generated. Field Map had two representation forms: Normal Field Map and Tangential Field Map. The former shows z-axis magnetic fields, in which dominant features on the plot are N and S poles. Then, it is commonly called Magnetic Field Map. The latter provides information on current density, which is obtained by the gradient of the magnetic field map. It is calles called the pseudo-currents. The high magnitudes, i.e. red spots on a plot, mean electrically activated regions.
 
 This page shows how to make a field map plot with randomly generated datasets by `numpy`.
 
