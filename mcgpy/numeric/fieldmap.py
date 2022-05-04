@@ -399,21 +399,21 @@ class FieldMap(Quantity):
     .
     .
     '''
+    times, positions, vectors, distances, angles = list(), list(), list(), list(), list()
+    meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
     
     if self._ndim == 1:
-      meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
+      position, vector, distance, angle = self._get_max_current_info(self.value)
+      times.append(self.t0)
+      positions.append(position)
+      vectors.append(vector)
+      distances.append(distance)
+      angles.append(angle)
       
-      content = [self.t0]
-      content.extend(self._get_max_current_info(self.value))
-      
-      return QTable(content,
+      return QTable([times, positions, vectors, distances, angles],
                     names=('time', 'position', 'vector', 'distance', 'angle'), meta=meta)
     
     elif self._ndim == 2:
-      meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-      
-      times, positions, vectors, distances, angles = list(), list(), list(), list(), list()
-      
       for n, epoch_data in enumerate(self):
         epoch = self.times[n]
         position, vector, distance, angle = self._get_max_current_info(epoch_data.value)
@@ -522,11 +522,10 @@ class FieldMap(Quantity):
     .
     '''
     times, min_coordinates, max_coordinates, vectors, distances, angles, ratios = list(), list(), list(), list(), list(), list(), list()
+    meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
     
     # get field arrow
     if self._ndim == 1:
-      meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-      
       min_coordinate, max_coordinate, vector, distance, angle, ratio = self._get_pole_information(self.value)
       times.append(self.t0)
       min_coordinates.append(min_coordinate)
@@ -540,8 +539,6 @@ class FieldMap(Quantity):
                     names=('time', 'min coordinate', 'max coordinate', 'vector', 'distance', 'angle', 'ratio'), meta=meta)
     
     elif self._ndim == 2:
-      meta = {'t0':self.t0, 'datetime':self.datetime, 'field direction':self._axis, 'conduct model':self._conduct_model, 'eigenvalues':self._eigenvalues}
-      
       for n, epoch_data in enumerate(self):
         epoch = self.times[n]
         min_coordinate, max_coordinate, vector, distance, angle, ratio = self._get_pole_information(epoch_data.value)
