@@ -270,7 +270,7 @@ Calculate current vectors on the sensor plane and make table.
 
 * if the dimension of input dataset is one : `astropy.table.QTable`
 
-  table contains current arrows on sensor plane: tail coordinate, head coordinate, vector, and distance
+  table contains current arrows on sensor plane: tail coordinate, head coordinate, vector, distance, and angle
         
 * if the dimension of input dataset is two : `astropy.table.QTable`
 
