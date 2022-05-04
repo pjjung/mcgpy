@@ -122,6 +122,7 @@ Properties of the `mcgpy.numeric.FieldMap` class only provide reading metadata t
 | Methods        | Discription |
 |----------------|-------------|
 | [arrows()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#arrows)      | Calculate current vectors on the sensor plane and make table         |
+| [currentmax()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#currentmax) | Find the maximum current dipole and  make table |
 | [currents(normalize)](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#currents) | Calculate the pseudo-current distribution |
 | [pole()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#pole)      | Calculate a field current vector on the sensor plane and make table         |
 
@@ -316,6 +317,38 @@ Calculate current vectors on the sensor plane and make table.
 .
 .
 ,...}
+```
+---
+#### currentmax()
+
+*def* **mcgpy.numeric.FieldMap**.currentmax()
+
+Find the maximum current dipole and make table
+
+##### Return
+
+* if the dimension of input dataset is one : `astropy.table.QTable`
+
+  table contains a maximum current dipole on sensor plane: position, vector, distances, angle
+        
+* if the dimension of input dataset is two : `astropy.table.QTable`
+
+  table contains a maximum current dipole on sensor plane during at each time: position, vector, distances, angle
+
+##### Examples
+```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.numeric import LeadField
+>>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
+>>> epoch_dataset = dataset.at(1126259462)
+>>> LeadField(epoch_dataset).currentmax()
+    time     position [2]                 vector                        distance              angle      
+     s                                                                    A m                  deg       
+------------ ------------ -------------------------------------- ---------------------- -----------------
+1638784409.0 50.0 .. 25.0 (543.2066276916597-874.8684876011514j) 1.0297904208943057e-06 58.16381709148949
+.
+.
+.
 ```
 
 ---
