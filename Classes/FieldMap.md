@@ -122,7 +122,7 @@ Properties of the `mcgpy.numeric.FieldMap` class only provide reading metadata t
 | Methods        | Discription |
 |----------------|-------------|
 | [arrows()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#arrows)      | Calculate current vectors on the sensor plane and make table         |
-| [currents()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#currents) | Calculate the pseudo-current distribution |
+| [currents(normalize)](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#currents) | Calculate the pseudo-current distribution |
 | [pole()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#pole)      | Calculate a field current vector on the sensor plane and make table         |
 
 
@@ -260,11 +260,19 @@ Here is an example:
 
 ## Methods Documentation
 
-#### arrows()
+#### arrows(normalize)
 
-*def* **mcgpy.numeric.FieldMap**.arrows()
+*def* **mcgpy.numeric.FieldMap**.arrows(normalize)
 
 Calculate current vectors on the sensor plane and make table.
+
+##### Parameters
+
+* normalize: `boolean`, optional
+
+  this option normalizes the length of each current arrow vector. it might be helpful when the current arrow map is plotted.
+  
+  default value is `False`
 
 ##### Return 
 
@@ -283,7 +291,7 @@ Calculate current vectors on the sensor plane and make table.
 >>> from mcgpy.numeric import LeadField
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
 >>> epoch_dataset = dataset.at(1643734922)
->>> LeadField(epoch_dataset).arrows()
+>>> LeadField(epoch_dataset).arrows(normalize=Ture)
 <QTable length=289>
     tail [2]                      head [2]                  ...        distance               angle       
                                                             ...          A m                   deg        
