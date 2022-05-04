@@ -71,9 +71,11 @@ Grid related parameters and sensor's baseline depend on device properties. If th
 ## Return : `mcgpy.numerical.FieldMap`
 
 * if the dimension of input dataset is one
+
   2D-array, amplitude of given direction of magnetic vector on sensor plane
 
 * if the dimension of input dataset is two
+
    3D-array, amplitude of given direction of magnetic vectors on sensor plane
 
 ## Examples
@@ -120,7 +122,9 @@ Properties of the `mcgpy.numeric.FieldMap` class only provide reading metadata t
 | Methods        | Discription |
 |----------------|-------------|
 | [arrows()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#arrows)      | Calculate current vectors on the sensor plane and make table         |
+| [currents()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#currents) | Calculate the pseudo-current distribution |
 | [pole()](https://pjjung.github.io/mcgpy/Classes/FieldMap.html#pole)      | Calculate a field current vector on the sensor plane and make table         |
+
 
 ## Properties Documentation
 
@@ -301,6 +305,46 @@ float64	              float64	             complex128	    float64
 ```
 
 ---
+#### currents()
+
+*def* **mcgpy.numeric.FieldMap**.currents()
+
+Calculate the pseudo-current distribution
+
+##### Return
+
+* if the dimension of input dataset is one : `astropy.table.QTable`
+
+  2D-array of the pseudo-current distribution
+
+* if the dimension of input dataset is two : `astropy.table.QTable`
+
+  3D-array of the pseudo-current distribution
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseriesarray import TimeSeriesArray
+>>> from mcgpy.numeric import LeadField
+>>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
+>>> epoch_dataset = dataset.at(1643734922)
+>>> LeadField(epoch_dataset).currents()
+[[5.80895955e-08 6.82033252e-08 8.38246186e-08 ...
+  1.15054266e-07 1.04146993e-07 9.39165794e-08]
+ [7.09999483e-08 8.75171891e-08 1.14528064e-07 ...
+  1.44635222e-07 1.21560702e-07 1.04386546e-07]
+ [1.00648263e-07 1.33912668e-07 1.90724137e-07 ...
+  1.92781156e-07 1.53434507e-07 1.24748848e-07]
+ ...
+ [1.03979718e-07 1.27879891e-07 1.61285186e-07 ...
+  1.89137749e-07 1.54725988e-07 1.27253331e-07]
+ [8.71076169e-08 9.96315932e-08 1.19166692e-07 ...
+  1.35433846e-07 1.16556350e-07 9.96535657e-08]
+ [7.68162949e-08 8.32770941e-08 9.37287466e-08 ...
+  1.11205662e-07 9.82416776e-08 8.55364650e-08]] A m
+```
+
+---
 #### pole()
 
 *def* **mcgpy.numeric.FieldMap**.pole()
@@ -325,25 +369,19 @@ Calculate a field current vector on the sensor plane and make table.
 >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
 >>> epoch_dataset = dataset.at(1643734922)
 >>> LeadField(epoch_dataset).pole()
-type         	1643734922 s
-str14        	object
-min coordinate	(-75.0, -100.0)
-max coordinate	(75.0, 100.0)
-vector	        (150+0j)
-distance	    150.0
-angle	        -0.0 deg
-ratio	        0.76948964274897
+time min coordinate [2] max coordinate [2]    vector        distance            angle              ratio      
+ s                                                             mm                deg                          
+---- ------------------ ------------------ ----------- ------------------ ------------------ -----------------
+1643734922      50.0 .. 100.0     -75.0 .. -75.0 (-125-175j) 215.05813167606567 125.53767779197439 1.349543578763341
+
 >>>
 >>> duration_dataset =  dataset.crop(1643734922, 1643734930)
 >>> LeadField(epoch_dataset)
-type         	1643734922 s         	1643734922.29296875 s         	...
-str14        	object         	        object                      	...
-min coordinate	(-75.0, -100.0)         (-75.0, -100.0)             	...
-max coordinate	(75.0, 100.0)           (75.0, 100.0)               	...
-vector	        (150+0j)                (150+0j)         	            ...
-distance	    150.0                   150.0         	                ...
-angle	        -0.0 deg                -0.0 deg         	            ...
-ratio	        0.76948964274897        0.76948964274897              	...
+time min coordinate [2] max coordinate [2]    vector        distance            angle              ratio      
+ s                                                             mm                deg                          
+---- ------------------ ------------------ ----------- ------------------ ------------------ -----------------
+1643734922      50.0 .. 100.0     -75.0 .. -75.0 (-125-175j) 215.05813167606567 125.53767779197439 1.349543578763341
+1643734922.2929687      50.0 .. 100.0     -75.0 .. -75.0 (-125-175j) 215.05813167606567 125.53767779197439 1.349543578763341
 '''
 ```
 
