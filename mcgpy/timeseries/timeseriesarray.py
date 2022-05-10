@@ -1273,6 +1273,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       source = self[start_index:end_index].value
       area = np.multiply(np.mean(abs(source)), dt)
       new = area.view(type(self))
+      self._finalize_attribute(new)
       t0 = self.times[start_index]
       new.t0 = t0
       new.datetime = tconvert(t0.value)
@@ -1285,6 +1286,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       for ch in source:
         dataset = np.append(dataset, np.multiply(np.mean(abs(ch)), dt))
       new = dataset.view(type(self))
+      self._finalize_attribute(new)
       t0 = self.times[start_index]
       new.t0 = t0
       new.datetime = tconvert(t0.value)
@@ -1324,6 +1326,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       source = self[start_index:end_index].value
       area = np.multiply(np.mean(source), dt)
       new = area.view(type(self))
+      self._finalize_attribute(new)
       t0 = self.times[start_index]
       new.t0 = t0
       new.datetime = tconvert(t0.value)
@@ -1336,6 +1339,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       for ch in source:
         dataset = np.append(dataset, np.multiply(np.mean(ch), dt))
       new = dataset.view(type(self))
+      self._finalize_attribute(new)
       t0 = self.times[start_index]
       new.t0 = t0
       new.datetime = tconvert(t0.value)
