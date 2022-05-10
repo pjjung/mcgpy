@@ -1497,28 +1497,3 @@ class TimeSeriesArray(TimeSeriesArrayCore):
         out.append(self.times[np.argmin(ch)])
       return out
 
-  # argwhere
-  def argwhere(self, condition):
-    '''find the times to match the given condition
-    
-    Return :
-    ------
-      if the dataset is one-dimensional, return will be timestamps to match the given condition : "astropy.table.Quantity"
-    
-      if the dataset is two-dimensional, return will be timestamps to match the given condition for each channel : "astropy.table.Quantity" in "list"
-    
-    Examples
-    --------
-    >>> from mcgpy.timeseries import TimeSeriesArray
-    >>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
-    >>> data.argwhere(data == 53.7786021×10−15T)
-    10 s
-    '''
-    if np.ndim(self) == 1:
-      return self.times[np.where(condition)]
-    
-    elif np.ndim(self) == 2:
-      out = list()
-      for ch in self.value:
-        out.append(self.times[np.where(condition)])
-      return out
