@@ -633,20 +633,4 @@ class TimeSeries(TimeSeriesCore):
     10 s
     '''
     return self.times[np.argmin(self.value)]
-  
-  # argwhere
-  def argwhere(self, condition):
-    '''find the times to match the given condition
-    
-    Return :
-    ------
-      if the dataset is one-dimensional, return will be timestamps to match the given condition : "astropy.table.Quantity"
 
-    Examples
-    --------
-    >>> from mcgpy.timeseries import TimeSeriesArray
-    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
-    >>> data.argwhere(data == 53.7786021×10−15T)
-    10 s
-    '''
-    return self.times[np.where(condition)]
