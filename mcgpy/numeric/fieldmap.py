@@ -177,6 +177,10 @@ class FieldMap(Quantity):
   def _get_arrows_table(self, data, meta, normalize):
     # calculate arrow vector
     arrow_vectors = np.gradient(data, axis=0) - 1j*np.gradient(data, axis=1)
+    if normalize==True:
+      arrow_vector_distances = abs(arrow_vectors)
+      normalization_min = arrow_vector_distances.min().value
+      normalization_denominator = arrow_vector_distances.max().value - normalization_min
     # organize X and Y coordinates
     xs, ys = self.X.flatten().value, self.Y.flatten().value
     
@@ -188,8 +192,7 @@ class FieldMap(Quantity):
       if normalize == False:
         head_x, head_y = x+np.real(vector), y+np.imag(vector)     
       elif normalize == True:
-        normalization_factor = np.sqrt(abs(arrow_vectors).max().value)
-        head_x, head_y = x+np.real(vector)/normalization_factor, y+np.imag(vector)/normalization_factor
+        head_x, head_y = x+(np.real(vector)-normalization_min)/normalization_denominator, y+(np.imag(vector)-normalization_min)/normalization_denominator
    
       Euclidean_distance = abs(vector)*Unit('amp meter')*10**-9
       current_angle = -180*(np.angle(vector)/np.pi)*Unit('degree')
