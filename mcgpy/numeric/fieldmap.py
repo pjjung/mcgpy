@@ -130,7 +130,7 @@ class FieldMap(Quantity):
       
     elif np.ndim(data) == 2 and isinstance(data, TimeSeriesArray):
       cls._ndim = 2
-      if data.duration.value > 0.1:
+      if data.duration.value > 1:
         warn('RuntimeWarning: {} dataset was given to {}'.format(data.duration, cls.__name__))
       positions = data.positions
       directions = data.directions
