@@ -15,6 +15,7 @@
 
 import os
 import numpy as np
+from scipy.signal import find_peaks
 from astropy.units import (Quantity, second)
 from astropy import units as u
 
@@ -634,3 +635,165 @@ class TimeSeries(TimeSeriesCore):
     '''
     return self.times[np.argmin(self.value)]
 
+  # smooth
+  def smooth(self, window_len=50, window='hamming'):
+    '''smooth the data using a window with requested size.
+    
+    This method is based on the convolution of a scaled window with the signal.
+    The signal is prepared by introducing reflected copies of the signal 
+    (with the window size) in both ends so that transient parts are minimized
+    in the begining and end part of the output signal.
+    
+    Parameters : "int", "str"
+    ----------
+      window_len: the dimension of the smoothing window; should be an odd integer
+        
+      window: the type of window from "flat", "hanning", "hamming", "bartlett", "blackman"
+         
+              flat window will produce a moving average smoothing.
+
+    Return : "mcgpy.timeseries.TimeSeriesArray"
+    -------
+      the smoothed signal
+        
+    
+    Example :
+    -------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.smooth()
+    [0.05400055 0.05393543 0.05380835 ... 0.02055647 0.02056301 0.02056301] 1e-15 T
+    
+    See also : 
+    ---------
+    
+    numpy.hanning, numpy.hamming, numpy.bartlett, numpy.blackman, numpy.convolve
+    scipy.signal.lfilter
+ 
+    TODO: the window parameter could be the window itself if an array instead of a string
+    NOTE: length(output) != length(input), to correct this: return y[(window_len/2-1):-(window_len/2)] instead of just y.
+    '''
+
+    # check the paramters
+    if window_len<3:
+      return self
+    
+    if not window in ['flat', 'hanning', 'hamming', 'bartlett', 'blackman']:
+      raise ValueError("Window is on of 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'")
+    
+    if self.size < window_len:
+      raise ValueError("Input vector needs to be bigger than window size.")
+
+    s=np.r_[self[window_len-1:0:-1],self,self[-2:-window_len-1:-1]]
+    #print(len(s))
+    if window == 'flat': #moving average
+      w=np.ones(window_len,'d')
+    else:
+      w=eval('np.'+window+'(window_len)')
+
+    y=np.convolve(w/w.sum(),s,mode='valid')
+
+    new = y[window_len//2:1-window_len//2]
+    self._finalize_attribute(new)
+
+    return new
+        
+  
+  # slope correction
+  def slope_correction(self):
+    '''signal slope correction method
+       is based on the linear function which obtaines initial and last coorduinates of signal
+       
+    Return :  "mcgpy.timeseries.TimeSeriesArray"
+    ------
+      slope adjusted signal or signals
+      
+    Examples :
+    --------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.slope_correction()
+    [0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
+    '''
+    a = (self[-1]-self[0])/len(self)
+    b = self[0]
+    x = np.arange(0, len(self))
+    new = self-(a*x+b)
+    self._finalize_attribute(new)
+    
+    return new
+      
+    
+  # peak finder
+  def find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs):
+    '''Find peaks inside a signal based on peak properties
+    
+    Parameters : "ini", "float",  "str"
+    ------------      
+      height_amp : "float", optional
+      
+          Used for determining maximum height in sample.
+      
+      threshold : number or ndarray or sequence, optional
+        
+          Required threshold of peaks, the vertical distance to its neighboring samples. 
+          Either a number, None, an array matching x or a 2-element sequence of the former. The first element is always interpreted as the minimal and the second, if supplied, as the maximal required threshold.
+      
+      distance : number, optional
+      
+          Required minimal horizontal distance (>= 1) in samples between neighbouring peaks. Smaller peaks are removed first until the condition is fulfilled for all remaining peaks.
+      
+      prominence : number or ndarray or sequence, optional
+      
+          Required prominence of peaks. Either a number, None, an array matching x or a 2-element sequence of the former. 
+          The first element is always interpreted as the minimal and the second, if supplied, as the maximal required prominence.
+      
+      width : number or ndarray or sequence, optional
+      
+          Required width of peaks in samples. Either a number, None, an array matching x or a 2-element sequence of the former. 
+          The first element is always interpreted as the minimal and the second, if supplied, as the maximal required width.
+      
+      wlen : "int", optional
+      
+          Used for calculation of the peaks prominences, thus it is only used if one of the arguments prominence or width is given. See argument wlen in peak_prominences for a full description of its effects.
+      
+      rel_height : "float", optional
+      
+          Used for calculation of the peaks width, thus it is only used if width is given. 
+          See argument rel_height in peak_widths for a full description of its effects.
+      
+      plateau_size : number or ndarray or sequence, optional
+      
+          Required size of the flat top of peaks in samples. Either a number, None, an array matching x or a 2-element sequence of the former. 
+          The first element is always interpreted as the minimal and the second, if supplied as the maximal required plateau size.
+    
+    
+    Return : "mcgpy.timeseries.TimeSeriesArray"
+    --------
+    
+        times of peaks in dataset that satisfy all given conditions
+    
+    Examples :
+    ---------
+    >>> from mcgpy.timeseries import TimeSeries
+    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+    >>> data.find_peaks()
+    [1.11948764e+09 1.11948764e+09 1.11948764e+09 1.11948764e+09
+     1.11948764e+09 1.11948764e+09 1.11948764e+09 1.11948765e+09
+     1.11948765e+09 1.11948765e+09 1.11948765e+09 1.11948765e+09
+     1.11948765e+09 1.11948765e+09 1.11948765e+09 1.11948766e+09
+     1.11948766e+09 1.11948766e+09 1.11948766e+09 1.11948766e+09
+     1.11948766e+09 1.11948766e+09] s
+    
+    See also:
+    "scipy.signal.find_peaks"
+    https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html
+    
+    '''
+    
+    times = self.times
+    height = self.max().value*height_amp
+
+    peaks, _ = find_peaks(self.value, height=height, threshold=threshold, distance=distance, prominence=prominence, width=width, wlen=wlen, rel_height=rel_height, plateau_size=plateau_size)
+
+    return times[peaks]
