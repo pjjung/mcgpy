@@ -134,6 +134,7 @@ user defined data array can be applied, and use its properties and methods, too.
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#cropstart-end-kwargs)           |  Slice the time-series between start and end times        |
 | [exclude(numbers, labels)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#excludenumbersnone-labelsnone-kwargs)           |    Except the channel data from the dataset         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#fft)           |    Calculate the fast Fourier transform, FFT         |
+| [find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None)]() | Find peaks inside a signal based on peak properties|
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#highpasshfreq-order2-kwargs)           |   Apply the highpass filter to the dataset         |
 | [integral(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#integralstart-end-kwargs)           |  Calculate the integrated area between start and end timestamps           |
@@ -144,6 +145,8 @@ user defined data array can be applied, and use its properties and methods, too.
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |   Calculate the power spectral density, PSD          |
 | [read(number, label)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#readnumbernone-labelnone-kwargs)           |   Read one channel data from the dataset          |
 | [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#rmsstride1-kwargs)           |    Get the rms dataset by a given stride  |
+| [slope_correction()]() | Signal slope correction method |
+| [smooth(window_len=20, window='hamming')]() | Smooth the data using a window with requested size |
 | [to_avg()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_avg)           |    Calculate an average of channel signals         |
 | [to_rms()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_rms)           |    Calculate the rms for all channels         |
 
@@ -718,6 +721,76 @@ Calculate the fast Fourier transform, FFT.
 ```
 
 ---
+#### find_peaks(height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs)
+
+_def_ **mcgpy.timeseries.TimeSeriesArray**.find_peaks(height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs)
+
+Find peaks inside a signal based on peak properties.
+
+##### Parameters : `ini`, `float`, `str`
+
+* **height_amp** : `float`, optional
+      
+    Used for determining maximum height in sample.
+      
+* **threshold** : `number` or `ndarray` or `sequence`, optional
+        
+    Required threshold of peaks, the vertical distance to its neighboring samples. Either a number, None, an array matching x or a 2-element sequence of the former.
+    The first element is always interpreted as the minimal and the second, if supplied, as the maximal required threshold.
+      
+* distance : `number`, optional
+      
+    Required minimal horizontal distance (>= 1) in samples between neighbouring peaks. Smaller peaks are removed first until the condition is fulfilled for all remaining peaks.
+      
+* prominence : `number` or `ndarray` or `sequence`, optional
+      
+    Required prominence of peaks. Either a number, None, an array matching x or a 2-element sequence of the former. 
+    The first element is always interpreted as the minimal and the second, if supplied, as the maximal required prominence.
+      
+* width : `number` or `ndarray` or `sequence`, optional
+      
+    Required width of peaks in samples. Either a number, None, an array matching x or a 2-element sequence of the former. 
+    The first element is always interpreted as the minimal and the second, if supplied, as the maximal required width.
+      
+* wlen : `int`, optional
+      
+    Used for calculation of the peaks prominences, thus it is only used if one of the arguments prominence or width is given. See argument wlen in peak_prominences for a full description of its effects.
+      
+* rel_height : `float`, optional
+      
+    Used for calculation of the peaks width, thus it is only used if width is given. 
+    See argument rel_height in peak_widths for a full description of its effects.
+      
+* plateau_size : `number` or `ndarray` or `sequence`, optional
+      
+    Required size of the flat top of peaks in samples. Either a number, None, an array matching x or a 2-element sequence of the former. 
+    The first element is always interpreted as the minimal and the second, if supplied as the maximal required plateau size.
+
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
+
+times of peaks in dataset that satisfy all given conditions
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
+>>> data.find_peaks()
+[1.11948764e+09 1.11948764e+09 1.11948764e+09 1.11948764e+09
+ 1.11948764e+09 1.11948764e+09 1.11948764e+09 1.11948765e+09
+ 1.11948765e+09 1.11948765e+09 1.11948765e+09 1.11948765e+09
+ 1.11948765e+09 1.11948765e+09 1.11948765e+09 1.11948766e+09
+ 1.11948766e+09 1.11948766e+09 1.11948766e+09 1.11948766e+09
+ 1.11948766e+09 1.11948766e+09] s
+```
+
+```note
+See also:
+"scipy.signal.find_peaks"
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html
+```
+
+---
 #### flattened(freq=1, **kwargs)
 
 _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.flattened(freq=1, **kwargs)
@@ -1087,6 +1160,70 @@ Get the rms dataset by a given stride.
 …, 
 [1497.2229, 1485.2231, 1497.0368, …, 2169.8838, 2085.6369, 2026.235], 
 [2499.4694, 2532.6463, 2630.5988, …, 2015.9665, 666.48291, 1291.5833]]1×10−15T
+```
+
+---
+#### slope_correction()
+
+_def_ **mcgpy.timeseries.TimeSeriesArray**.slope_correction()
+
+Signal slope correction method is based on the linear function which obtaines initial and last coorduinates of signal
+
+##### Return : `mcgpy.timeseries.TimeSeries`
+
+slope adjusted signal or signals
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5').to_rms()
+>>> data.slope_correction()
+[0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
+```
+---
+#### smooth(window_len=20, window='hamming')
+
+_def_ **mcgpy.timeseries.TimeSeriesArray**.smooth(window_len=20, window='hamming')
+
+smooth the data using a window with requested size.
+    
+This method is based on the convolution of a scaled window with the signal.
+The signal is prepared by introducing reflected copies of the signal (with the window size) in both ends so that transient parts are minimized in the begining and end part of the output signal.
+
+##### Parameters
+
+* window_len : `int`, optional
+
+    the dimension of the smoothing window; should be an odd integer
+        
+* window : `str`, optional 
+
+    the type of window from `flat`, `hanning`, `hamming`, `bartlett`, `blackman`
+         
+    flat window will produce a moving average smoothing.
+
+##### Return : `mcgpy.timeseries.TimeSeries`
+
+rms series
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeriesArray
+>>> dataset = TimeSeriesArray('~/test/data/file.hdf5').to_rms()
+   >>> data.smooth()
+    [0.05400055 0.05393543 0.05380835 ... 0.02055647 0.02056301 0.02056301] 1e-15 T
+```
+
+```note
+See also
+    
+numpy.hanning, numpy.hamming, numpy.bartlett, numpy.blackman, numpy.convolve
+scipy.signal.lfilter
+
+TODO: the window parameter could be the window itself if an array instead of a string
+NOTE: length(output) != length(input), to correct this: return y[(window_len/2-1):-(window_len/2)] instead of just y.
 ```
 
 ---
