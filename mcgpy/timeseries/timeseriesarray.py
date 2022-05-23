@@ -1503,7 +1503,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       return out
 
   # smooth
-  def smooth(self, window_len=50, window='hamming'):
+  def smooth(self, window_len=20, window='hamming'):
     '''smooth the data using a window with requested size.
     
     This method is based on the convolution of a scaled window with the signal.
