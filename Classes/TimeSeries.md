@@ -119,8 +119,8 @@ User defined data array can be applied, and use its properties and methods
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
 | [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
-| [slope_correction()]() | signal slope correction method |
-| [smooth(window_len=20, window='hamming')]() | Smooth the data using a window with requested size |
+| [slope_correction()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#slope_correction) | signal slope correction method |
+| [smooth(window_len=20, window='hamming')](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
 
 ## Properties Documentation
 
@@ -694,10 +694,12 @@ filted series
 
 Find the maximum value
 
+---
 ### min()
 
 Find the maximum value
 
+---
 #### notch(freq, Q=30, **kwargs)
 
 _def_ **mcgpy.timeseries.TimeSeries**.notch(freq, Q=30, flattening=True, **kwargs)
