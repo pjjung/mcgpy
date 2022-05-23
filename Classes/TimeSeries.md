@@ -110,6 +110,7 @@ User defined data array can be applied, and use its properties and methods
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
+| [find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None)]() | Find peaks inside a signal based on peak properties |
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
@@ -117,7 +118,9 @@ User defined data array can be applied, and use its properties and methods
 | [min()](https://docs.python.org/3/library/functions.html#min) | Find the minimum value |
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
-| [rms(rms(stride))](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
+| [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
+| [slope_correction()]() | signal slope correction method |
+| [smooth(window_len=20, window='hamming')]() | Smooth the data using a window with requested size |
 
 ## Properties Documentation
 
@@ -514,7 +517,75 @@ fft frequency-series
 >>> data.fft()
 [92.382265, 16.48454, …,  0.27365534, 0.2273498]1×10−15T
 ```
+---
+#### find_peaks(height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs)
 
+_def_ **mcgpy.timeseries.TimeSeries**.find_peaks(height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs)
+
+Find peaks inside a signal based on peak properties.
+
+##### Parameters : `ini`, `float`, `str`
+
+* **height_amp** : `float`, optional
+      
+    Used for determining maximum height in sample.
+      
+* **threshold** : `number` or `ndarray` or `sequence`, optional
+        
+    Required threshold of peaks, the vertical distance to its neighboring samples. Either a number, None, an array matching x or a 2-element sequence of the former.
+    The first element is always interpreted as the minimal and the second, if supplied, as the maximal required threshold.
+      
+* distance : `number`, optional
+      
+    Required minimal horizontal distance (>= 1) in samples between neighbouring peaks. Smaller peaks are removed first until the condition is fulfilled for all remaining peaks.
+      
+* prominence : `number` or `ndarray` or `sequence`, optional
+      
+    Required prominence of peaks. Either a number, None, an array matching x or a 2-element sequence of the former. 
+    The first element is always interpreted as the minimal and the second, if supplied, as the maximal required prominence.
+      
+* width : `number` or `ndarray` or `sequence`, optional
+      
+    Required width of peaks in samples. Either a number, None, an array matching x or a 2-element sequence of the former. 
+    The first element is always interpreted as the minimal and the second, if supplied, as the maximal required width.
+      
+* wlen : `int`, optional
+      
+    Used for calculation of the peaks prominences, thus it is only used if one of the arguments prominence or width is given. See argument wlen in peak_prominences for a full description of its effects.
+      
+* rel_height : `float`, optional
+      
+    Used for calculation of the peaks width, thus it is only used if width is given. 
+    See argument rel_height in peak_widths for a full description of its effects.
+      
+* plateau_size : `number` or `ndarray` or `sequence`, optional
+      
+    Required size of the flat top of peaks in samples. Either a number, None, an array matching x or a 2-element sequence of the former. 
+    The first element is always interpreted as the minimal and the second, if supplied as the maximal required plateau size.
+
+##### Return : `mcgpy.timeseries.TimeSeriesArray`
+
+times of peaks in dataset that satisfy all given conditions
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.find_peaks()
+[1.11948764e+09 1.11948764e+09 1.11948764e+09 1.11948764e+09
+ 1.11948764e+09 1.11948764e+09 1.11948764e+09 1.11948765e+09
+ 1.11948765e+09 1.11948765e+09 1.11948765e+09 1.11948765e+09
+ 1.11948765e+09 1.11948765e+09 1.11948765e+09 1.11948766e+09
+ 1.11948766e+09 1.11948766e+09 1.11948766e+09 1.11948766e+09
+ 1.11948766e+09 1.11948766e+09] s
+```
+
+```note
+See also:
+"scipy.signal.find_peaks"
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html
+```
 ---
 #### flattened(freq=1, **kwargs)
 
