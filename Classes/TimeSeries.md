@@ -110,7 +110,7 @@ User defined data array can be applied, and use its properties and methods
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
-| [find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None)]() | Find peaks inside a signal based on peak properties |
+| [find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties |
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
@@ -810,3 +810,69 @@ rms series
 ```
 
 ---
+#### slope_correction()
+
+_def_ **mcgpy.timeseries.TimeSeries**.slope_correction()
+
+Signal slope correction method is based on the linear function which obtaines initial and last coorduinates of signal
+
+##### Return : `mcgpy.timeseries.TimeSeries`
+
+slope adjusted signal or signals
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+>>> data.slope_correction()
+[0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
+```
+
+---
+#### smooth(window_len=20, window='hamming')
+
+_def_ **mcgpy.timeseries.TimeSeries**.smooth(window_len=20, window='hamming')
+
+smooth the data using a window with requested size.
+    
+This method is based on the convolution of a scaled window with the signal.
+The signal is prepared by introducing reflected copies of the signal (with the window size) in both ends so that transient parts are minimized in the begining and end part of the output signal.
+
+##### Parameters
+
+* window_len : `int`, optional
+
+    the dimension of the smoothing window; should be an odd integer
+        
+* window : `str`, optional 
+
+    the type of window from `flat`, `hanning`, `hamming`, `bartlett`, `blackman`
+         
+    flat window will produce a moving average smoothing.
+
+##### Return : `mcgpy.timeseries.TimeSeries`
+
+rms series
+
+##### Examples
+
+```python
+>>> from mcgpy.timeseries import TimeSeries
+>>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
+   >>> data.smooth()
+    [0.05400055 0.05393543 0.05380835 ... 0.02055647 0.02056301 0.02056301] 1e-15 T
+```
+
+```note
+See also
+    
+numpy.hanning, numpy.hamming, numpy.bartlett, numpy.blackman, numpy.convolve
+scipy.signal.lfilter
+
+TODO: the window parameter could be the window itself if an array instead of a string
+NOTE: length(output) != length(input), to correct this: return y[(window_len/2-1):-(window_len/2)] instead of just y.
+```
+
+---
+
