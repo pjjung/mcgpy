@@ -1569,7 +1569,7 @@ class TimeSeriesArray(TimeSeriesArrayCore):
       
     # for a two-dimensional dataset
     elif np.ndim(self) == 2:
-      new = np.empty(self.shape)
+      _new = np.empty(self.shape)
       for i, ch in enumerate(self.value):
         if ch.size < window_len:
           raise ValueError("Input vector needs to be bigger than window size.")
@@ -1583,8 +1583,9 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
         y=np.convolve(w/w.sum(),s,mode='valid')
 
-        new[i] = y[window_len//2:1-window_len//2]
-    
+        _new[i] = y[window_len//2:1-window_len//2]
+        
+      new = _new.view(type(self))
       self._finalize_attribute(new)
       return new
     
