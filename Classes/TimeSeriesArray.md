@@ -134,7 +134,7 @@ user defined data array can be applied, and use its properties and methods, too.
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#cropstart-end-kwargs)           |  Slice the time-series between start and end times        |
 | [exclude(numbers, labels)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#excludenumbersnone-labelsnone-kwargs)           |    Except the channel data from the dataset         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#fft)           |    Calculate the fast Fourier transform, FFT         |
-| [find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties|
+| [find_peaks(self, height_amp, threshold, distance, prominence, width, wlen, rel_height, plateau_size)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties|
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#highpasshfreq-order2-kwargs)           |   Apply the highpass filter to the dataset         |
 | [integral(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#integralstart-end-kwargs)           |  Calculate the integrated area between start and end timestamps           |
@@ -145,7 +145,7 @@ user defined data array can be applied, and use its properties and methods, too.
 | [read(number, label)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#readnumbernone-labelnone-kwargs)           |   Read one channel data from the dataset          |
 | [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#rmsstride1-kwargs)           |    Get the rms dataset by a given stride  |
 | [slope_correction()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#slope_correction) | Signal slope correction method |
-| [smooth(window_len=20, window='hamming')](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
+| [smooth(window_len, window)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
 | [to_avg()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_avg)           |    Calculate an average of channel signals         |
 | [to_rms()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_rms)           |    Calculate the rms for all channels         |
 
