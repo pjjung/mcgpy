@@ -140,7 +140,6 @@ user defined data array can be applied, and use its properties and methods, too.
 | [integral(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#integralstart-end-kwargs)           |  Calculate the integrated area between start and end timestamps           |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#lowpasslfreq-order2-kwargs)           |   Apply the lowpass filter to the dataset          |
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#notchfreq-q30-kwargs)           |  Apply the notch/bandstop filter to the dataset          |
-| [offset_correction(interval)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#offset_correctioninterval2-kwargs)           |   Offset correction by signal mode value          |
 | [offset_correction_at(epoch)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#offset_correction_atepoch-kwargs)           |    Offset correction by the value at the given timestamp, each signal offset will be subtracted from the value at the given timestamp         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |   Calculate the power spectral density, PSD          |
 | [read(number, label)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#readnumbernone-labelnone-kwargs)           |   Read one channel data from the dataset          |
@@ -976,40 +975,6 @@ filted dataset
  …, 
  [−1490.6493, −1468.6386, −1438.5928, …, −1970.1784, −1950.0809, −2002.2954], 
  [−2479.929, −2475.262, −2390.6521, …, −1948.1221, −1940.4119, −1800.9872]]1×10−15T
-```
-
----
-#### offset_correction(interval=2, **kwargs)
-
-_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.offset_correction(interval=2, **kwargs)
-
-Offset correction by signal mode value.
-
-##### Parameters
-
-* **interval** : `int`
-
-  number of seconds for dividing the time-series
-
-##### Return : `mcgpy.timeseries.TimeSeriesArray`
-
-offset corrected dataset for each channel based on the signal mode value
-
-##### Examples
-
-```python
->>> from mcgpy.timeseries import TimeSeriesArray
->>> dataset = TimeSeriesArray('~/test/data/file.hdf5')
->>> dataset.offset_correction()
-[[165.89165, 186.20491, 207.36456, …, −110.87656, −38.087368, 62.632561], 
- [236.98807, 194.66877, 168.43081, …, −148.11754, −158.27417, −75.32835], 
- …, 
- [514.60266, 519.68098, 536.6087, …, 28.777122, 60.093403, 19.466877], 
- [55.015087, 31.31628, 93.948841, …, 598.39487, 620.40091, 773.59676]]1×10−15T
-```
-
-```note
- [scipy.stats.mode](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mode.html) is utilized to match the baseline of multi-channels, in which the mode is the modal (most common) value in the passed array.
 ```
 
 ---
