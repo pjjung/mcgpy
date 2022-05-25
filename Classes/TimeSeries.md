@@ -110,7 +110,7 @@ User defined data array can be applied, and use its properties and methods
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
-| [find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties |
+| [find_peaks(self, height_amp, threshold, distance, prominence, width, wlen, rel_height, plateau_size)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties |
 | [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
@@ -120,7 +120,7 @@ User defined data array can be applied, and use its properties and methods
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
 | [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
 | [slope_correction()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#slope_correction) | Signal slope correction method |
-| [smooth(window_len=20, window='hamming')](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
+| [smooth(window_len, window)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
 
 ## Properties Documentation
 
