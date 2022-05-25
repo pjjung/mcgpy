@@ -797,3 +797,4 @@ class TimeSeries(TimeSeriesCore):
     peaks, _ = find_peaks(self.value, height=height, threshold=threshold, distance=distance, prominence=prominence, width=width, wlen=wlen, rel_height=rel_height, plateau_size=plateau_size)
 
     return times[peaks]
+
