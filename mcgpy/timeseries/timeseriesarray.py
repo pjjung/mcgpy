@@ -1086,52 +1086,6 @@ class TimeSeriesArray(TimeSeriesArrayCore):
 
       return FrequencySeries(asdset, unit=psd_unit, frequencies=findex)
 
-  
-  # offset correction
-  def offset_correction(self, interval=2, **kwargs):
-    '''offset correction by signal mode value
-    
-    Parameters
-    ----------
-    interval : "int"
-        number of seconds for dividing the time-series
-    
-    Return : "mcgpy.timeseries.TimeSeriesArray"
-    ------
-        offset corrected dataset for each channel based on the signal mode value
-    
-    Examples
-    --------
-    >>> from mcgpy.timeseries import TimeSeriesArray
-    >>> dataset = TimeSeriesArray("~/test/raw/file/path.hdf5")
-    >>> dataset.offset_correction()
-    [[165.89165, 186.20491, 207.36456, …, −110.87656, −38.087368, 62.632561], 
-     [236.98807, 194.66877, 168.43081, …, −148.11754, −158.27417, −75.32835], 
-     …, 
-     [514.60266, 519.68098, 536.6087, …, 28.777122, 60.093403, 19.466877], 
-     [55.015087, 31.31628, 93.948841, …, 598.39487, 620.40091, 773.59676]]1×10−15T
-
-    Note
-    ----
-    "scipy.stats.mode" is utilized to match the baseline of multi-channels, in which the mode is the modal (most common) value in the passed array.
-    '''
-    
-    if np.ndim(self) == 1:
-      adjusted = self._offset_guessing(self, interval)
-      new = adjusted.view(type(self))
-      self._finalize_attribute(new)
-
-      return new  
-    
-    elif np.ndim(self) == 2:
-      dataset = np.empty(self.shape)
-      for i, ch in enumerate(self.value):
-        dataset[i] = self._offset_guessing(ch, interval)
-      new = dataset.view(type(self))
-      self._finalize_attribute(new)
-
-      return new
-      
   # offset correction at
   def offset_correction_at(self, epoch, **kwargs):
     '''offset correction by the value at the given timestamp,
@@ -1621,13 +1575,13 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     # for a two-dimensional dataset
     elif np.ndim(self) == 2:
-      new = np.empty(self.shape)
+      _new = np.empty(self.shape)
       for i, ch in enumerate(self.value):
         a = (ch[-1]-ch[0])/len(ch)
         b = ch[0]
         x = np.arange(0, len(ch))
-        new[i] = ch-(a*x+b)
-        
+        _new[i] = ch-(a*x+b)
+      new = _new.view(type(self))
       self._finalize_attribute(new)
       return new
     
