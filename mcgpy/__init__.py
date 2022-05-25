@@ -11,4 +11,4 @@
 # See the GNU free software license for more details.
 
 __author__ = "Phil Jung <pjjung@amcg.kr>"
-__version__ = "0.1.10"
+__version__ = "0.1.11"
