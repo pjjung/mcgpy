@@ -144,7 +144,6 @@ user defined data array can be applied, and use its properties and methods, too.
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)           |   Calculate the power spectral density, PSD          |
 | [read(number, label)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#readnumbernone-labelnone-kwargs)           |   Read one channel data from the dataset          |
 | [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#rmsstride1-kwargs)           |    Get the rms dataset by a given stride  |
-| [slope_correction()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#slope_correction) | Signal slope correction method |
 | [smooth(window_len, window)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
 | [to_avg()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_avg)           |    Calculate an average of channel signals         |
 | [to_rms()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#to_rms)           |    Calculate the rms for all channels         |
@@ -821,9 +820,11 @@ baseline corrected signal or signals
  [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
 ```
 
+```note
 See also
+
 "Asymmetric Least Squares Smoothing" by P. Eilers and H. Boelens in 2005.
-    
+``` 
 ---
 #### highpass(hfreq, order=2, **kwargs)
 
@@ -1134,25 +1135,6 @@ Get the rms dataset by a given stride.
 [2499.4694, 2532.6463, 2630.5988, …, 2015.9665, 666.48291, 1291.5833]]1×10−15T
 ```
 
----
-#### slope_correction()
-
-_def_ **mcgpy.timeseries.TimeSeriesArray**.slope_correction()
-
-Signal slope correction method is based on the linear function which obtaines initial and last coorduinates of signal
-
-##### Return : `mcgpy.timeseries.TimeSeries`
-
-slope adjusted signal or signals
-
-##### Examples
-
-```python
->>> from mcgpy.timeseries import TimeSeriesArray
->>> dataset = TimeSeriesArray('~/test/data/file.hdf5').to_rms()
->>> data.slope_correction()
-[0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
-```
 ---
 #### smooth(window_len=20, window='hamming')
 
