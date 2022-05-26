@@ -119,7 +119,6 @@ User defined data array can be applied, and use its properties and methods
 | [notch(freq, Q)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#notchfreq-q30-kwargs)    | Apply the notch/bandstop filter to the data         |
 | [psd(fftlength, overlap, window, average)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#psdfftlengthnone-overlap0-windowhann-averagemedian-kwargs)      | Calculate the power spectral density, PSD         |
 | [rms(stride)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#rmsstride1-kwargs)      | Get the rms series by a given stride       |
-| [slope_correction()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#slope_correction) | Signal slope correction method |
 | [smooth(window_len, window)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#smoothwindow_len20-windowhamming) | Smooth the data using a window with requested size |
 
 ## Properties Documentation
@@ -618,6 +617,11 @@ baseline corrected signal or signals
  [−691.04563, −728.74299, −612.39823, …, −400.13071, −465.25414, −410.18831]1×10−15T
 ```
 
+```note
+See also
+
+"Asymmetric Least Squares Smoothing" by P. Eilers and H. Boelens in 2005.
+```
 ---
 
 #### highpass(hfreq, order=2, **kwargs)
@@ -815,26 +819,6 @@ rms series
 >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
 >>> data.rms()
 [397.35058, 475.13264, ..., 345.16582, 385.43835]1×10−15T
-```
-
----
-#### slope_correction()
-
-_def_ **mcgpy.timeseries.TimeSeries**.slope_correction()
-
-Signal slope correction method is based on the linear function which obtaines initial and last coorduinates of signal
-
-##### Return : `mcgpy.timeseries.TimeSeries`
-
-slope adjusted signal or signals
-
-##### Examples
-
-```python
->>> from mcgpy.timeseries import TimeSeries
->>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
->>> data.slope_correction()
-[0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
 ```
 
 ---
