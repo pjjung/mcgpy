@@ -851,11 +851,11 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     
     Parameters
     ----------
-    ratio : "float"
-    
     lam : "int"
     
     p : "float"
+    
+    nint : "int"
       
     Return : "mcgpy.timeseries.TimeSeries"
     ------
