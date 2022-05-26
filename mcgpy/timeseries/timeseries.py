@@ -464,13 +464,11 @@ class TimeSeries(TimeSeriesCore):
     
     Parameters
     ----------
-    ratio : "float"
-    
     lam : "int"
     
-    niter : "int"
+    p : "float"
     
-    full_output : "boolean"
+    nint : "int"
       
     Return : "mcgpy.timeseries.TimeSeries"
     ------
