@@ -111,7 +111,7 @@ User defined data array can be applied, and use its properties and methods
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
 | [find_peaks(self, height_amp, threshold, distance, prominence, width, wlen, rel_height, plateau_size)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties |
-| [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
+| [flattened(lam, p, niter)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
 | [max()](https://docs.python.org/3/library/functions.html#max) | Find the maximum value |
@@ -587,9 +587,9 @@ See also:
 https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html
 ```
 ---
-#### flattened(freq=1, **kwargs)
+#### flattened(lam, p, niter, **kwargs)
 
-_def_ **mcgpy.timeseries.TimeSeries**.flattened(freq=1, **kwargs)
+_def_ **mcgpy.timeseries.TimeSeries**.flattened(lam=None, p=1e-1, niter=10, **kwargs)
 
 Flattened a wave form by a lowpass filter
 
@@ -599,9 +599,15 @@ Flattened a wave form by a lowpass filter
 
   the frequency for the lowpass filter
 
+* **lam** : `int`
+    
+* **p** : `float`
+    
+* **niter** : `int`
+
 ##### Return : `mcgpy.timeseries.TimeSeries`
 
-(original signal) - (lowpass filtered signal)
+baseline corrected signal or signals
 
 ##### Examples
 
