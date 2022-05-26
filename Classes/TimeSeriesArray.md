@@ -135,7 +135,7 @@ user defined data array can be applied, and use its properties and methods, too.
 | [exclude(numbers, labels)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#excludenumbersnone-labelsnone-kwargs)           |    Except the channel data from the dataset         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#fft)           |    Calculate the fast Fourier transform, FFT         |
 | [find_peaks(self, height_amp, threshold, distance, prominence, width, wlen, rel_height, plateau_size)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties|
-| [flattened(freq)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
+| [flattened(lam, p, niter)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#highpasshfreq-order2-kwargs)           |   Apply the highpass filter to the dataset         |
 | [integral(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#integralstart-end-kwargs)           |  Calculate the integrated area between start and end timestamps           |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeriesArray.html#lowpasslfreq-order2-kwargs)           |   Apply the lowpass filter to the dataset          |
@@ -792,19 +792,22 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.htm
 ---
 #### flattened(freq=1, **kwargs)
 
-_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.flattened(freq=1, **kwargs)
+_def_ **mcgpy.timeseriesarray.TimeSeriesArray**.flattened(lam=None, p=1e-1, niter=10,  **kwargs)
 
-Flattened a wave form by a lowpass filter
+Flattened a wave form by an Asymmetric Least Squares Smoothing
 
 ##### Parameters
 
-* freq : `int`, `float`, `astropy.units.Quantity`
-
-  the frequency for the lowpass filter
+* lam : `int`
+    
+* p : `float`
+    
+* niter : `int`
+      
 
 ##### Return : `mcgpy.series.TimeSeriesArray`
 
-(original signal) - (lowpass filtered signal)
+baseline corrected signal or signals
 
 ##### Examples
 
@@ -817,6 +820,10 @@ Flattened a wave form by a lowpass filter
  [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
  [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
 ```
+
+See also
+"Asymmetric Least Squares Smoothing" by P. Eilers and H. Boelens in 2005.
+    
 ---
 #### highpass(hfreq, order=2, **kwargs)
 
