@@ -110,7 +110,7 @@ User defined data array can be applied, and use its properties and methods
 | [bandpass(lfre, hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#bandpasslfre-hfreq-order4-kwargs) | Apply the bandpass filter to the data         |
 | [crop(start, end)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#cropstart-end-kwargs)     | Slice the time-series between start and end times         |
 | [fft()](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#fft)      | Calculate the fast Fourier transform, FFT         |
-| [find_peaks(self, height_amp, threshold, distance, prominence, width, wlen, rel_height, plateau_size)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties |
+| [find_peaks(height_amp, threshold, distance, prominence, width, wlen, rel_height, plateau_size)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#find_peaksheight_amp085-thresholdnone-distancenone-prominencenone-width1-wlennone-rel_height05-plateau_sizenone-kwargs) | Find peaks inside a signal based on peak properties |
 | [flattened(lam, p, niter)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#flattenedfreq1-kwargs) | Flatten a wave-form by a lowpass filter |
 | [highpass(hfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#highpasshfreq-order2-kwargs) | Apply the highpass filter to the data         |
 | [lowpass(lfreq, order)](https://pjjung.github.io/mcgpy/Classes/TimeSeries.html#lowpasslfreq-order2-kwargs)  | Apply the lowpass filter to the data         |
