@@ -2,7 +2,7 @@
 sort: 1
 ---
 
-# Signal baseline correction
+# Baseline correction
 
 Signal analysis for the magnetocardiography(MCG) also has no place to avoid baseline wandering issues. Acquired signals consist of not only a magnetic field caused by the electrical activities of a heart but undesirable elements such as background noises, though. The most common reasons for this phenomenon in MCG signals are respiration and subtle moving by a subject. The baseline correction method is essentialy required to minimize these effects.
 
