@@ -4,7 +4,9 @@ sort: 1
 
 # Signal baseline correction
 
-bla bla
+Signal analysis for the magnetocardiography(MCG) also has no place to avoid baseline wandering issues. Acquired signals consist of not only a magnetic field caused by the electrical activities of a heart but undesirable elements such as background noises, though. The most common reasons for this phenomenon in MCG signals are respiration and subtle moving by a subject. The baseline correction method is essentialy required to minimize these effects.
+
+For this purpose, MCGpy provides the baseline correction method using an asymmetric least squares (ALS). This page shows an example of how to use it. A more detailed explanation is available in the references below.
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -24,8 +26,6 @@ bla bla
 ![example-flattened-1](../imgs/example-flattened-1.png)
 
 ## Asymmetric Least Squares (ALS) method
-
-bla bla
 
 ```sh
 >>> data_flattened = data.flattened()
