@@ -15,7 +15,9 @@
 
 import os
 import numpy as np
-from scipy.signal import find_peaks
+from numpy.linalg import norm
+from scipy import (stats, signal, sparse)
+from scipy.sparse import linalg
 from astropy.units import (Quantity, second)
 from astropy import units as u
 
@@ -184,6 +186,25 @@ class TimeSeries(TimeSeriesCore):
     new._unit = self.unit
     
     return new
+
+  def _baseline_als(self, y, lam, p, niter=10):                                                                        
+    s  = len(y)                                                                                               
+    # assemble difference matrix                                                                              
+    D0 = sparse.eye( s )                                                                                      
+    d1 = [np.ones( s-1 ) * -2]                                                                             
+    D1 = sparse.diags(d1, [-1])                                                                             
+    d2 = [np.ones( s-2 ) * 1]                                                                             
+    D2 = sparse.diags(d2, [-2])                                                                             
+
+    D  = D0 + D2 + D1                                                                                         
+    w  = np.ones(s)                                                                                         
+    for i in range(niter):                                                                                  
+      W = sparse.diags([w], [0])                                                                          
+      Z =  W + lam*D.dot(D.transpose())                                                                   
+      z = linalg.spsolve(Z, w*y)                                                                                 
+      w = p * (y > z) + (1-p) * (y < z)                                                                     
+
+    return z - np.median(z)
   
   ##---- Methods -------------------------------- 
 
@@ -438,29 +459,44 @@ class TimeSeries(TimeSeriesCore):
     return self._filter(filter_type='notch', notchfreq=freq, Q=Q, flattening=flattening)
 
   # flattened
-  def flattened(self, freq=1, **kwargs):
-    '''flatten a wave form by a lowpass filter
+  def flattened(self, lam=None, p=1e-1, niter=10, **kwargs):
+    '''flattened a wave form by "Asymmetric Least Squares Smoothing" 
     
     Parameters
     ----------
-    freq : "int", "float", "astropy.units.Quantity", optional
-      the frequency for the lowpass filter, default value is 1 Hz
+    ratio : "float"
+    
+    lam : "int"
+    
+    niter : "int"
+    
+    full_output : "boolean"
       
     Return : "mcgpy.timeseries.TimeSeries"
     ------
-        (original signal) - (lowpass filtered signal)
+        baseline corrected signal or signals
     
     Examples
     --------
     >>> from mcgpy.timeseries import TimeSeries
     >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
-    >>> data.flattened(1)
-    [−691.04563, −728.74299, −612.39823, …, −400.13071, −465.25414, −410.18831]1×10−15T
+    >>> data.flattened()
+    [[−106.09462, −86.757371, …,−44.093128, −34.719921], [−101.92919, −147.60086, …,  −10.727882, −15.01086], 
+    …, 
+    [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
+    [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
+    
+    See also
+    "Asymmetric Least Squares Smoothing" by P. Eilers and H. Boelens in 2005.
+    
     '''
-
-    new = flattened(self.value, freq, self.sample_rate).view(type(self))
+    if lam == None:
+      lam = len(self)**2
+    offset = self._baseline_als(self.value, lam=lam, p=p, niter=niter)
+    filtered_dataset = self.value - offset
+        
+    new = filtered_dataset.view(type(self))
     self._finalize_attribute(new)
-    new._unit = self.unit
     return new
 
   # fft
@@ -698,31 +734,6 @@ class TimeSeries(TimeSeriesCore):
 
     return new
         
-  
-  # slope correction
-  def slope_correction(self):
-    '''signal slope correction method
-       is based on the linear function which obtaines initial and last coorduinates of signal
-       
-    Return :  "mcgpy.timeseries.TimeSeriesArray"
-    ------
-      slope adjusted signal or signals
-      
-    Examples :
-    --------
-    >>> from mcgpy.timeseries import TimeSeries
-    >>> data = TimeSeries("~/test/raw/file/path.hdf5", number=1)
-    >>> data.slope_correction()
-    [0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
-    '''
-    a = (self[-1]-self[0])/len(self)
-    b = self[0]
-    x = np.arange(0, len(self))
-    new = self-(a*x+b)
-    self._finalize_attribute(new)
-    
-    return new
-      
     
   # peak finder
   def find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs):
@@ -794,7 +805,59 @@ class TimeSeries(TimeSeriesCore):
     times = self.times
     height = self.max().value*height_amp
 
-    peaks, _ = find_peaks(self.value, height=height, threshold=threshold, distance=distance, prominence=prominence, width=width, wlen=wlen, rel_height=rel_height, plateau_size=plateau_size)
+    peaks, _ = signal.find_peaks(self.value, height=height, threshold=threshold, distance=distance, prominence=prominence, width=width, wlen=wlen, rel_height=rel_height, plateau_size=plateau_size)
 
     return times[peaks]
 
+  # linear and non-linear detrend
+  def detrend(self, mode=None, deg=10, rcond=None):
+    '''Detrend signals
+    is based on scipy.signal.detrend, numpy.polyfit and polyval.
+    
+    Parameters :
+    ----------
+    mode : "str"
+      this argument is to determine the detrending type,
+      it takes "linear" or "nonlinear"
+    
+    deg : "int", optional
+      degree of the fitting polynomial, default value is 10
+    
+    rcond : "float", optional
+      relative condition number of the fit. Singular values smaller than this relative to the largest singular value will be ignored. 
+      The default value is len(x)*eps, where eps is the relative precision of the float type, about 2e-16 in most cases.
+    
+    Raises
+    -----
+    ValueError
+      if the mode argument was illegal
+    
+    Return :  "mcgpy.timeseries.TimeSeriesArray"
+      detrended dataset
+    
+    Examples :
+    --------
+    
+    See also:
+    "scipy.signal.detrend" and "np.polyfit", "np.polyval"
+    
+    '''
+    
+    # argument check
+    if mode == 'linear':
+      # linear detrend
+      detrended = signal.detrend(self.value)
+    
+    elif mode == 'nonlinear':
+      # non-linear detrend
+      t = np.arange(self.shape[0])
+      p = np.polyfit(t, self.value, deg=deg, rcond=rcond)
+      y = np.polyval(p,t)
+      detrended = self.value - y
+    
+    else:
+      raise ValueError('the mode argument only takes "linear" or "nonlinear"')
+      
+    new = detrended.view(type(self))
+    self._finalize_attribute(new)
+    return new
