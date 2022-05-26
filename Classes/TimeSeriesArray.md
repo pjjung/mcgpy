@@ -790,7 +790,7 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.htm
 ```
 
 ---
-#### flattened(freq=1, **kwargs)
+#### flattened(lam, p, niter, **kwargs)
 
 _def_ **mcgpy.timeseriesarray.TimeSeriesArray**.flattened(lam=None, p=1e-1, niter=10,  **kwargs)
 
