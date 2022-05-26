@@ -15,8 +15,9 @@
 
 import os
 import numpy as np
-from scipy import stats
-from scipy.signal import find_peaks
+from numpy.linalg import norm
+from scipy import (stats, signal, sparse)
+from scipy.sparse import linalg
 from astropy.units import (second, Quantity, Unit)
 from astropy.table import QTable
 from warnings import warn
@@ -266,6 +267,25 @@ class TimeSeriesArray(TimeSeriesArrayCore):
   def _get_channel_table(self):
     return QTable([self.numbers, self.labels],
                   names=('number', 'label'))
+    
+  def _baseline_als(self, y, lam, p, niter=10):                                                                        
+    s  = len(y)                                                                                               
+    # assemble difference matrix                                                                              
+    D0 = sparse.eye( s )                                                                                      
+    d1 = [np.ones( s-1 ) * -2]                                                                             
+    D1 = sparse.diags(d1, [-1])                                                                             
+    d2 = [np.ones( s-2 ) * 1]                                                                             
+    D2 = sparse.diags(d2, [-2])                                                                             
+
+    D  = D0 + D2 + D1                                                                                         
+    w  = np.ones(s)                                                                                         
+    for i in range(niter):                                                                                  
+      W = sparse.diags([w], [0])                                                                          
+      Z =  W + lam*D.dot(D.transpose())                                                                   
+      z = linalg.spsolve(Z, w*y)                                                                                 
+      w = p * (y > z) + (1-p) * (y < z)                                                                     
+
+    return z - np.median(z)
     
   ##---- Properties --------------------------------
   # sample rate
@@ -826,17 +846,20 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     return new
   
   # flattend
-  def flattened(self, freq=1, **kwargs):
-    '''flattened a wave form by a lowpass filter
+  def flattened(self, lam=None, p=1e-1, niter=10,  **kwargs):
+    '''flattened a wave form by "Asymmetric Least Squares Smoothing" 
     
     Parameters
     ----------
-    freq : "int", "float", "astropy.units.Quantity", optional
-      the frequency for the lowpass filter, default value is 1 Hz
+    ratio : "float"
+    
+    lam : "int"
+    
+    p : "float"
       
     Return : "mcgpy.timeseries.TimeSeries"
     ------
-        (original signal) - (lowpass filtered signal)
+        baseline corrected signal or signals
     
     Examples
     --------
@@ -847,14 +870,25 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     …, 
     [−26.580124, 33.935216,  …, 0.5097395, 0.65614824], 
     [37.148019, 35.133146, …, 22.03233, 31.360074]]1×10−15T
-    '''
-    if not np.ndim(self) == 2:
-      raise TypeError('flattened method only supports a 2-dimensional dataset')
     
-    freq = self._get_value(freq)
-    filtered_dataset = np.empty(self.shape)
-    for i, ch in enumerate(self.value):
-      filtered_dataset[i] = flattened(ch, freq, self.sample_rate)
+    See also
+    "Asymmetric Least Squares Smoothing" by P. Eilers and H. Boelens in 2005.
+    
+    '''
+    if np.ndim(self) == 1:
+      if lam == None:
+        lam = len(self)**2
+      offset = self._baseline_als(self.value, lam=lam, p=p, niter=niter)
+      filtered_dataset = self.value - offset
+    
+    elif np.ndim(self) == 2:
+      if lam == None:
+        lam = self.shape[1]**2
+      filtered_dataset = np.empty(self.shape)
+      for i, ch in enumerate(self.value):
+        offset = self._baseline_als(ch, lam=lam, p=p, niter=niter)
+        filtered_dataset[i] = ch - offset
+      
     new = filtered_dataset.view(type(self))
     self._finalize_attribute(new)
     
@@ -1546,48 +1580,6 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     # for another dimensional dataset
     else:
       raise ValueError("smooth only accepts 1 or 2 dimension arrays.")
-        
-  
-  # slope correction
-  def slope_correction(self):
-    '''signal slope correction method
-       is based on the linear function which obtaines initial and last coorduinates of signal
-       
-    Return :  "mcgpy.timeseries.TimeSeriesArray"
-    ------
-      slope adjusted signal or signals
-      
-    Examples :
-    --------
-    >>> from mcgpy.timeseries import TimeSeriesArray
-    >>> data = TimeSeriesArray("~/test/raw/file/path.hdf5").to_rms()
-    >>> data.slope_correction()
-    [0.00000000e+00 5.67263211e-04 1.77546869e-03 ... 6.08924282e-05 2.39171516e-07 1.19585758e-07] 1e-15 T
-    '''
-    # for an one-dimensional dataset
-    if np.ndim(self) == 1:
-      a = (self[-1]-self[0])/len(self)
-      b = self[0]
-      x = np.arange(0, len(self))
-      new = self-(a*x+b)
-      self._finalize_attribute(new)
-      return new
-    
-    # for a two-dimensional dataset
-    elif np.ndim(self) == 2:
-      _new = np.empty(self.shape)
-      for i, ch in enumerate(self.value):
-        a = (ch[-1]-ch[0])/len(ch)
-        b = ch[0]
-        x = np.arange(0, len(ch))
-        _new[i] = ch-(a*x+b)
-      new = _new.view(type(self))
-      self._finalize_attribute(new)
-      return new
-    
-    # for another dataset
-    else:
-      raise ValueError("slop_correction only accepts 1 or 2 dimension arrays.")
       
   # peak finder
   def find_peaks(self, height_amp=0.85, threshold=None, distance=None, prominence=None, width=1, wlen=None, rel_height=0.5, plateau_size=None, **kwargs):
@@ -1661,6 +1653,74 @@ class TimeSeriesArray(TimeSeriesArrayCore):
     times = self.times
     height = self.max().value*height_amp
 
-    peaks, _ = find_peaks(self.value, height=height, threshold=threshold, distance=distance, prominence=prominence, width=width, wlen=wlen, rel_height=rel_height, plateau_size=plateau_size)
+    peaks, _ = signal.find_peaks(self.value, height=height, threshold=threshold, distance=distance, prominence=prominence, width=width, wlen=wlen, rel_height=rel_height, plateau_size=plateau_size)
 
     return times[peaks]
+
+  # linear and non-linear detrend
+  def detrend(self, mode=None, deg=10, rcond=None):
+    '''Detrend signals
+    is based on scipy.signal.detrend, numpy.polyfit and polyval.
+    
+    Parameters :
+    ----------
+    mode : "str"
+      this argument is to determine the detrending type,
+      it takes "linear" or "nonlinear"
+    
+    deg : "int", optional
+      degree of the fitting polynomial, default value is 10
+    
+    rcond : "float", optional
+      relative condition number of the fit. Singular values smaller than this relative to the largest singular value will be ignored. 
+      The default value is len(x)*eps, where eps is the relative precision of the float type, about 2e-16 in most cases.
+    
+    Raises
+    -----
+    ValueError
+      if the mode argument was illegal
+    
+    Return :  "mcgpy.timeseries.TimeSeriesArray"
+      detrended dataset
+    
+    Examples :
+    --------
+    
+    See also:
+    "scipy.signal.detrend" and "np.polyfit", "np.polyval"
+    
+    '''
+    
+    # argument check
+    if mode == 'linear':
+      # linear detrend
+      if np.ndim(self) == 1:
+        detrended = signal.detrend(self.value)
+      
+      elif np.ndim(self) == 2:
+        detrended = np.empty(self.shape)
+        for i, ch in enumerate(self.value):
+          detrended[i] = signal.detrend(ch)
+    
+    elif mode == 'nonlinear':
+      # non-linear detrend
+      if np.ndim(self) == 1:
+        t = np.arange(self.shape[0])
+        p = np.polyfit(t, self.value, deg=deg, rcond=rcond)
+        y = np.polyval(p,t)
+        detrended = self.value - y
+      
+      elif np.ndim(self) == 2:
+        detrended = np.empty(self.shape)
+        for i, ch in enumerate(self.value):
+          t = np.arange(ch.shape[0])
+          p = np.polyfit(t, ch, deg=deg, rcond=rcond)
+          y = np.polyval(p,t)
+          detrended[i] = ch - y
+    
+    else:
+      raise ValueError('the mode argument only takes "linear" or "nonlinear"')
+      
+    new = detrended.view(type(self))
+    self._finalize_attribute(new)
+    return new
