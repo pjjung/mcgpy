@@ -4,7 +4,7 @@ sort: 2
 
 # Find peaks
 
-bla bla
+The interpretation of heart signals starts with an estimation of morphological waveforms, such as P, R, S, T peaks, and QRS/ST-T complexes. Thus, MCGpy provides the basic method to find peak epoch. This page shows an example of how to use it. A more detailed explanation of this method is writtend in the references below.
 
 ```python
 >>> from mcgpy.timeseries import TimeSeries
@@ -13,7 +13,7 @@ bla bla
 
 ## Signal Smoothing
 
-bla bla
+To avoid high-frequency noise effects while peak finding, a signal smoothing method is also provided.
 
 ```python
 >>> data_smooth = data.smooth()
@@ -33,8 +33,6 @@ bla bla
 ![visualization-fieldmap-example2](../imgs/example-findpeaks-1.png)
 
 ## Peak finding
-
-bla bla
 
 ```python
 >>> peaks = data_smooth.find_peaks()
