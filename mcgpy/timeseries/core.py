@@ -380,7 +380,7 @@ class TimeSeriesArrayCore(Series):
         each row is a channel data, and columns are time-series data points
     '''
     
-    if not len(dataset) == len(positions) == len(directions):
+    if not dataset.shape[0] == len(positions) == len(directions):
       raise TypeError('the number of row lines given arguments must be same: ({}), ({}), ({})'.format(len(dataset), len(positions), len(directions)))
     else:
       if len(positions[0]) != 3:
